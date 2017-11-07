@@ -131,19 +131,63 @@ class LinkedList:
             result.add(carry)
         return result
 
-def main():
-    '''Entry point to Linked List routine'''
+    def detectloop(self):
+        '''Given a Linked List, if the list has cycle, return node else return -1'''
+        slowptr = self.head
+        fastptr = self.head
+        while fastptr.next is not None and fastptr.next.next is not None:
+            fastptr = fastptr.next.next
+            slowptr = slowptr.next
+            if fastptr == slowptr:
+                return fastptr.data
+        return -1
+
+    def removeloop(self):
+        '''Given a Linked List with loop, remove the loop'''
+        slowptr = self.head
+        fastptr = self.head
+        while fastptr.next is not None and fastptr.next.next is not None:
+            fastptr = fastptr.next.next
+            slowptr = slowptr.next
+            if fastptr == slowptr:
+                break
+        ptr = self.head
+        while ptr and ptr != fastptr:
+            ptr = ptr.next
+        ptr.next = None
+
+def test_add_list():
+    '''Call to populate a list'''
     root = LinkedList()
     #Add sample nodes to root
     root.add(1)
     root.add(3)
     root.add(2)
     root.printlinkedlist()#prints 2 3 1
+
+def test_print_nth_node_from_tail():
+    '''Call to print nth node from tail'''
+    root = LinkedList()
+    #Add sample nodes to root
+    root.add(1)
+    root.add(3)
+    root.add(2)
     #print nth node from tail of the list
     print(root.printnthnodefromtail(1))#prints 1
+
+def test_reverse_list():
+    '''Call to reverse a list'''
+    root = LinkedList()
+    #Add sample nodes to root
+    root.add(1)
+    root.add(3)
+    root.add(2)
     #reverse list
     root.reverse()
     root.printlinkedlist()#prints 1 3 2
+
+def test_merge_list():
+    '''Call to merge two sorted list'''
     #merge 2 sorted lists
     root = LinkedList()
     root.add(3)
@@ -154,7 +198,9 @@ def main():
     second_list.next.next = Node(6)
     merged = root.mergesorted(second_list)
     merged.printlinkedlist()#print 6 5 4 3 2 1
-    merged = None
+
+def test_sort_list():
+    '''Call to sort an unsorted linked list'''
     root = LinkedList()
     root.add(9)
     root.add(4)
@@ -162,6 +208,8 @@ def main():
     root.add(3)
     root.sort()
     root.printlinkedlist()#print 12 9 4 3
+
+def test_add_two_list():
     #add two linked list numbers
     root = LinkedList()
     root.add(1)
@@ -172,6 +220,53 @@ def main():
     list2.add(7)
     add_2_nos = root.add2numbers(list2.head)
     add_2_nos.printlinkedlist()#print 200 -> 123 + 77
+
+def test_detect_loop():
+    '''Call to detect loop in list'''
+    #detect loop in linked list and remove loop
+    root = LinkedList()
+    l1 = Node(5)
+    l2 = Node(4)
+    l3 = Node(3)
+    l4 = Node(2)
+    l5 = Node(1)
+    l5.next = l4
+    l4.next = l3
+    l3.next = l2
+    l2.next = l1
+    l1.next = l4 #loop creation
+    root.head = l5
+    print(root.detectloop())#prints 5
+
+def test_remove_loop():
+    #detect loop in linked list and remove loop
+    add_2_nos = None
+    root = LinkedList()
+    l1 = Node(5)
+    l2 = Node(4)
+    l3 = Node(3)
+    l4 = Node(2)
+    l5 = Node(1)
+    l5.next = l4
+    l4.next = l3
+    l3.next = l2
+    l2.next = l1
+    l1.next = l4 #loop creation
+    root.head = l5
+    print(root.detectloop())#prints 5
+    root.removeloop()
+    root.printlinkedlist()#print 1 2 3 4 5
+
+def main():
+    '''Entry point to Linked List routine'''
+    test_add_list()
+    test_print_nth_node_from_tail()
+    test_reverse_list()
+    test_merge_list()
+    test_sort_list()
+    test_add_two_list()
+    test_detect_loop()
+    test_remove_loop()
 
 if __name__ == "__main__":
     main()
