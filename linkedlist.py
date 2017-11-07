@@ -239,7 +239,7 @@ def test_detect_loop():
     print(root.detectloop())#prints 5
 
 def test_remove_loop():
-    #detect loop in linked list and remove loop
+    '''Call to detect loop in linked list and remove loop'''
     root = LinkedList()
     l1 = Node(5)
     l2 = Node(4)
