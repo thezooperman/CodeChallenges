@@ -240,7 +240,6 @@ def test_detect_loop():
 
 def test_remove_loop():
     #detect loop in linked list and remove loop
-    add_2_nos = None
     root = LinkedList()
     l1 = Node(5)
     l2 = Node(4)
