@@ -156,6 +156,24 @@ class LinkedList:
             ptr = ptr.next
         ptr.next = None
 
+    def flattenlist(self):
+        '''Given a list, flatten the list and return the modified list'''
+        if self.head is not None:
+            tail = self.head
+            start = self.head
+            while tail.next:
+                tail = tail.next
+            while start != tail:
+                if start.child:
+                    tail.next = start.child
+                    tmp = start.child
+                    while tmp.next:
+                        tmp = tmp.next
+                    tail = tmp
+                start = start.next
+            return self.head
+        return None
+
 def test_add_list():
     '''Call to populate a list'''
     root = LinkedList()
@@ -210,7 +228,7 @@ def test_sort_list():
     root.printlinkedlist()#print 12 9 4 3
 
 def test_add_two_list():
-    #add two linked list numbers
+    '''Call to add two linked list numbers'''
     root = LinkedList()
     root.add(1)
     root.add(2)
@@ -256,6 +274,49 @@ def test_remove_loop():
     root.removeloop()
     root.printlinkedlist()#print 1 2 3 4 5
 
+def test_flattenlist():
+    '''Call to flatten linked list'''
+    root = LinkedList()
+    l10 = Node(10)
+    l5 = Node(5)
+    l12 = Node(12)
+    l7 = Node(7)
+    l11 = Node(11)
+    l4 = Node(4)
+    l20 = Node(20)
+    l2 = Node(2)
+    l13 = Node(13)
+    l16 = Node(16)
+    l3 = Node(3)
+    l17 = Node(17)
+    l9 = Node(9)
+    l19 = Node(19)
+    l6 = Node(6)
+    l8 = Node(8)
+    l15 = Node(15)
+
+    l10.child = l4
+    l4.next = l20
+    l20.child = l2
+    l20.next = l13
+    l13.child = l16
+    l16.child = l3
+    l7.child = l17
+    l17.next = l6
+    l17.child = l9
+    l9.next = l8
+    l9.child = l19
+    l19.next = l15
+    l10.next = l5
+    l5.next = l12
+    l12.next = l7
+    l7.next = l11
+
+    root.head = l10
+    flat_list = root.flattenlist()
+    root.head = flat_list
+    root.printlinkedlist()#output 10->5->12->7->11->4->20->13->17->6->2->16->9->8->3->19->15
+
 def main():
     '''Entry point to Linked List routine'''
     test_add_list()
@@ -266,6 +327,7 @@ def main():
     test_add_two_list()
     test_detect_loop()
     test_remove_loop()
+    test_flattenlist()
 
 if __name__ == "__main__":
     main()
