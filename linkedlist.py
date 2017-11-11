@@ -24,7 +24,9 @@ class LinkedList:
             self.head = Node(data)
 
     def reverse(self):
-        '''Reverse a Linked List'''
+        '''Reverse a Linked List
+           Complexity:O(n)
+        '''
         current = self.head
         prev = None
         while current:
@@ -34,7 +36,9 @@ class LinkedList:
         self.head = prev
 
     def mergesorted(self, list2):
-        '''Merge two sorted linked list'''
+        '''Merge two sorted linked list
+           Complexity:O(n)
+        '''
         list1 = self.head
         mergedlist = dummy = LinkedList()
         while list1 and list2:
@@ -75,7 +79,9 @@ class LinkedList:
         print(flush=True)
 
     def printnthnodefromtail(self, n):
-        '''Print the Nth node from the tail of the Linked List'''
+        '''Print the Nth node from the tail of the Linked List
+           Compleity:O(n)
+        '''
         if self.head is not None:
             ptr1 = self.head
             ptr2 = self.head
@@ -89,7 +95,9 @@ class LinkedList:
         return -1
 
     def sort(self):
-        '''Given an unsorted list, sort the list'''
+        '''Given an unsorted list, sort the list
+           Complexity:O(nlogn)
+        '''
         if self.head is not None:
             tmp = []
             root = self.head
@@ -103,7 +111,9 @@ class LinkedList:
             self.head = tmplist.head
 
     def add2numbers(self, num1):
-        '''Given two linked list with numbers, add and return the result in a Linked List'''
+        '''Given two linked list with numbers, add and return the result in a Linked List
+           Complexity:O(n)
+        '''
         num2 = self.head
         if num1 is None and num2 is None:
             return None
@@ -157,7 +167,9 @@ class LinkedList:
         ptr.next = None
 
     def flattenlist(self):
-        '''Given a list, flatten the list and return the modified list'''
+        '''Given a list, flatten the list and return the modified list
+           Complexity:O(n)
+        '''
         if self.head is not None:
             tail = self.head
             start = self.head
@@ -173,6 +185,26 @@ class LinkedList:
                 start = start.next
             return self.head
         return None
+
+    def findindexofsubset(self, sublist):
+        '''Given a Linked List, find the index of
+           another Linked List, if that List is a subset of the parent
+           Complexity:O(n)
+        '''
+        root = self.head
+        index = 0
+        sublist_dummy = sublist
+        while root:
+            if root.data == sublist.data:
+                root = root.next
+                sublist = sublist.next
+                if sublist is None:
+                    return index
+            else:
+                sublist = sublist_dummy
+                index += 1
+                root = root.next
+        return index if sublist is None else -1
 
 def test_add_list():
     '''Call to populate a list'''
@@ -317,6 +349,18 @@ def test_flattenlist():
     root.head = flat_list
     root.printlinkedlist()#output 10->5->12->7->11->4->20->13->17->6->2->16->9->8->3->19->15
 
+def test_findindexofsubset():
+    '''Call to index of sublist'''
+    root = LinkedList()
+    root.add(2)
+    # root.add(10)@adding this should return -1
+    root.add(11)
+    root.add(43)
+    root.add(5)
+    sub = Node(5)
+    sub.next = Node(43)
+    print(root.findindexofsubset(sub))#returns 2[0 based index]
+
 def main():
     '''Entry point to Linked List routine'''
     test_add_list()
@@ -328,6 +372,7 @@ def main():
     test_detect_loop()
     test_remove_loop()
     test_flattenlist()
+    test_findindexofsubset()
 
 if __name__ == "__main__":
     main()
