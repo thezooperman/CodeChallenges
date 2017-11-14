@@ -206,6 +206,39 @@ class LinkedList:
                 root = root.next
         return index if sublist is None else -1
 
+    def findintersectionpoint(self, otherlist):
+        """
+        Given two linked lists, which intersected
+        at some point, find the intersection node.
+        Args:
+            otherlist (Node): The other created list
+        Returns:
+            The intersection node, if found, else -1
+        """
+        root = self.head
+        root_len = otherlist_len = 0
+        tmp_other = otherlist
+        while root:
+            root_len += 1
+            root = root.next
+        while otherlist:
+            otherlist_len += 1
+            otherlist = otherlist.next
+        if root_len > otherlist_len:
+            diff = root_len - otherlist_len
+        else:
+            root, otherlist = otherlist, root#make root larger list
+        root = self.head
+        while diff > 0:
+            root = root.next
+            diff -= 1
+        while root:
+            if root == tmp_other:
+                return root.data
+            root = root.next
+            tmp_other = tmp_other.next
+        return -1
+
 def test_add_list():
     '''Call to populate a list'''
     root = LinkedList()
@@ -357,9 +390,22 @@ def test_findindexofsubset():
     root.add(11)
     root.add(43)
     root.add(5)
-    sub = Node(5)
-    sub.next = Node(43)
+    sub = Node(11)
+    sub.next = Node(2)
     print(root.findindexofsubset(sub))#returns 2[0 based index]
+
+def test_findintersectionpoint():
+    '''Call to find the intersection point of two merged lists'''
+    root = LinkedList()
+    root.add(2)
+    root.head.next = Node(3)
+    tmp = Node(4)
+    root.head.next.next = tmp
+    root.head.next.next.next = Node(5)
+    otherlist = Node(1)
+    otherlist.next = tmp
+    otherlist.next.next = Node(5)
+    print(root.findintersectionpoint(otherlist)) #prints 4
 
 def main():
     '''Entry point to Linked List routine'''
@@ -373,6 +419,7 @@ def main():
     test_remove_loop()
     test_flattenlist()
     test_findindexofsubset()
+    test_findintersectionpoint()
 
 if __name__ == "__main__":
     main()
