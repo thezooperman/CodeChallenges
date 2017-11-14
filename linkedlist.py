@@ -153,7 +153,9 @@ class LinkedList:
         return -1
 
     def removeloop(self):
-        '''Given a Linked List with loop, remove the loop'''
+        '''Given a Linked List with loop, remove the loop
+           Complexity: O(n)
+        '''
         slowptr = self.head
         fastptr = self.head
         while fastptr.next is not None and fastptr.next.next is not None:
@@ -210,6 +212,7 @@ class LinkedList:
         """
         Given two linked lists, which intersected
         at some point, find the intersection node.
+        Complexity: O(n)
         Args:
             otherlist (Node): The other created list
         Returns:
