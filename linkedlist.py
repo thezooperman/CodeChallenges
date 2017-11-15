@@ -242,6 +242,23 @@ class LinkedList:
             tmp_other = tmp_other.next
         return -1
 
+    def findduplicates(self):
+        '''Find duplicates in linked list
+           Complexity: O(n)
+           Args:
+                None
+        '''
+        duplicates = {}
+        root = self.head
+        prev = None
+        while root:
+            if root.data in duplicates:
+                prev.next = root.next
+            else:
+                duplicates.setdefault(root.data, 1)
+                prev = root
+            root = root.next
+
 def test_add_list():
     '''Call to populate a list'''
     root = LinkedList()
@@ -410,6 +427,19 @@ def test_findintersectionpoint():
     otherlist.next.next = Node(5)
     print(root.findintersectionpoint(otherlist)) #prints 4
 
+def test_findduplicates():
+    '''Call to find duplicates in linked list and clean dups'''
+    root = LinkedList()
+    root.add(3)
+    root.add(2)
+    root.add(1)
+    root.add(3)
+    root.add(1)
+    root.add(2)
+    root.add(1)
+    root.findduplicates()
+    root.printlinkedlist()#expected output 1->2->3
+
 def main():
     '''Entry point to Linked List routine'''
     test_add_list()
@@ -423,6 +453,7 @@ def main():
     test_flattenlist()
     test_findindexofsubset()
     test_findintersectionpoint()
+    test_findduplicates()
 
 if __name__ == "__main__":
     main()
