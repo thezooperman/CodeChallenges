@@ -259,6 +259,37 @@ class LinkedList:
                 prev = root
             root = root.next
 
+    def leftrotate(self, k):
+        '''Given a Linked List, rotate the k elements anti-clockwise.
+           If the given linked list is 10->20->30->40->50->60 and k is 4,
+           the list should be modified to 50->60->10->20->30->40
+           Complexity:O(n)
+           Args:
+                k : value by which to rotate the Linked List
+        '''
+        if k < 1:
+            return None
+        root = self.head
+        count = 1
+        while count < k and root.next:
+            count += 1
+            root = root.next
+        kthnode = root
+        while root.next is not None:
+            root = root.next
+        root.next = self.head
+        self.head = kthnode.next
+        kthnode.next = None
+        # data_list = []
+        # while root:
+        #     data_list.append(root.data)
+        #     root = root.next
+        # rotated_list = data_list[k:] + data_list[:k]
+        # root = LinkedList()
+        # for data in rotated_list[::-1]:
+        #     root.add(data)
+        # self.head = root.head
+
 def test_add_list():
     '''Call to populate a list'''
     root = LinkedList()
@@ -440,6 +471,18 @@ def test_findduplicates():
     root.findduplicates()
     root.printlinkedlist()#expected output 1->2->3
 
+def test_rotateleft():
+    '''Call to test Linked List left rotation'''
+    root = LinkedList()
+    root.add(60)
+    root.add(50)
+    root.add(40)
+    root.add(30)
+    root.add(20)
+    root.add(10)
+    root.leftrotate(4)
+    root.printlinkedlist()
+
 def main():
     '''Entry point to Linked List routine'''
     test_add_list()
@@ -454,6 +497,7 @@ def main():
     test_findindexofsubset()
     test_findintersectionpoint()
     test_findduplicates()
+    test_rotateleft()
 
 if __name__ == "__main__":
     main()
