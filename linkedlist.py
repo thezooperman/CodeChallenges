@@ -1,6 +1,8 @@
 '''
 This module lists all the basic Linked List interview questions
 '''
+from queue import PriorityQueue
+
 class Node:
     '''Class to define Linked List Node'''
     def __init__(self, data):
@@ -290,6 +292,26 @@ class LinkedList:
         #     root.add(data)
         # self.head = root.head
 
+    def mergeksortedlists(self, klists):
+        '''Given an array of k-sorted linked lists, merge the lists
+           and return a single linked list of sorted elements
+           Complexity: O(nlogk), n = nodes, k = lists
+           Args:
+                klists: list of k sorted Linked Lists
+        '''
+        q = PriorityQueue(len(klists))
+        start = dummy = LinkedList()
+        for slist in klists:
+            if slist:
+                q.put((slist.data, slist))
+        while not q.empty():
+            val, node = q.get()
+            dummy.add(val)
+            node = node.next
+            if node:
+                q.put((node.data, node))
+        return start
+
 def test_add_list():
     '''Call to populate a list'''
     root = LinkedList()
@@ -483,6 +505,21 @@ def test_rotateleft():
     root.leftrotate(4)
     root.printlinkedlist()
 
+def test_mergeksortedlists():
+    '''Call to test merge-k-sorted list'''
+    root = LinkedList()
+    list1 = Node(44)
+    list1.next = Node(45)
+    list1.next.next = Node(46)
+    list2 = Node(2)
+    list2.next = Node(3)
+    # list2.next.next = Node(4)
+    list3 = Node(10)
+    # list3.next = Node(11)
+    # list3.next.next = Node(12)
+    kmerged = root.mergeksortedlists([list3, list1, list2])
+    kmerged.printlinkedlist()#expected output - 46->45->44->10->3->2
+
 def main():
     '''Entry point to Linked List routine'''
     test_add_list()
@@ -498,6 +535,7 @@ def main():
     test_findintersectionpoint()
     test_findduplicates()
     test_rotateleft()
+    test_mergeksortedlists()
 
 if __name__ == "__main__":
     main()
