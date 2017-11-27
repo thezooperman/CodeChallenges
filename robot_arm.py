@@ -31,8 +31,7 @@ def  compute(instructions):
             current_pos += 1
             current_pos = current_pos % max_positions
         elif i == 'L':
-            tmp = blocks[current_pos]
-            tmp = hex_code.index(str(blocks[current_pos]))
+            tmp = hex_code.index(blocks[current_pos])
             if tmp:
                 current_block += tmp
             hex_block = hex_code[current_block]
