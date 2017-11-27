@@ -58,4 +58,5 @@ def  compute(instructions):
             current_block = 1 #reset current block counter
     print(''.join([str(s) for s in blocks]))
 
-compute('PMLPMMMLPMLPMML') #0211000000
+compute('PMLPMMMLPMLPMML') #returns 0211000000
+compute('') #returns 000000000
