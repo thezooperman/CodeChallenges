@@ -16,6 +16,7 @@ def  compute(instructions):
     hex_code = [str(i) for i in range(10)]
     [hex_code.append(chr(i)) for i in range(65, 71)]
     max_positions = 9
+    max_blocks = 15
     blocks = ['0'] * max_positions
     current_pos = 0
     current_block = 1
@@ -34,6 +35,7 @@ def  compute(instructions):
             tmp = hex_code.index(blocks[current_pos])
             if tmp:
                 current_block += tmp
+                current_block = current_block % max_blocks
             hex_block = hex_code[current_block]
             if hex_block == 'F':
                 isheld = True
