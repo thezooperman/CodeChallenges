@@ -34,7 +34,6 @@ def  compute(instructions):
             tmp = blocks[current_pos]
             tmp = hex_code.index(str(blocks[current_pos]))
             if tmp:
-                # tmp = int(tmp, 0)
                 current_block += tmp
             hex_block = hex_code[current_block]
             if hex_block == 'F':
