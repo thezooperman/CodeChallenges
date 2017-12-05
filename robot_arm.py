@@ -15,7 +15,7 @@ def  compute(instructions):
         \rinstructions: string sequence of instructions'''
     hex_code = [str(i) for i in range(10)]
     [hex_code.append(chr(i)) for i in range(65, 71)]
-    max_positions = 9
+    max_positions = 10
     max_blocks = 15
     blocks = ['0'] * max_positions
     current_pos = 0
@@ -29,22 +29,23 @@ def  compute(instructions):
                 current_pos = 0
             isheld = True
         elif i == 'M':
+            if current_pos == max_positions:
+                continue
             current_pos += 1
-            current_pos = current_pos % max_positions
         elif i == 'L':
             tmp = hex_code.index(blocks[current_pos])
-            if tmp:
+            if tmp and tmp != max_blocks:
                 current_block += tmp
-                current_block = current_block % max_blocks
             hex_block = hex_code[current_block]
             if hex_block == 'F':
                 isheld = True
             else:
                 isheld = False
-            blocks[current_pos] = hex_block
+            if tmp != max_blocks:
+                blocks[current_pos] = hex_block
             current_pos = 0 #reset current position counter
             current_block = 1 #reset current block counter
     print(''.join([str(s) for s in blocks]))
 
 compute('PMLPMMMLPMLPMML') #returns 021100000
-compute('PLPLPLPLPLPLPLPLPLPL') #returns A00000000
+compute('PLPLPLPLPLPLPLPLPLPLPLPLPLPLPLPLPL') #returns A00000000
