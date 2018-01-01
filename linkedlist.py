@@ -312,6 +312,18 @@ class LinkedList:
                 q.put((node.data, node))
         return start
 
+    def midlistinonepass(self):
+        '''Find Middle of a Linked List with One Pass/Loop'''
+        ptr1 = self.head
+        ptr2 = self.head
+        length = 0
+        while ptr1:
+            if length % 2 == 1:
+                ptr2 = ptr2.next
+            length += 1
+            ptr1 = ptr1.next
+        return ptr2.data
+
 def test_add_list():
     '''Call to populate a list'''
     root = LinkedList()
@@ -520,6 +532,16 @@ def test_mergeksortedlists():
     kmerged = root.mergeksortedlists([list3, list1, list2])
     kmerged.printlinkedlist()#expected output - 46->45->44->10->3->2
 
+def test_midpointoflist():
+    root = LinkedList()
+    root.add(5)
+    root.add(4)
+    root.add(3)
+    root.add(2)
+    root.add(1)
+    val = root.midlistinonepass()
+    print(val)
+
 def main():
     '''Entry point to Linked List routine'''
     test_add_list()
@@ -536,6 +558,7 @@ def main():
     test_findduplicates()
     test_rotateleft()
     test_mergeksortedlists()
+    test_midpointoflist()
 
 if __name__ == "__main__":
     main()
