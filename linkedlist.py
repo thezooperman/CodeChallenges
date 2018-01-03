@@ -318,7 +318,7 @@ class LinkedList:
         ptr2 = self.head
         length = 0
         while ptr1:
-            if length % 2 == 1:
+            if length % 2 != 0:
                 ptr2 = ptr2.next
             length += 1
             ptr1 = ptr1.next
@@ -533,6 +533,7 @@ def test_mergeksortedlists():
     kmerged.printlinkedlist()#expected output - 46->45->44->10->3->2
 
 def test_midpointoflist():
+    '''Call to test midpoint in one pass'''
     root = LinkedList()
     root.add(5)
     root.add(4)
