@@ -3,16 +3,20 @@ This module lists all the basic Linked List interview questions
 '''
 from queue import PriorityQueue
 
+
 class Node:
     '''Class to define Linked List Node'''
+
     def __init__(self, data):
         self.data = data
         self.next = None
         self.prev = None
         self.child = None
 
+
 class LinkedList:
     '''Linked List class'''
+
     def __init__(self):
         self.head = None
 
@@ -113,7 +117,8 @@ class LinkedList:
             self.head = tmplist.head
 
     def add2numbers(self, num1):
-        '''Given two linked list with numbers, add and return the result in a Linked List
+        '''Given two linked list with numbers, add and
+           return the result in a Linked List
            Complexity:O(n)
         '''
         num2 = self.head
@@ -144,7 +149,8 @@ class LinkedList:
         return result
 
     def detectloop(self):
-        '''Given a Linked List, if the list has cycle, return node else return -1'''
+        '''Given a Linked List, if the list has cycle,
+           return node else return -1'''
         slowptr = self.head
         fastptr = self.head
         while fastptr.next is not None and fastptr.next.next is not None:
@@ -232,7 +238,7 @@ class LinkedList:
         if root_len > otherlist_len:
             diff = root_len - otherlist_len
         else:
-            root, otherlist = otherlist, root#make root larger list
+            root, otherlist = otherlist, root  # make root larger list
         root = self.head
         while diff > 0:
             root = root.next
@@ -324,39 +330,43 @@ class LinkedList:
             ptr1 = ptr1.next
         return ptr2.data
 
+
 def test_add_list():
     '''Call to populate a list'''
     root = LinkedList()
-    #Add sample nodes to root
+    # Add sample nodes to root
     root.add(1)
     root.add(3)
     root.add(2)
-    root.printlinkedlist()#prints 2 3 1
+    root.printlinkedlist()  # prints 2 3 1
+
 
 def test_print_nth_node_from_tail():
     '''Call to print nth node from tail'''
     root = LinkedList()
-    #Add sample nodes to root
+    # Add sample nodes to root
     root.add(1)
     root.add(3)
     root.add(2)
-    #print nth node from tail of the list
-    print(root.printnthnodefromtail(1))#prints 1
+    # print nth node from tail of the list
+    print(root.printnthnodefromtail(1))  # prints 1
+
 
 def test_reverse_list():
     '''Call to reverse a list'''
     root = LinkedList()
-    #Add sample nodes to root
+    # Add sample nodes to root
     root.add(1)
     root.add(3)
     root.add(2)
-    #reverse list
+    # reverse list
     root.reverse()
-    root.printlinkedlist()#prints 1 3 2
+    root.printlinkedlist()  # prints 1 3 2
+
 
 def test_merge_list():
     '''Call to merge two sorted list'''
-    #merge 2 sorted lists
+    # merge 2 sorted lists
     root = LinkedList()
     root.add(3)
     root.add(2)
@@ -365,7 +375,8 @@ def test_merge_list():
     second_list.next = Node(5)
     second_list.next.next = Node(6)
     merged = root.mergesorted(second_list)
-    merged.printlinkedlist()#print 6 5 4 3 2 1
+    merged.printlinkedlist()  # print 6 5 4 3 2 1
+
 
 def test_sort_list():
     '''Call to sort an unsorted linked list'''
@@ -375,7 +386,8 @@ def test_sort_list():
     root.add(12)
     root.add(3)
     root.sort()
-    root.printlinkedlist()#print 12 9 4 3
+    root.printlinkedlist()  # print 12 9 4 3
+
 
 def test_add_two_list():
     '''Call to add two linked list numbers'''
@@ -387,11 +399,12 @@ def test_add_two_list():
     list2.add(7)
     list2.add(7)
     add_2_nos = root.add2numbers(list2.head)
-    add_2_nos.printlinkedlist()#print 200 -> 123 + 77
+    add_2_nos.printlinkedlist()  # print 200 -> 123 + 77
+
 
 def test_detect_loop():
     '''Call to detect loop in list'''
-    #detect loop in linked list and remove loop
+    # detect loop in linked list and remove loop
     root = LinkedList()
     l1 = Node(5)
     l2 = Node(4)
@@ -402,9 +415,10 @@ def test_detect_loop():
     l4.next = l3
     l3.next = l2
     l2.next = l1
-    l1.next = l4 #loop creation
+    l1.next = l4  # loop creation
     root.head = l5
-    print(root.detectloop())#prints 5
+    print(root.detectloop())  # prints 5
+
 
 def test_remove_loop():
     '''Call to detect loop in linked list and remove loop'''
@@ -418,11 +432,12 @@ def test_remove_loop():
     l4.next = l3
     l3.next = l2
     l2.next = l1
-    l1.next = l4 #loop creation
+    l1.next = l4  # loop creation
     root.head = l5
-    print(root.detectloop())#prints 5
+    print(root.detectloop())  # prints 5
     root.removeloop()
-    root.printlinkedlist()#print 1 2 3 4 5
+    root.printlinkedlist()  # print 1 2 3 4 5
+
 
 def test_flattenlist():
     '''Call to flatten linked list'''
@@ -465,7 +480,9 @@ def test_flattenlist():
     root.head = l10
     flat_list = root.flattenlist()
     root.head = flat_list
-    root.printlinkedlist()#output 10->5->12->7->11->4->20->13->17->6->2->16->9->8->3->19->15
+    # output 10->5->12->7->11->4->20->13->17->6->2->16->9->8->3->19->15
+    root.printlinkedlist()
+
 
 def test_findindexofsubset():
     '''Call to index of sublist'''
@@ -477,7 +494,8 @@ def test_findindexofsubset():
     root.add(5)
     sub = Node(11)
     sub.next = Node(2)
-    print(root.findindexofsubset(sub))#returns 2[0 based index]
+    print(root.findindexofsubset(sub))  # returns 2[0 based index]
+
 
 def test_findintersectionpoint():
     '''Call to find the intersection point of two merged lists'''
@@ -490,7 +508,8 @@ def test_findintersectionpoint():
     otherlist = Node(1)
     otherlist.next = tmp
     otherlist.next.next = Node(5)
-    print(root.findintersectionpoint(otherlist)) #prints 4
+    print(root.findintersectionpoint(otherlist))  # prints 4
+
 
 def test_findduplicates():
     '''Call to find duplicates in linked list and clean dups'''
@@ -503,7 +522,8 @@ def test_findduplicates():
     root.add(2)
     root.add(1)
     root.findduplicates()
-    root.printlinkedlist()#expected output 1->2->3
+    root.printlinkedlist()  # expected output 1->2->3
+
 
 def test_rotateleft():
     '''Call to test Linked List left rotation'''
@@ -516,6 +536,7 @@ def test_rotateleft():
     root.add(10)
     root.leftrotate(4)
     root.printlinkedlist()
+
 
 def test_mergeksortedlists():
     '''Call to test merge-k-sorted list'''
@@ -530,7 +551,8 @@ def test_mergeksortedlists():
     # list3.next = Node(11)
     # list3.next.next = Node(12)
     kmerged = root.mergeksortedlists([list3, list1, list2])
-    kmerged.printlinkedlist()#expected output - 46->45->44->10->3->2
+    kmerged.printlinkedlist()  # expected output - 46->45->44->10->3->2
+
 
 def test_midpointoflist():
     '''Call to test midpoint in one pass'''
@@ -542,6 +564,7 @@ def test_midpointoflist():
     root.add(1)
     val = root.midlistinonepass()
     print(val)
+
 
 def main():
     '''Entry point to Linked List routine'''
@@ -560,6 +583,7 @@ def main():
     test_rotateleft()
     test_mergeksortedlists()
     test_midpointoflist()
+
 
 if __name__ == "__main__":
     main()

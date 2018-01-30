@@ -7,4 +7,5 @@ def encodetobase7(value):
     output.reverse()
     print((''.join(output)))
 
-encodetobase7(7792875)#outputs atlassian
+
+encodetobase7(7792875)  # outputs atlassian
