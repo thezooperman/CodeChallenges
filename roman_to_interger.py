@@ -21,10 +21,9 @@ def get_value(roman):
 
 
 def roman_to_integer(roman):
-    regex_pattern = '^(?=[MDCLXVI])M{0,3}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV\
-    |V?I{0,3})$'
+    regex_pattern = '^M{0,4}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$'
     is_valid = re.search(regex_pattern, roman)
-    assert is_valid is not False, 'Input string is not a valid Roman value'
+    assert is_valid is not None, 'Input string is not a valid Roman value'
     assert roman is not "", 'Input string is empty'
     assert roman is not None, 'Input string is not defined'
 
