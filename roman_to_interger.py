@@ -16,7 +16,7 @@ def get_value(roman):
     }
     try:
         return letter_values[roman.upper()]
-    except:
+    except Exception:
         return None
 
 
