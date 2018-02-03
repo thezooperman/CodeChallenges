@@ -1,4 +1,8 @@
 {
-    "python.pythonPath": "C:\\Users\\arghos\\.virtualenvs\\CodeChallenges-9bsBNinB",
-    "editor.wordWrap": "on"
+    "python.pythonPath": "/home/aloke/.virtualenvs/CodeChallenges--TS8pN6m/bin/python",
+    "editor.wordWrap": "on",
+    "python.linting.flake8Enabled": true,
+    "python.linting.pylintEnabled": false,
+    "files.autoSave": "afterDelay",
+    "files.autoSaveDelay": 10000
 }
