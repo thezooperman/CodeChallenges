@@ -13,10 +13,10 @@ Note: All coordinates are positive.
 
 def find_dest(sx, sy, dx, dy):
     '''Find if destination can be reached
-       @sx: x1
-       @sy: y1
-       @dx: x2
-       @dy: y2 
+       :type sx: int
+       :type sy: int
+       :type dx: int
+       :type dy: int
     '''
     if sx > dx or sy > dy:
         return False

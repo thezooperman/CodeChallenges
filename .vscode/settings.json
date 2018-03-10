@@ -1,5 +1,5 @@
 {
-    "python.pythonPath": "C:\\Users\\arghos\\.virtualenvs\\CodeChallenges-9bsBNinB\\scripts\\python.exe",
+    "python.pythonPath": "/home/aritraghosh/.virtualenvs/CodeChallenges-tX6a7Nmh/bin/python",
     "editor.wordWrap": "on",
     "python.linting.flake8Enabled": true,
     "python.linting.pylintEnabled": false,

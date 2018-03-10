@@ -9,6 +9,7 @@ name = "pypi"
 
 requests = "*"
 "bs4" = "*"
+"flake8" = "*"
 
 
 [dev-packages]
