@@ -9,7 +9,10 @@ Explanation - TD 9S 8H 7D 6C|6S 6H 6D KC KH
 Each hand has a total of 5 cards, the input is
 arranged accordingly and the cards are separated by
 a space.
-Sample Output - right
+Output - right
+
+Sample Input - TD JD QD KD AD 8C AC AD AH AS
+Output - left
 
 All the regular rules of Poker applies
 https://en.wikipedia.org/wiki/List_of_poker_hands
