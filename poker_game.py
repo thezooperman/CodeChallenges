@@ -1,4 +1,4 @@
-# poker_hame.py
+# poker_game.py
 '''
 Given a game of poker hands, find out
 which hand wins the game. If right hand wins,
