@@ -154,7 +154,7 @@ def check_hand(hand):
 
 init_card_order()
 # for line in sys.stdin:
-line = input()
+line = input('Input left and right hand cards:')
 temp_arr = line.split(' ')
 left_hand, right_hand = temp_arr[:5], temp_arr[5:]
 right_hand[-1] = right_hand[-1].replace('\n', '')
