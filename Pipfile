@@ -10,6 +10,8 @@ name = "pypi"
 requests = "*"
 "bs4" = "*"
 "flake8" = "*"
+numpy = "*"
+"autopep8" = "*"
 
 
 [dev-packages]
