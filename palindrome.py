@@ -8,8 +8,6 @@ print('Hi, %s.' % name)         # Writing output to STDOUT
 #  will cause the test cases to fail
 '''
 
-# Write your code here
-# Write your code here
 N = int(input().strip())
 
 for it in range(N):
