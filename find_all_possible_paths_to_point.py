@@ -17,10 +17,12 @@ def calculatePath(row, col, i, j, path):
         paths.append(path)
         return
     # Vertical Downard movement
+    # Trace back if solution is not reached
     if i == row - 1:
         calculatePath(row, col, i, j + 1, path + 'V')
         return
     # Horizontal Rightward movement
+    # Trace back is solution is not reached
     if j == col - 1:
         calculatePath(row, col, i + 1, j, path + 'H')
         return
