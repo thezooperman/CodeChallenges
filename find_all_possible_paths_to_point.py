@@ -60,7 +60,8 @@ def getSafePaths(journeys):
         # print(countPath(x + 1, y + 1, 0, 0))
         calculatePath(x + 1, y + 1, 0, 0, '')
         paths.sort()
-    print(paths[k])
+        print(paths[k])
+        paths.clear()
 
 
 getSafePaths(['2 2 2'])
