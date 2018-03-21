@@ -1,5 +1,5 @@
 {
-    "python.pythonPath": "/home/aritraghosh/.virtualenvs/CodeChallenges-tX6a7Nmh/bin/python",
+    "python.pythonPath": "/home/aritraghosh/.local/share/virtualenvs/CodeChallenges-tX6a7Nmh/bin/python",
     "editor.wordWrap": "on",
     "python.linting.flake8Enabled": true,
     "python.linting.pylintEnabled": false,

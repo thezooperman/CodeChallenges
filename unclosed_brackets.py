@@ -1,3 +1,14 @@
+# unclosed_brackets.py
+
+'''
+How many minimum reversals are required for
+an expression of the form “}}..}{{..{” ?. Let m
+be the total number of closing brackets and n be
+the number of opening brackets. We need ⌈m/2⌉ + ⌈n/2⌉ reversals.
+For example }}}}{{ requires 2+1 reversals.
+'''
+
+
 def reverse_brackets(revstr):
     if revstr is None or len(revstr) == 0:
         return 'Can\'t be made balanced using reversals'
