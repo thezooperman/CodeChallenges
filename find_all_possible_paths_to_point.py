@@ -66,3 +66,4 @@ def getSafePaths(journeys):
 
 getSafePaths(['2 2 2'])
 getSafePaths(['2 2 3'])
+getSafePaths(['2 3 3'])
