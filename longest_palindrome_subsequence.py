@@ -14,12 +14,11 @@ Note: "aba" is also a valid answer.
 def longest_palindrome_sequnce(text):
     length = len(text)
     counter = 0
-    for i in range(length // 2):
-        if text[i] != text[length - i - 1]:
-            continue
-        else:
-            counter += 1
-    return counter
+    for i in range(length):
+        for j in range(i + 1, length):
+            if text[i] == text[j]:
+                counter += 2
+        print(counter)
 
 
 print(longest_palindrome_sequnce('madam'))
