@@ -4,6 +4,10 @@ Search Tree interview questions
 '''
 
 from collections import deque
+import sys
+
+MAX_INT = sys.maxsize
+MIN_INT = -sys.maxsize
 
 
 class Node:
@@ -78,6 +82,20 @@ class BST:
                     print()
                 q, childQ = childQ, deque()
 
+    def isBST(self, root):
+        '''Given a Binary Tree, determine if the
+           Tree is a BST'''
+        return self.isBSTHelper(root, MIN_INT, MAX_INT)
+
+    def isBSTHelper(self, node, int_min, int_max):
+        '''Helper function for IsBST'''
+        if node is None:
+            return True
+        if node.data < int_min or node.data > int_max:
+            return False
+        return self.isBSTHelper(node.left, int_min, node.data)\
+            and self.isBSTHelper(node.right, node.data, int_max)
+
 
 def main():
     root = Node(1)
@@ -93,6 +111,12 @@ def main():
     print()
     bst.printKDistanceRecursive(root, 2)
     print()
+    root = None
+    root = Node(10)
+    root.left = Node(7)
+    root.left.right = Node(11)
+    root.right = Node(39)
+    print(bst.isBST(root))
 
 
 if __name__ == "__main__":
