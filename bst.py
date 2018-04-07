@@ -96,6 +96,31 @@ class BST:
         return self.isBSTHelper(node.left, int_min, node.data)\
             and self.isBSTHelper(node.right, node.data, int_max)
 
+    def rootToLeafSum(self, node, target_sum):
+        '''Function to check if root to leaf nodes
+            adds up to match the target sum'''
+        path = deque()
+        result = self.rootToLeafSumHelper(node, target_sum, path)
+        return result, path
+
+    def rootToLeafSumHelper(self, root, target_sum, path):
+        '''Helper to root to leaf sum'''
+        if root is None:
+            return False
+        if root.left is None and root.right is None:
+            if target_sum == root.data:
+                path.append(root.data)
+                return True
+            else:
+                return False
+        if self.rootToLeafSumHelper(root.left, target_sum - root.data, path):
+            path.append(root.data)
+            return True
+        if self.rootToLeafSumHelper(root.right, target_sum - root.data, path):
+            path.append(root.data)
+            return True
+        return False
+
 
 def main():
     root = Node(1)
@@ -111,12 +136,24 @@ def main():
     print()
     bst.printKDistanceRecursive(root, 2)
     print()
-    root = None
     root = Node(10)
     root.left = Node(7)
     root.left.right = Node(11)
     root.right = Node(39)
     print(bst.isBST(root))
+    root = Node(10)
+    root.left = Node(8)
+    root.left.left = Node(3)
+    root.left.right = Node(5)
+    root.right = Node(2)
+    root.right.left = Node(2)
+    result, path = bst.rootToLeafSum(root, 21)
+    if result:
+        print(result, end=' ')
+        [print(val, end=' ') for val in path]
+        print()
+    else:
+        print(result)
 
 
 if __name__ == "__main__":
