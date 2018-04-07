@@ -70,15 +70,15 @@ class BST:
         q.append(root)
         childQ = deque()
         while q:
-            node = q.pop()
+            node = q.popleft()
             if node.left is not None:
-                childQ.appendleft(node.left)
+                childQ.append(node.left)
             if node.right is not None:
-                childQ.appendleft(node.right)
+                childQ.append(node.right)
             if len(q) == 0:
                 k -= 1
                 if k == 0:
-                    [print(val.data, end=' ') for val in reversed(childQ)]
+                    [print(val.data, end=' ') for val in childQ]
                     print()
                 q, childQ = childQ, deque()
 
