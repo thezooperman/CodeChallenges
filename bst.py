@@ -121,6 +121,24 @@ class BST:
             return True
         return False
 
+    def sumTree(self, root):
+        '''Returns if the sum of the nodes if left sub tree
+            and right sub tree equals the root node'''
+        if root is None:
+            return 0
+        if (root.left is None and root.right is None):
+            return root.data
+        left_sum = right_sum = 0
+        left_sum = self.getSum(root.left)
+        right_sum = self.getSum(root.right)
+        return root.data == left_sum + right_sum
+
+    def getSum(self, node):
+        '''Helper method to get the sum of the tree'''
+        if node is None:
+            return 0
+        return self.getSum(node.left) + node.data + self.getSum(node.right)
+
 
 def main():
     root = Node(1)
@@ -154,6 +172,14 @@ def main():
         print()
     else:
         print(result)
+    root = Node(26)
+    root.left = Node(10)
+    # root.right = Node(16)
+    root.right = Node(3)
+    root.left.left = Node(4)
+    root.left.right = Node(6)
+    root.right.right = Node(3)
+    print('Is Sum Tree == ', bst.sumTree(root))
 
 
 if __name__ == "__main__":
