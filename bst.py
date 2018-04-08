@@ -177,12 +177,13 @@ def main():
     root.left.right = Node(5)
     root.right.left = Node(8)
     bst = BST()
-    bst.printKDistantIterative(root, 1)
+    # bst.printKDistantIterative(root, 1)
     bst.printKDistantIterative(root, 2)
     bst.printKDistanceRecursive(root, 1)
 
-    bst.printKDistanceRecursive(root, 2)
-
+    # bst.printKDistanceRecursive(root, 2)
+    print()
+    print('-'*20)
     root = Node(10)
     root.left = Node(7)
     root.left.right = Node(11)
