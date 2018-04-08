@@ -95,6 +95,8 @@ class Main():
         s = None
         for v in filtered_by_max_score:
             val = min(v.skillRank.values())
+            # In-case of matching skill rank values, pick
+            # other skill with rank
             if min_val is None:
                 min_val = val
                 s = v
