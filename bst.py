@@ -168,6 +168,42 @@ class BST:
         self.verticalTraversalHelper(root.left, distance - 1, hashMap)
         self.verticalTraversalHelper(root.right, distance + 1, hashMap)
 
+    def verticalTreeSum(self, root):
+        '''Given a Binary Tree, print the vertical
+           sum of its nodes'''
+        hashMap = defaultdict(list)
+        self.verticalTreeSumHelper(root, 0, hashMap)
+        sortedSet = OrderedDict(sorted(hashMap.items()))
+        {print(sum(v)) for v in sortedSet.values()}
+        return
+
+    def verticalTreeSumHelper(self, root, distance, hashMap):
+        '''Helper function for Vertical Tree Sum'''
+        if root is None:
+            return
+        hashMap.setdefault(distance, hashMap[distance].append(root.data))
+        self.verticalTreeSumHelper(root.left, distance - 1, hashMap)
+        self.verticalTreeSumHelper(root.right, distance + 1, hashMap)
+
+    def widthOfBinaryTree(self, root):
+        '''Given a Binary Tree, find the maximum width
+            of the tree'''
+        if root is None:
+            return
+        q = deque()
+        q.append(root)
+        max_width = MIN_INT
+        while q:
+            node = q.popleft()
+            if node.left:
+                q.append(node.left)
+            if node.right:
+                q.append(node.right)
+            cur_width = len(q)
+            max_width = max(cur_width, max_width)
+        print('Max Width of BInary Tree:', max_width)
+        return
+
 
 def main():
     root = Node(1)
@@ -223,6 +259,27 @@ def main():
     root.right.left.left = Node(7)
     root.right.left.right = Node(8)
     bst.verticalTraversal(root)
+
+    print('-' * 20)
+    root = Node(1)
+    root.left = Node(2)
+    root.right = Node(3)
+    root.left.left = Node(4)
+    root.left.right = Node(5)
+    root.right.left = Node(6)
+    root.right.right = Node(7)
+    bst.verticalTreeSum(root)
+
+    print('-' * 20)
+    root = Node(1)
+    root.left = Node(2)
+    root.left.left = Node(4)
+    root.left.right = Node(5)
+    root.right = Node(3)
+    root.right.right = Node(8)
+    root.right.right.left = Node(6)
+    root.right.right.right = Node(7)
+    bst.widthOfBinaryTree(root)
 
 
 if __name__ == "__main__":
