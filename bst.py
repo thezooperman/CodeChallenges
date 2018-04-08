@@ -172,13 +172,13 @@ def main():
         print()
     else:
         print(result)
-    root = Node(26)
-    root.left = Node(10)
-    # root.right = Node(16)
-    root.right = Node(3)
+    root = Node(44)
+    root.left = Node(9)
+    root.right = Node(13)
     root.left.left = Node(4)
-    root.left.right = Node(6)
-    root.right.right = Node(3)
+    root.left.right = Node(5)
+    root.right.left = Node(6)
+    root.right.right = Node(7)
     print('Is Sum Tree == ', bst.sumTree(root))
 
 
