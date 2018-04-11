@@ -201,8 +201,67 @@ class BST:
                 q.append(node.right)
             cur_width = len(q)
             max_width = max(cur_width, max_width)
-        print('Max Width of BInary Tree:', max_width)
+        print('Max Width of Binary Tree:', max_width)
         return
+
+    def lowestCommonAncestor(self, root, node1, node2):
+        '''Given two nodes in a Binary Tree, find their lowest
+            common ancestor in O(n) time
+        '''
+        if root is None:
+            return None
+
+        if root.data == node1 or root.data == node2:
+            return root.data
+
+        left_tree = self.lowestCommonAncestor(root.left, node1, node2)
+        right_tree = self.lowestCommonAncestor(root.right, node1, node2)
+
+        if left_tree and right_tree:
+            return root.data
+
+        return left_tree if left_tree else right_tree
+
+    def distanceOfNodeFromRoot(self, root, node):
+        '''Given a Binary Tree, find the distance
+            of the node from the root. The distance of the node
+            is measured by the number of edges between the root and
+            the node'''
+        if root.data == node:
+            return 0
+        s = deque()
+        s.append(root)
+        distance = 0
+        while s:
+            n = s.pop()
+            if len(s) == 0:
+                distance = 1  # reset distance from root again
+            if n.data == node:
+                return distance - 1
+            distance += 1
+            if n.right:
+                s.append(n.right)
+            if n.left:
+                s.append(n.left)
+        return -1
+
+    def distanceBetweenTwoNodes(self, root, node1, node2):
+        '''Given a Binary Tree, find the distance between
+            the two nodes in the tree. Distance between the
+            nodes is a sum or count of the number of edges
+            between the nodes'''
+        if root is None:
+            return 0
+        get_node1_distance = self.distanceOfNodeFromRoot(root, node1)
+        if get_node1_distance == -1:
+            return -1
+        get_node2_distance = self.distanceOfNodeFromRoot(root, node2)
+        if get_node2_distance == -1:
+            return -1
+        lca_node1_node2 = self.lowestCommonAncestor(root, node1, node2)
+        distance_lca_root = self.distanceOfNodeFromRoot(root, lca_node1_node2)
+        return (get_node1_distance + get_node2_distance) -\
+               (2 * distance_lca_root)
 
 
 def main():
@@ -214,7 +273,9 @@ def main():
     root.right.left = Node(8)
     bst = BST()
     # bst.printKDistantIterative(root, 1)
+    print('Kth Distance Iterative:')
     bst.printKDistantIterative(root, 2)
+    print('Kth Distance Recursive:')
     bst.printKDistanceRecursive(root, 1)
 
     # bst.printKDistanceRecursive(root, 2)
@@ -224,22 +285,25 @@ def main():
     root.left = Node(7)
     root.left.right = Node(11)
     root.right = Node(39)
-    print(bst.isBST(root))
+    print('Is Binary Search Tree:', bst.isBST(root))
     print('-'*20)
+
     root = Node(10)
     root.left = Node(8)
     root.left.left = Node(3)
     root.left.right = Node(5)
     root.right = Node(2)
     root.right.left = Node(2)
+    print('Root to Leaf Sum:', end='')
     result, path = bst.rootToLeafSum(root, 21)
     if result:
-        print(result, end=' ')
+        # print(result, end=' ')
         [print(val, end=' ') for val in path]
         print()
     else:
         print(result)
     print('-'*20)
+
     root = Node(44)
     root.left = Node(9)
     root.right = Node(13)
@@ -250,6 +314,7 @@ def main():
     print('Is Sum Tree == ', bst.sumTree(root))
     print('Is Optimized Sum Tree == ', True if
           bst.sumTreeOptimized(root) != MIN_INT else MIN_INT)
+
     print('-'*20)
     root = Node(1)
     root.left = Node(2)
@@ -258,6 +323,7 @@ def main():
     root.right.left = Node(5)
     root.right.left.left = Node(7)
     root.right.left.right = Node(8)
+    print('Vertical Tree Traversal:')
     bst.verticalTraversal(root)
 
     print('-' * 20)
@@ -268,6 +334,7 @@ def main():
     root.left.right = Node(5)
     root.right.left = Node(6)
     root.right.right = Node(7)
+    print('Vertical Tree Sum:')
     bst.verticalTreeSum(root)
 
     print('-' * 20)
@@ -280,6 +347,40 @@ def main():
     root.right.right.left = Node(6)
     root.right.right.right = Node(7)
     bst.widthOfBinaryTree(root)
+
+    print('-' * 20)
+    root = Node(1)
+    root.left = Node(2)
+    root.left.left = Node(4)
+    # root.left.right = NOde(5)
+    root.right = Node(3)
+    root.right.left = Node(6)
+    # root.right.right = Node(7)
+    print('LCA(2,6) =',
+          bst.lowestCommonAncestor(root, 2, 6))
+
+    print('-' * 20)
+    root = Node(5)
+    root.left = Node(10)
+    root.left.left = Node(20)
+    root.left.right = Node(25)
+    root.left.right.right = Node(45)
+    root.right = Node(15)
+    print('Distance of 45 from Root(5):', bst.distanceOfNodeFromRoot(root, 45))
+
+    print('-' * 20)
+    root = Node(1)
+    root.left = Node(2)
+    root.left.left = Node(4)
+    root.left.right = Node(5)
+    root.right = Node(3)
+    root.right.left = Node(6)
+    root.right.left.right = Node(8)
+    root.right.right = Node(7)
+    print('Node Dist(8, 5):', bst.distanceBetweenTwoNodes(root, 5, 8))
+    print('Node Dist(2, 4):', bst.distanceBetweenTwoNodes(root, 2, 4))
+
+    print('-' * 20)
 
 
 if __name__ == "__main__":
