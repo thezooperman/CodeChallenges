@@ -263,6 +263,21 @@ class BST:
         return (get_node1_distance + get_node2_distance) -\
                (2 * distance_lca_root)
 
+    def topView(self, root):
+        '''Given a BT, print the top view'''
+        q = deque()
+        q.append((0, root))
+        hashMap = defaultdict()
+        while q:
+            lvl, node = q.popleft()
+            if lvl not in hashMap:
+                hashMap[lvl] = node.data
+                print(node.data, end=' ')
+            if node.left:
+                q.append((lvl - 1, node.left))
+            if node.right:
+                q.append((lvl + 1, node.right))
+
 
 def main():
     root = Node(1)
@@ -380,6 +395,29 @@ def main():
     print('Node Dist(8, 5):', bst.distanceBetweenTwoNodes(root, 5, 8))
     print('Node Dist(2, 4):', bst.distanceBetweenTwoNodes(root, 2, 4))
 
+    print('-' * 20)
+    root = Node(1)
+    root.left = Node(2)
+    root.right = Node(3)
+    root.left.left = Node(4)
+    root.left.left.left = Node(8)
+    root.left.left.right = Node(9)
+    root.left.right = Node(5)
+    root.right.left = Node(6)
+    root.right.right = Node(7)
+
+    '''
+                 1
+                / \
+              2    3
+             / \  / \
+            4  5 6   7
+           / \
+          8   9
+    '''
+    print('Top View of BT')
+    bst.topView(root)
+    print()
     print('-' * 20)
 
 
