@@ -17,7 +17,7 @@ import sys
 
 
 def maxSumSubsequence(arr, index, prev, cur_sum):
-    if len(arr) - 1 == index:
+    if len(arr) == index:
         return cur_sum
     excl = incl = 0
     excl = maxSumSubsequence(arr, index + 1, prev, cur_sum)
