@@ -91,3 +91,29 @@ root.right.right = Node(4)
 retVal = []
 bst.rightViewByLevel(root, 0, [-1], retVal)
 print(*retVal)
+
+'''
+    1
+   /
+  2
+'''
+root = Node(1)
+root.left = Node(2)
+retVal = []
+bst.rightViewByLevel(root, 0, [-1], retVal)
+print(*retVal)
+
+'''
+        1
+       / \
+      2   3
+     /
+    4
+'''
+root = Node(1)
+root.left = Node(2)
+root.right = Node(3)
+root.right.right = Node(4)
+retVal = []
+bst.rightViewByLevel(root, 0, [-1], retVal)
+print(*retVal)
