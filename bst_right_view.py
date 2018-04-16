@@ -51,11 +51,11 @@ class BST(object):
     def rightViewByLevel(self, root, level, maxlevel, returnVal):
         if root is None:
             return
-        if maxlevel[0] <= level:
+        if maxlevel[0] < level:
             returnVal.append(root.val)
             maxlevel[0] = level
         self.rightViewByLevel(root.right, level + 1, maxlevel, returnVal)
-        self.rightViewByLevel(root.left, level, maxlevel, returnVal)
+        self.rightViewByLevel(root.left, level + 1, maxlevel, returnVal)
 
 
 bst = BST()
@@ -89,7 +89,7 @@ root.left.right = Node(5)
 root.right = Node(3)
 root.right.right = Node(4)
 retVal = []
-bst.rightViewByLevel(root, 0, [-1], retVal)
+bst.rightViewByLevel(root, 1, [0], retVal)
 print(*retVal)
 
 '''
@@ -100,7 +100,7 @@ print(*retVal)
 root = Node(1)
 root.left = Node(2)
 retVal = []
-bst.rightViewByLevel(root, 0, [-1], retVal)
+bst.rightViewByLevel(root, 1, [0], retVal)
 print(*retVal)
 
 '''
@@ -115,5 +115,5 @@ root.left = Node(2)
 root.right = Node(3)
 root.right.right = Node(4)
 retVal = []
-bst.rightViewByLevel(root, 0, [-1], retVal)
+bst.rightViewByLevel(root, 1, [0], retVal)
 print(*retVal)
