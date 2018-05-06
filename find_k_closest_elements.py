@@ -12,8 +12,7 @@ def findClosestElements(arr, k, x):
         return []
     if len(arr) == 1:
         return [arr[0]] if x in arr else [0]
-    # if x < 0:
-    #     return arr[:k]
+
     x_index = None
 
     x_index = bisect.bisect(arr, x)
