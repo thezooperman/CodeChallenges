@@ -1,5 +1,7 @@
 # LRU Cache implementation
 # Put/Get operation O(n) = 1
+# implemented using a doubly linked list
+# and a hash table
 
 
 class Node(object):
