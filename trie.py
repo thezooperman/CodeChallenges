@@ -48,20 +48,19 @@ class Trie:
                     return -1
             if root.is_end:
                 return root.value
-            else:
-                # search and compare terminating node in child
-                max_value = -sys.maxsize
-                store_childs = deque()
-                for ch_k, ch_v in root.edges.items():
-                    store_childs.append(ch_v)
-                while store_childs:
-                    node = store_childs.popleft()
-                    if node.is_end:  # leaf node
-                        if node.value > max_value:
-                            max_value = node.value
-                    for e_k, e_v in node.edges.items():
-                        store_childs.append(e_v)
-                return max_value
+            # search and compare terminating node in child
+            max_value = -sys.maxsize
+            store_childs = deque()
+            for ch_k, ch_v in root.edges.items():
+                store_childs.append(ch_v)
+            while store_childs:
+                node = store_childs.popleft()
+                if node.is_end:  # leaf node
+                    if node.value > max_value:
+                        max_value = node.value
+                for e_k, e_v in node.edges.items():
+                    store_childs.append(e_v)
+            return max_value
         return -1
 
 
