@@ -87,17 +87,17 @@ if __name__ == '__main__':
     input_str = {'hackerearth': 10, 'hackerrank': 9,
                  'hackerahan': 99, 'blob': 22}
     trie = Trie()
-    with open('trie_tc_12.txt') as fd:
-        n, q = map(int, fd.readline().strip().split(' '))
-        for line in fd:
-            if n < 1:
-                break
-            tmp = line.split(' ')
-            trie.insert(tmp[0], int(tmp[1]))
-            n -= 1
-        for line in fd:
-            print(trie.search(line.strip()))
-    # for k, v in input_str.items():
-        # trie.insert(k, v)
-    # search_word = 'hacker'
-    # print(trie.search(search_word))
+    # with open('trie_tc_12.txt') as fd:
+    #     n, q = map(int, fd.readline().strip().split(' '))
+    #     for line in fd:
+    #         if n < 1:
+    #             break
+    #         tmp = line.split(' ')
+    #         trie.insert(tmp[0], int(tmp[1]))
+    #         n -= 1
+    #     for line in fd:
+    #         print(trie.search(line.strip()))
+    for k, v in input_str.items():
+        trie.insert(k, v)
+    search_word = 'hacker'
+    print(trie.search(search_word))
