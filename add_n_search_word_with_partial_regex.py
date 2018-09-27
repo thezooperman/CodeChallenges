@@ -52,7 +52,8 @@ class WordDictionary:
         char = word[index]
         if char == '.':
             for k in root.edges:
-                if k in root.edges and self.search_util(root.edges[k], word, index + 1):
+                if k in root.edges and\
+                        self.search_util(root.edges[k], word, index + 1):
                     return True
             return False
         else:
@@ -62,7 +63,8 @@ class WordDictionary:
 
     def search(self, word):
         """
-        Returns if the word is in the data structure. A word could contain the dot character '.' to represent any one letter.
+        Returns if the word is in the data structure.
+        A word could contain the dot character '.' to represent any one letter.
         :type word: str
         :rtype: bool
         """

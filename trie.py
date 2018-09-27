@@ -1,6 +1,12 @@
 #!/usr/bin/env python3
 
-from collections import deque
+'''
+Implement a Trie data structure
+Worst Case Operation: O(m)
+where m is length of the longest string
+'''
+
+# from collections import deque
 
 
 class TrieNode:
