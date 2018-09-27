@@ -6,7 +6,23 @@ of strings.
 
 If there is no common prefix, return an empty string "".
 Runtime - O(m), where m is the length of the longest string
-for search/insert operation in Trie
+for search/insert operation in Triei
+
+		l
+		|
+		e
+		|
+		b
+		|
+		r
+		|
+		o
+		|
+		n
+	  / | \
+	 0  1  2
+
+Should print: lebron
 '''
 
 from io import StringIO
@@ -70,5 +86,6 @@ class Solution:
 
 if __name__ == '__main__':
     sol = Solution()
-    input_arr = ["dog", "racecar", "car"]  # ["flower", "flow", "flight"]
+    # ["dog", "racecar", "car"]  # ["flower", "flow", "flight"]
+    input_arr = ['lebron', 'lebron0', 'lebron1', 'lebron2']
     print(sol.longestCommonPrefix(input_arr))
