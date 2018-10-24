@@ -60,6 +60,24 @@ def uniquesubset_iterative():
     return fin_set
 
 
+def permutations(head, tail=''):
+    if len(head) == 0:
+        print(tail)
+    else:
+        for i in range(len(head)):
+            permutations(head[0:i] + head[i+1:], tail + head[i])
+
+
+def string_permutation_2(string, k=0):
+    if k == len(string):
+        print(*string)
+    else:
+        for i in range(k, len(string)):
+            string[k], string[i] = string[i], string[k]
+            string_permutation_2(string, k + 1)
+            string[k], string[i] = string[i], string[k]
+
+
 if __name__ == '__main__':
     complement()
     x = complement
@@ -70,3 +88,5 @@ if __name__ == '__main__':
     assert len(subset) == 18
     print('\n')
     print(subset)
+    permutations('stop')
+    # string_permutation_2(['s', 't', 'o', 'p'])
