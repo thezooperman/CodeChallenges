@@ -1,4 +1,27 @@
 #code
+
+'''
+Given a collection of Intervals,merge all the overlapping Intervals.
+For example:
+
+Given [1,3], [2,6], [8,10], [15,18],
+
+return [1,6], [8,10], [15,18].
+
+Make sure the returned intervals are sorted.
+Example:
+
+Input
+2
+4
+1 3 2 4 6 8 9 10
+4
+6 8 1 9 2 4 4 7
+
+Output
+1 4 6 8 9 10
+1 9
+'''
 from collections import deque
 
 def merge_int(intervals):
