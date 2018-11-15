@@ -1,4 +1,4 @@
-#code
+#!/usr/bin/env python3
 
 '''
 Given a collection of Intervals,merge all the overlapping Intervals.
@@ -23,6 +23,7 @@ Output
 1 9
 '''
 from collections import deque
+
 
 def merge_int(intervals):
     stack = deque()

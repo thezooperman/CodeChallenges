@@ -19,5 +19,6 @@ def sort012(arr):
             hi -= 1
     return arr
 
+arr = list(map(int, input().strip().split(' ')))
+print(sort012(arr))
 
-print(sort012([2, 2, 2, 0, 0, 0, 1, 1, 1]))
