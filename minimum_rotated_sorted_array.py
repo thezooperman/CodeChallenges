@@ -1,4 +1,8 @@
 # minimum_rotated_sorted_array.py
+'''
+Complexity: O(log n)
+Runs a binary search
+'''
 
 
 def minimum_rotated_sorted_array(nums):
