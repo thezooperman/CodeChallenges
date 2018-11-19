@@ -26,6 +26,10 @@ Output: 120
 def find_maximum(arr):
     low, high = 0, len(arr) - 1
 
+    #find max
+    while low <= high:
+        pass
+
     while low <= high:
         if high - low == 1:
             return arr[low]
