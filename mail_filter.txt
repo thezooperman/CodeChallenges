@@ -48,3 +48,4 @@ statements@axisbank.com
 *@info.jabong.com
 *@myntra.com
 *@jabong.com
+*@cashify.in
