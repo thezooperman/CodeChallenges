@@ -44,7 +44,7 @@ def getMailsByFilter(service, user_id, cleanup_list):
 def batchDeleteMails(service):
     if not to_delete_ids:
         return 1
-
+    print('Deleting e-mails...')
     try:
         # batch delete messages as 1000 msg limit for regular users
         batch_limit = 1000
