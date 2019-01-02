@@ -11,32 +11,32 @@
 *@hirist.com
 *@instahyre.com
 *@naukri.com
-shipment-tracking@amazon.in
-order-update@amazon.in
-AmazonPay-balance@amazon.in
+#shipment-tracking@amazon.in
+#order-update@amazon.in
+#AmazonPay-balance@amazon.in
 no-reply@flipkart.com
 *@hdfcbank.net
-sbiegv@gyftr.com
-Customercare@sbicard.com
-Statements@sbicard.com
-paynet@billdesk.in
-Communications1@sbicard.com
-onlinesbicard@sbicard.com
-Offers@sbicard.com
+#sbiegv@gyftr.com
+#Customercare@sbicard.com
+#Statements@sbicard.com
+#paynet@billdesk.in
+#Communications1@sbicard.com
+#onlinesbicard@sbicard.com
+#Offers@sbicard.com
 help@tatasky.com
-payments@vodafone.com
-billpay@billdesk.com
+#payments@vodafone.com
+#billpay@billdesk.com
 *@hp.com
 *@hpservice.support.hp.com
 *@solutions-intg.com
 *@cleartrip.com
-credit_cards@icicibank.com
-auto-confirm@amazon.in
+#credit_cards@icicibank.com
+#auto-confirm@amazon.in
 *@meetup.com
-customercare@icicibank.com
+#customercare@icicibank.com
 net.statement@citicorp.com
 *@irctc.co.in
-Payments-update@amazon.in
+#Payments-update@amazon.in
 recharges@amazon.in
 do-not-reply@amazon.in
 no-reply@amazon.in
@@ -49,3 +49,37 @@ statements@axisbank.com
 *@myntra.com
 *@jabong.com
 *@cashify.in
+*@analyticsvidhya.com
+*@discoursemail.com
+*@portfolio.moneycontrol.com
+*@alerts.moneycontrol.com
+*@safalniveshak.com
+*@sulekhanotifications.com
+*@nobroker.in
+*@giridharihomes.com
+rwamdt.estatemanager@gmail.com
+rwamdt.treasurer@gmail.com
+*@apnacomplex.com
+rwamdt@gmail.com
+*@tatahousing.com
+*@firstcry.com
+*@monsterindia.com
+prasenjitduari@gmail.com
+*@dishtv.in
+krishnendu
+ananda mitra
+prasenjit duari
+pratik basu
+rahul samanta
+ashek rasul
+anshuman mitra
+deepak.kvs9@gmail.com
+*@pinhopesonline.com
+*@practomails.com
+*@bewakoof.com
+*@tumblr.com
+*@makemytrip.com
+*@yatra.com
+*@sancharnet.in
+*@booking.com
+*@zoomcar.com
