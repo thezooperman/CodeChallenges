@@ -34,7 +34,7 @@ help@tatasky.com
 #auto-confirm@amazon.in
 *@meetup.com
 #customercare@icicibank.com
-net.statement@citicorp.com
+#net.statement@citicorp.com
 *@irctc.co.in
 #Payments-update@amazon.in
 recharges@amazon.in
@@ -44,7 +44,7 @@ answers@amazon.in
 delivery-notification@amazon.in
 in-gc-orders@gc.email.amazon.in
 CitiAlert.India@citicorp.com
-statements@axisbank.com
+#statements@axisbank.com
 *@info.jabong.com
 *@myntra.com
 *@jabong.com
