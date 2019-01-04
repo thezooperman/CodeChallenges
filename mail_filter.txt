@@ -43,7 +43,7 @@ no-reply@amazon.in
 answers@amazon.in
 delivery-notification@amazon.in
 in-gc-orders@gc.email.amazon.in
-CitiAlert.India@citicorp.com
+#CitiAlert.India@citicorp.com
 #statements@axisbank.com
 *@info.jabong.com
 *@myntra.com
@@ -64,16 +64,7 @@ rwamdt@gmail.com
 *@tatahousing.com
 *@firstcry.com
 *@monsterindia.com
-prasenjitduari@gmail.com
 *@dishtv.in
-krishnendu
-ananda mitra
-prasenjit duari
-pratik basu
-rahul samanta
-ashek rasul
-anshuman mitra
-deepak.kvs9@gmail.com
 *@pinhopesonline.com
 *@practomails.com
 *@bewakoof.com
