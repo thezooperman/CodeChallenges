@@ -56,7 +56,7 @@ def batchDeleteMails(service):
 
         batch = BatchHttpRequest(callback=deleteCallback)
 
-        for i in range(iterations):
+        for _ in range(iterations):
             payload = {'ids': []}
             payload['ids'].extend([str(d['id'])
                                    for d in to_delete_ids[skip: take]])
@@ -92,7 +92,8 @@ def getCallback(request_id, response, exception):
                     pageToken=page_token).execute()
                 messages.extend(response['messages'])
             to_delete_ids.extend(messages)
-            print(f'{request_id} --> fetched messages: {len(messages)}')
+            if len(messages) > 0:
+                print(f'{request_id} --> fetched messages: {len(messages)}')
         except errors.HttpError as ex:
             print(f'Exception:{ex}')
             return 1
@@ -113,7 +114,7 @@ if __name__ == '__main__':
         mail_filter = [line.strip() for line in fp if not line.startswith('#')]
 
     getMailsByFilter(service, USER_ID, mail_filter)
-    print('-' * 55)
+    print('-' * 85)
     print(f'Total mails to cleanup: {len(to_delete_ids)}')
-    print('-' * 55)
+    print('-' * 85)
     batchDeleteMails(service)
