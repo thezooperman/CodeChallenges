@@ -3,22 +3,25 @@
 '''
 Given a string s, find the longest palindromic substring in s.
 You may assume that the maximum length of s is 1000.
-Input: "babad"
+Input: "AABCDEBAZ"
 
-Output: "bab"
-
-Note: "aba" is also a valid answer.
+Output: ABCBA or ABDBA or ABEBA
 '''
 
 
 def longest_palindrome_sequnce(text):
+    '''
+    Use DP to scan and find the largest
+    non-contiguous palindrome
+    Run time complexity: O(n^2)
+    '''
+    i = j = 0
+    dp = [[0 for _ in range(len(text))] for _ in range(len(text))]
+    for i in range(len(text)):
+        dp[i][i] = 1
     length = len(text)
-    counter = 0
     for i in range(length):
-        for j in range(i + 1, length):
-            if text[i] == text[j]:
-                counter += 2
-        print(counter)
+            pass
 
 
-print(longest_palindrome_sequnce('madam'))
+print(longest_palindrome_sequnce('AABCDEBAZ'))
