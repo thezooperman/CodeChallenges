@@ -90,7 +90,10 @@ def getCallback(request_id, response, exception):
                     userId=USER_ID,
                     q=request_id,
                     pageToken=page_token).execute()
-                messages.extend(response['messages'])
+                try:
+                    messages.extend(response['messages'])
+                except KeyError:
+                    print(f'Response does not contain messages: {response}')
             to_delete_ids.extend(messages)
             if len(messages) > 0:
                 print(f'{request_id} --> fetched messages: {len(messages)}')
