@@ -38,11 +38,11 @@ from:*@meetup.com
 from:*@irctc.co.in
 #Payments-update@amazon.in
 recharges@amazon.in
-do-not-reply@amazon.in
-no-reply@amazon.in
+#do-not-reply@amazon.in
+#no-reply@amazon.in
 answers@amazon.in
 delivery-notification@amazon.in
-in-gc-orders@gc.email.amazon.in
+#in-gc-orders@gc.email.amazon.in
 #CitiAlert.India@citicorp.com
 #statements@axisbank.com
 from:*@info.jabong.com
@@ -72,7 +72,7 @@ from:*@tumblr.com
 from:*@makemytrip.com
 from:*@yatra.com
 from:*@sancharnet.in
-from:*@booking.com
+#from:*@booking.com
 from:*@zoomcar.com
 from:*@zomato.com
 from:*@swiggy.in
@@ -139,3 +139,4 @@ from:*@babyonboard.in
 from:*@indiaretailnews.com
 from:*@wheelchair24.com
 from:*@olx.in
+from:*@mail.goodreads.com
