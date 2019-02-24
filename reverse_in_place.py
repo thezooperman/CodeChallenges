@@ -9,7 +9,7 @@ Total space complexity: O(1)
 
 def in_place_sort(arr):
     s, e = 0, len(arr) - 1
-    while s < e:
+    while s < len(arr) / 2:
         arr[s], arr[e] = arr[e], arr[s]
         s += 1
         e -= 1
