@@ -49,7 +49,7 @@ def get_phone_digit_combinations(digit: str):
                 sols.append(node)
                 continue
             next_paths = PHONE_PAD.get(ord(digit[index]) - ord('2'))
-            print(f'index:{index} next_paths:{next_paths} node:{node}')
+            # print(f'index:{index} next_paths:{next_paths} node:{node}')
             for nc in next_paths:
                 q.append(f'{node}{nc}')
     return sols
