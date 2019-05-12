@@ -3,11 +3,11 @@ from:*@99acres.com
 from:*@indiatimes.com
 from:*@livemintalerts.com
 from:*@livemint.com
-from:*@uber.com
+#from:*@uber.com
 from:*@olacabs.com
 from:*@taxiforsure.com
-from:*@bookmyshow.email
-from:*@linkedin.com 
+#from:*@bookmyshow.email
+#from:*@linkedin.com 
 from:*@hirist.com
 from:*@instahyre.com
 from:*@naukri.com
@@ -22,7 +22,7 @@ from:*@hdfcbank.net
 #paynet@billdesk.in
 #Communications1@sbicard.com
 #onlinesbicard@sbicard.com
-#Offers@sbicard.com
+Offers@sbicard.com
 help@tatasky.com
 #payments@vodafone.com
 #billpay@billdesk.com
@@ -43,7 +43,7 @@ recharges@amazon.in
 answers@amazon.in
 delivery-notification@amazon.in
 #in-gc-orders@gc.email.amazon.in
-#CitiAlert.India@citicorp.com
+CitiAlert.India@citicorp.com
 #statements@axisbank.com
 from:*@info.jabong.com
 from:*@myntra.com
@@ -57,8 +57,8 @@ from:*@safalniveshak.com
 from:*@sulekhanotifications.com
 from:*@nobroker.in
 from:*@giridharihomes.com
-rwamdt.estatemanager@gmail.com
-rwamdt.treasurer@gmail.com
+from:rwamdt.estatemanager@gmail.com
+from:rwamdt.treasurer@gmail.com
 from:*@apnacomplex.com
 rwamdt@gmail.com
 from:*@tatahousing.com
@@ -82,13 +82,13 @@ from:aritra.ghosh@outlook.com
 to:aritra.ghosh@outlook.com
 to:Aritra_Ghosh02@infosys.com
 to:Aritra.Ghosh@nasdaq.com
-to:*@in.ibm.com
+#to:*@in.ibm.com
 from:*@paytm.com
 from:*@hpeprint.com
-*@savex.in
-*@reglobe.in
+#*@savex.in
+#*@reglobe.in
 *@mahaelectronics.com
-from:*@vodafone.com
+#from:*@vodafone.com
 from:alert@icicibank.com
 from:rmfupdates@campaign1.reliancemutual.com
 from:*@quora.com
@@ -98,7 +98,7 @@ from:*@ikyaglobal.com
 from:*@newsletter.datasciencecentral.com
 from:*@housejoyemails.com
 from:*@github.com
-from:*@olamoney.com
+#from:*@olamoney.com
 from:*@paytmpayments.com
 from:*@bescom.co.in
 from:*upi@*
@@ -115,7 +115,7 @@ from:*@e.shoponmail.in
 from:noreply@flipkart.com
 from:*@mail.instagram.com
 from:*@custcomm.icicibank.com
-from:alert@bigbasket.in
+#from:alert@bigbasket.in
 from:*@sulekha.com
 from:*@facebookmail.com
 from:*@urbanpro.com
@@ -140,3 +140,4 @@ from:*@indiaretailnews.com
 from:*@wheelchair24.com
 from:*@olx.in
 from:*@mail.goodreads.com
+from:SafeKey@welcome.aexp.com
