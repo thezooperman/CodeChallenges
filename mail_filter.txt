@@ -46,8 +46,8 @@ delivery-notification@amazon.in
 CitiAlert.India@citicorp.com
 #statements@axisbank.com
 from:*@info.jabong.com
-from:*@myntra.com
-from:*@jabong.com
+#from:*@myntra.com
+#from:*@jabong.com
 from:*@cashify.in
 from:*@analyticsvidhya.com
 from:*@discoursemail.com
