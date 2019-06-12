@@ -95,7 +95,21 @@ class BinaryHeap:
 if __name__ == '__main__':
     arr = [12, 11, 13, 5, 6, 7]
     heap = BinaryHeap()
-    heap.build_max_heap(arr)
-    heap.print_heap()
+    # heap.build_max_heap(arr)
+    from random import randrange
+    from datetime import timedelta
+    from timeit import default_timer as timer
+    s = timer()
+    print('Generating random intergers...')
+    # nos = [randrange(0, n + 1) for n in range(30 ** 6)]
+    nos = set(randrange(0, n + 1) for n in range(10 ** 6))
+    print(f'Integeres generated in :{timedelta(seconds=timer() - s)}')
+    s = timer()
+    print(f'Building heap of size : {len(nos)}')
+    heap.build_max_heap(nos)
+    # heap.print_heap()
+    nos.clear()
+    del nos
     heap.sort()
-    heap.print_heap()
+    # heap.print_heap()
+    print(f'Heap op completed in :{timedelta(seconds=timer() - s)}')
