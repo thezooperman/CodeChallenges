@@ -1,4 +1,5 @@
-#reverse a string recursively
+# reverse a string recursively
+
 
 def str_reverse(string: str) -> str:
     ''' traverse to the end of the string,
@@ -11,6 +12,7 @@ def str_reverse(string: str) -> str:
 
 
 print(str_reverse('the weather'))
+
 
 def anagram_test(string_1: str, string_2: str) -> bool:
     '''
@@ -27,21 +29,26 @@ def anagram_test(string_1: str, string_2: str) -> bool:
     result = any(count) == False
     return result
 
+
 print(f"Anagram Test(fat, atf): {anagram_test('fat', 'atf')}")
 print(f"Anagram Test(fat, atg): {anagram_test('fat', 'atg')}")
+
 
 def anagram_test_in_array(str_arr: set) -> bool:
     '''
     Check for anagram in an array
     Use hash map to store the characters for any set
     if any other characters in the set does not match
-    then not anagram 
+    then not anagram
+    O(n * m)
+    n = len(str_arr)
+    m = len(each element within the str_arr)
     '''
     ana_hist = {s for s in str_arr.pop()}
     for v in str_arr:
-        if v.split() not in ana_hist:
-            return False
+        print(all(val in ana_hist for val in list(v)))
 
 
-test_data = set(['fat', 'atf', 'taf'])
-print(anagram_test_in_array(test_data))
+test_data = set(['fat', 'atf', 'tdf'])
+print(f'[{test_data}]:')
+anagram_test_in_array(test_data)
