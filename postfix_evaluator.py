@@ -17,8 +17,10 @@ def evaluate(input_text):
 
 def main():
     '''Entry point to fn'''
-    val = '5 3 + 8 2 - *'
-    print(evaluate(val.strip().split(' ')))  # returns 48
+    val = '5 1 + 8 2 - *'
+    assert evaluate(val.strip().split(
+        ' ')) == '48', \
+        'Result of 5 3 + 8 2 - * postfix must be 48'  # returns 48
 
 
 main()
