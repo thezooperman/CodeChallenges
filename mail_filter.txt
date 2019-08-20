@@ -244,3 +244,8 @@ from:info@kotak-amc.com
 from:communication@iciciprulife.com
 from:*@mail.news.meru.in
 from:*@uber.com
+from:offers@emailer.sbicard.com
+from:*@vodafoneidea.com
+from:Communication.update@sc.com
+from:*@idea.adityabirla.com
+from:*@billdesk.com
