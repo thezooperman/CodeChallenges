@@ -21,7 +21,7 @@ Max is "aabbcc" with length 6.
 There are only two unique characters, thus show error message.
 '''
 
-MAX_SIZE = 26
+MAX_SIZE = 52
 
 
 def longest_subsequence(string: str, k: int) -> tuple:
@@ -67,7 +67,7 @@ def longest_subsequence(string: str, k: int) -> tuple:
 
 
 if __name__ == '__main__':
-    print(longest_subsequence('aabbcc', 1))
+    print(longest_subsequence('AAbbCC', 1))
     print(longest_subsequence('aabbcc', 2))
     print(longest_subsequence('aabbcc', 3))
     print(longest_subsequence('aaabbb', 3))  # should show error
