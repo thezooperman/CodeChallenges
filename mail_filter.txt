@@ -249,3 +249,4 @@ from:*@vodafoneidea.com
 from:Communication.update@sc.com
 from:*@idea.adityabirla.com
 from:*@billdesk.com
+from:info@mc.progressingindia.com
