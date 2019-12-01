@@ -1,5 +1,10 @@
 def update_grid(rows, columns, grid):
     '''
+        Given a grid of cells, which has value 0 or 1
+        1 -> updated cell, 0-> need to be updated
+        a cell's neighbour can be updated -> left, right, up and down, not diagonal
+        find minimum number of days to update all the cells
+        in a tower
         rows: number of rows
         columns: number of columns
         grid:
