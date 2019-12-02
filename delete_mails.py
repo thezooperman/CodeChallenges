@@ -33,7 +33,8 @@ def getMailsByFilter(service, user_id, cleanup_list):
         batch = BatchHttpRequest(callback=getCallback)
         for lookup in cleanup_list:
             batch.add(service.users().messages().list(userId=user_id,
-                                                      q=lookup), request_id=lookup)
+                                                      q=lookup),
+                      request_id=lookup)
         batch.execute()
         return 0
     except errors.HttpError as ex:
