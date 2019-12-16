@@ -5,5 +5,8 @@
     "python.linting.pylintEnabled": false,
     "files.autoSave": "afterDelay",
     "files.autoSaveDelay": 10000,
-    "telemetry.enableTelemetry": false
+    "telemetry.enableTelemetry": false,
+    "appService.zipIgnorePattern": [
+        ".vscode{,/**}"
+    ]
 }
