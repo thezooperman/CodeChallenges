@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
 
-from io import StringIO
 from collections import deque
 
 
 class Node:
+    __slots__ =['nodes', 'is_leaf']
+
     def __init__(self):
         self.nodes = {}
-        self.is_end = False
+        self.is_leaf = False
 
 
 class Trie:
@@ -21,46 +22,92 @@ class Trie:
             if letter not in crawl.nodes:
                 crawl.nodes[letter] = Node()
                 if idx == len(word) - 1:
-                    crawl.nodes[letter].is_end = True
+                    crawl.nodes[letter].is_leaf = True
             crawl = crawl.nodes[letter]
+
+
+    def _get_all_prefix_recursive_util(self, root, result):
+        if root.is_leaf:
+            yield result
+
+        for k,v in root.nodes.items():
+            result.append(k)
+            yield from self._get_all_prefix_recursive_util(v, result)
+            result.pop() # remove the node, after it has been processed
+
+    def get_all_prefix_recursive(self, prefix):
+        crawl = self.root
+        result = []
+
+        for letter in prefix:
+            if letter in crawl.nodes:
+                crawl = crawl.nodes[letter]
+                result.append(letter)
+            else:
+                return []
+
+        result_set = sorted([''.join(r) for r in self._get_all_prefix_recursive_util(crawl, result)])
+        return result_set
+
 
     def get_all_prefix(self, prefix):
         returnVals = []
+        sb = []
         crawl = self.root
-        sb = StringIO()
 
         # run the length of the prefix
         for index, letter in enumerate(prefix):
             if letter in crawl.nodes:
-                sb.write(letter)
-                if crawl.nodes[letter].is_end:
-                    returnVals.append(sb.getvalue())
-                    sb = StringIO()
-                    sb.write(prefix[:index + 1])
+                sb.append(letter)
                 crawl = crawl.nodes[letter]
             else:
                 return returnVals
 
-        # if prefix matches with any word, return
+        # if prefix matches with any word completely, return
         if prefix in returnVals:
             return returnVals
 
-        # traverse all the children from last reached node
-        stack = deque(crawl.nodes.items())
+        # traverse all the children from last matched node
+        stack = deque()
 
+        # populate the path for DFS
+        for k,v in crawl.nodes.items():
+            l = sb.copy()
+            l.append(k)
+            stack.append((l, v))
+
+        # clear the compute path so far
+        # as it is already stored in the stack trace
+        sb.clear()
+
+        # walk the DFS
         while stack:
-            v, n = stack.pop()
-            sb.write(v)
-            if n.is_end:
-                returnVals.append(sb.getvalue())
-                sb = StringIO()
-                if not n.nodes:
-                    sb.write(prefix)
+            pre, node = stack.pop()
+            if len(pre) >= len(sb):
+                # if the previous path is retained
+                # before branching, select previous path
+                # e.g. - bagg --> baggi(t)/ bagga(ge)
+                sb = pre
+            else:
+                sb.extend(pre)
+            if node.is_leaf:
+                returnVals.append([''.join(r) for r in sb])
+                # if the tree does not terminate on leaf node
+                # do not clear the string builder list
+                if not node.nodes:
+                    sb.clear()
+            for k,v in node.nodes.items():
+                # store the computed string, at the branching point
+                # e.g. - goa --> goa(l)/goa(n) 
+                if len(node.nodes) > 1:
+                    # shallow copy the pre-computed string
+                    x = sb.copy()
+                    x.append(k)
+                    stack.append((x, v))
                 else:
-                    sb.write(returnVals[-1])
-            if n.nodes:
-                stack.extend(n.nodes.items())
+                    stack.append((k, v))
 
+        returnVals = sorted(''.join(r) for r in returnVals)
         return returnVals
 
 
@@ -75,5 +122,8 @@ if __name__ == '__main__':
     t.insert('baggage')
     # t.insert('bag')
     t.insert('goal')
-    print(t.get_all_prefix('ba'))
-    print(t.get_all_prefix('go'))
+    print('Iterative Trie prefix for string: ba', t.get_all_prefix('ba'))
+    print('Iterative Trie prefix for string: go', t.get_all_prefix('go'))
+    print('Recursive Trie prefix for string: go', t.get_all_prefix_recursive('go'))
+    print('Recursive Trie prefix for string: ba', t.get_all_prefix_recursive('ba'))
+
