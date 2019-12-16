@@ -68,7 +68,8 @@ class Trie:
         # if prefix in returnVals:
         #     return returnVals
 
-        returnVals.append([''.join(_ for _ in sb)])
+        if len(sb) > 0:
+            returnVals.append([''.join(_ for _ in sb)])
 
         # traverse all the children from last matched node
         stack = deque()
@@ -119,12 +120,13 @@ if __name__ == '__main__':
     # t.insert('go')
 
     start = timer()
-    file_path = 'Civilization_of_Illiteracy.txt'
+    file_path = 'Golden_Bough.txt'
     #'democracy_in_america.txt'
 
     # lines = (line for line in open(file_path, encoding='utf-8'))
     # split_line = (word.lower() for line in lines for word in line.strip().split(None))
-    # [t.insert(word) for word in split_line]
+    # for word in split_line:
+    #     t.insert(word)
         
 
     with open(file_path, 'r', encoding='utf-8') as f:
@@ -149,7 +151,7 @@ if __name__ == '__main__':
     # print('Recursive Trie prefix for string: ba', t.get_all_prefix_recursive('ba'))
 
     start = timer()
-    search_text = 'the'
+    search_text = 'fox'
     print(f'\nIterative Searching for "{search_text}" in time {timer() - start}', t.get_all_prefix(search_text))
     start = timer()
     print(f'\nRecursive Searching for "{search_text}" in time {timer() - start}', t.get_all_prefix_recursive(search_text))
