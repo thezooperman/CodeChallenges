@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 from collections import deque
+from timeit import default_timer as timer
 
 
 class Node:
@@ -64,8 +65,10 @@ class Trie:
                 return returnVals
 
         # if prefix matches with any word completely, return
-        if prefix in returnVals:
-            return returnVals
+        # if prefix in returnVals:
+        #     return returnVals
+
+        returnVals.append([''.join(_ for _ in sb)])
 
         # traverse all the children from last matched node
         stack = deque()
@@ -114,16 +117,39 @@ class Trie:
 if __name__ == '__main__':
     t = Trie()
     # t.insert('go')
-    t.insert('goa')
-    t.insert('bag')
-    t.insert('hawai')
-    t.insert('gone')
-    t.insert('baggit')
-    t.insert('baggage')
-    # t.insert('bag')
-    t.insert('goal')
-    print('Iterative Trie prefix for string: ba', t.get_all_prefix('ba'))
-    print('Iterative Trie prefix for string: go', t.get_all_prefix('go'))
-    print('Recursive Trie prefix for string: go', t.get_all_prefix_recursive('go'))
-    print('Recursive Trie prefix for string: ba', t.get_all_prefix_recursive('ba'))
 
+    start = timer()
+    file_path = 'Civilization_of_Illiteracy.txt'
+    #'democracy_in_america.txt'
+
+    # lines = (line for line in open(file_path, encoding='utf-8'))
+    # split_line = (word.lower() for line in lines for word in line.strip().split(None))
+    # [t.insert(word) for word in split_line]
+        
+
+    with open(file_path, 'r', encoding='utf-8') as f:
+        [t.insert(word.lower()) for line in f for word in line.strip().split(' ')]
+        # for line in f:
+        #     for word in line.strip().split(' '):
+        #         t.insert(word)
+    
+    print(f'Trie build completed in {timer() - start}')
+
+    # t.insert('goa')
+    # t.insert('bag')
+    # t.insert('hawai')
+    # t.insert('gone')
+    # t.insert('baggit')
+    # t.insert('baggage')
+    # t.insert('bag')
+    # t.insert('goal')
+    # print('Iterative Trie prefix for string: ba', t.get_all_prefix('ba'))
+    # print('Iterative Trie prefix for string: go', t.get_all_prefix('go'))
+    # print('Recursive Trie prefix for string: go', t.get_all_prefix_recursive('go'))
+    # print('Recursive Trie prefix for string: ba', t.get_all_prefix_recursive('ba'))
+
+    start = timer()
+    search_text = 'the'
+    print(f'\nIterative Searching for "{search_text}" in time {timer() - start}', t.get_all_prefix(search_text))
+    start = timer()
+    print(f'\nRecursive Searching for "{search_text}" in time {timer() - start}', t.get_all_prefix_recursive(search_text))
