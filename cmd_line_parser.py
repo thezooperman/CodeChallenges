@@ -95,8 +95,8 @@ class CommandProcessor(object):
             if cur_dir.parent is None:
                 # print(f'{self._get_full_path(cur_dir)}')
                 return cur_dir
-            # print(f'{self._get_full_path(cur_dir)}')
-            return cur_dir.parent
+            else:
+                return cur_dir.parent
         else:
             for node in cur_dir.children:
                 if node.fileType == FileType.directory:
