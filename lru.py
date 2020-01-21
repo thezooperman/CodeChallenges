@@ -5,6 +5,9 @@ implemented using a doubly linked list
 and a hash table
 '''
 
+import threading
+
+
 class Node():
     '''Double Linked List Node Class'''
 
@@ -24,6 +27,7 @@ class LRUCache():
         self.capacity = capacity
         self.start = self.end = None
         self.cache = {}
+        self.lock = threading.Lock()
 
     def get(self, key) -> int:
         '''
@@ -34,11 +38,12 @@ class LRUCache():
             returns:
                 int
         '''
-        if key in self.cache:
-            node = self.cache.get(key)
-            self.remove_node(node)
-            self.add_at_top(node)
-            return node.value
+        with self.lock:
+            if key in self.cache:
+                node = self.cache.get(key)
+                self.remove_node(node)
+                self.add_at_top(node)
+                return node.value
         return -1
 
     def put(self, key, value) -> None:
@@ -49,20 +54,21 @@ class LRUCache():
                 key: int, key to add
                 value: int, value to store in cache
         '''
-        if key in self.cache:
-            node = self.cache.get(key)
-            node.value = value
-            self.remove_node(node)
-            self.add_at_top(node)
-        else:
-            node = Node(key, value)
-            if len(self.cache) >= self.capacity:
-                self.cache.pop(self.end.key)
-                self.remove_node(self.end)
+        with self.lock:
+            if key in self.cache:
+                node = self.cache.get(key)
+                node.value = value
+                self.remove_node(node)
                 self.add_at_top(node)
             else:
-                self.add_at_top(node)
-            self.cache.setdefault(key, node)
+                node = Node(key, value)
+                if len(self.cache) >= self.capacity:
+                    self.cache.pop(self.end.key)
+                    self.remove_node(self.end)
+                    self.add_at_top(node)
+                else:
+                    self.add_at_top(node)
+                self.cache.setdefault(key, node)
 
     def add_at_top(self, node) -> None:
         '''
@@ -89,7 +95,7 @@ class LRUCache():
                 in cache
         '''
         if node.left is not None:
-            node.left.right = node.right
+                node.left.right = node.right
         else:
             self.start = node.right
         if node.right is not None:
