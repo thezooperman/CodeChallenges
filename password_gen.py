@@ -25,9 +25,10 @@ def get_password(size=8, digits=False, special_chars=False, capital=False):
         counter += 1
         final_literal[counter] = string.ascii_uppercase
 
+    keys = [_ for _ in range(len(final_literal))]
     for _ in range(size):
         # out of final_literal, pick one set at random
-        r_group = secrets.choice(list(final_literal.keys()))
+        r_group = secrets.choice(keys)
         print(f'Group: {r_group}')
         r_choice = secrets.choice(final_literal[r_group])
         # possibly introduce an option to hydrate a group
