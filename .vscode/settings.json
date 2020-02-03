@@ -1,5 +1,5 @@
 {
-    "python.pythonPath": "/usr/bin/python3",
+    "python.pythonPath": "C:\\Users\\aritraghosh4\\AppData\\Local\\conda\\conda\\envs\\my_env\\python.exe",
     "editor.wordWrap": "on",
     "python.linting.flake8Enabled": false,
     "python.linting.pylintEnabled": true,
