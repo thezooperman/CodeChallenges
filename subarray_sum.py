@@ -1,3 +1,8 @@
+'''
+Given an unsorted array A of size N of non-negative integers,
+find a continuous sub-array which adds to a given number S.
+'''
+
 from collections import defaultdict
 
 
@@ -51,11 +56,12 @@ def subarr_2(arr, s):
 
 
 if __name__ == '__main__':
-    subarr_2([1, 2, 3, 7, 5], 12)
+    subarray_sum([1, 2, 3, 7, 5], 12)
     print(flush=True)
     subarray_sum([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 15)
+    print(flush=True)
     # subarray_sum([135, 101, 170, 125, 79, 159, 163, 65, 106, 146, 82, 28, 162,
     #               92, 196, 143, 28, 37, 192, 5, 103, 154, 93, 183, 22, 117,
     #               119,
     #               96, 48, 127,
-                #   172, 139, 70, 113, 68, 100, 36, 95, 104, 12, 123, 134], 468)
+    #   172, 139, 70, 113, 68, 100, 36, 95, 104, 12, 123, 134], 468)

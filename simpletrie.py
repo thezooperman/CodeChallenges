@@ -2,7 +2,7 @@
 
 from collections import deque
 from timeit import default_timer as timer
-
+from datetime import timedelta
 
 class Node:
     __slots__ =['nodes', 'is_leaf']
@@ -120,7 +120,7 @@ if __name__ == '__main__':
     # t.insert('go')
 
     start = timer()
-    file_path = 'Golden_Bough.txt'
+    file_path = 'Civilization_of_Illiteracy.txt'
     #'democracy_in_america.txt'
 
     # lines = (line for line in open(file_path, encoding='utf-8'))
@@ -151,7 +151,7 @@ if __name__ == '__main__':
     # print('Recursive Trie prefix for string: ba', t.get_all_prefix_recursive('ba'))
 
     start = timer()
-    search_text = 'fox'
-    print(f'\nIterative Searching for "{search_text}" in time {timer() - start}', t.get_all_prefix(search_text))
+    search_text = 'the'
+    print(f'\nIterative Searching for "{search_text}" in time {timedelta(timer() - start)}', t.get_all_prefix(search_text))
     start = timer()
-    print(f'\nRecursive Searching for "{search_text}" in time {timer() - start}', t.get_all_prefix_recursive(search_text))
+    print(f'\nRecursive Searching for "{search_text}" in time {timedelta(timer() - start)}', t.get_all_prefix_recursive(search_text))
