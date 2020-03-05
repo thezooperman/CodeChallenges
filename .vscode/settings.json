@@ -1,5 +1,5 @@
 {
-    "python.pythonPath": "C:\\Users\\aritraghosh4\\AppData\\Local\\conda\\conda\\envs\\my_env\\python.exe",
+    "python.pythonPath": "/home/aritraghosh/.local/share/virtualenvs/CodeChallenges-tX6a7Nmh/bin/python",
     "editor.wordWrap": "on",
     "python.linting.flake8Enabled": false,
     "python.linting.pylintEnabled": true,
