@@ -3,7 +3,7 @@ def compress(string):
     prev = string[0]
     result = []
     for idx, cur in enumerate(string[1:]):
-        if cur != prev or idx + 1 == len(string):
+        if cur != prev or (idx + 1) == len(string):
             if count > 1:
                 result.append(f'{prev}{count}')
                 count = 1
@@ -33,6 +33,8 @@ def compress_inplace(string):
             anchor = read + 1
     return ''.join(string)
 
-print(compress('aaabc'))
-print(compress('abc'))
-print(compress_inplace('aaabbc'))
+print('aaabc:', compress('aaabc'))
+print('abc:', compress('abc'))
+print('aaabbc:', compress('aaabbc'))
+print('aabbc:', compress('aabbc'))
+
