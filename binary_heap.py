@@ -109,7 +109,8 @@ if __name__ == '__main__':
     heap.build_max_heap(nos)
     # heap.print_heap()
     nos.clear()
-    del nos
     heap.sort()
     # heap.print_heap()
     print(f'Heap op completed in :{timedelta(seconds=timer() - s)}')
+    del nos
+    del heap
