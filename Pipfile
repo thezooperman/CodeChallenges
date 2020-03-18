@@ -9,6 +9,12 @@ requests = "*"
 "flake8" = "*"
 numpy = "*"
 "autopep8" = "*"
+apiclient = "*"
+httplib2 = "*"
+oauth2client = "*"
+google-api-python-client = "*"
+google-auth-httplib2 = "*"
+google-auth-oauthlib = "*"
 
 [dev-packages]
 nose = "*"
