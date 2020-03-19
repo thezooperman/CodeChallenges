@@ -4,8 +4,9 @@ from collections import deque
 from timeit import default_timer as timer
 from datetime import timedelta
 
+
 class Node:
-    __slots__ =['nodes', 'is_leaf']
+    __slots__ = ['nodes', 'is_leaf']
 
     def __init__(self):
         self.nodes = {}
@@ -26,15 +27,14 @@ class Trie:
                     crawl.nodes[letter].is_leaf = True
             crawl = crawl.nodes[letter]
 
-
     def _get_all_prefix_recursive_util(self, root, result):
         if root.is_leaf:
             yield result
 
-        for k,v in root.nodes.items():
+        for k, v in root.nodes.items():
             result.append(k)
             yield from self._get_all_prefix_recursive_util(v, result)
-            result.pop() # remove the node, after it has been processed
+            result.pop()  # remove the node, after it has been processed
 
     def get_all_prefix_recursive(self, prefix):
         crawl = self.root
@@ -47,9 +47,9 @@ class Trie:
             else:
                 return []
 
-        result_set = sorted([''.join(r) for r in self._get_all_prefix_recursive_util(crawl, result)])
+        result_set = sorted(
+            [''.join(r) for r in self._get_all_prefix_recursive_util(crawl, result)])
         return result_set
-
 
     def get_all_prefix(self, prefix):
         returnVals = []
@@ -75,7 +75,7 @@ class Trie:
         stack = deque()
 
         # populate the path for DFS
-        for k,v in crawl.nodes.items():
+        for k, v in crawl.nodes.items():
             l = sb.copy()
             l.append(k)
             stack.append((l, v))
@@ -100,9 +100,9 @@ class Trie:
                 # do not clear the string builder list
                 if not node.nodes:
                     sb.clear()
-            for k,v in node.nodes.items():
+            for k, v in node.nodes.items():
                 # store the computed string, at the branching point
-                # e.g. - goa --> goa(l)/goa(n) 
+                # e.g. - goa --> goa(l)/goa(n)
                 if len(node.nodes) > 1:
                     # shallow copy the pre-computed string
                     x = sb.copy()
@@ -121,20 +121,20 @@ if __name__ == '__main__':
 
     start = timer()
     file_path = 'Civilization_of_Illiteracy.txt'
-    #'democracy_in_america.txt'
+    # 'democracy_in_america.txt'
 
     # lines = (line for line in open(file_path, encoding='utf-8'))
     # split_line = (word.lower() for line in lines for word in line.strip().split(None))
     # for word in split_line:
     #     t.insert(word)
-        
 
     with open(file_path, 'r', encoding='utf-8') as f:
-        [t.insert(word.lower()) for line in f for word in line.strip().split(' ')]
+        [t.insert(word.lower())
+         for line in f for word in line.strip().split(' ')]
         # for line in f:
         #     for word in line.strip().split(' '):
         #         t.insert(word)
-    
+
     print(f'Trie build completed in {timer() - start}')
 
     # t.insert('goa')
@@ -152,6 +152,8 @@ if __name__ == '__main__':
 
     start = timer()
     search_text = 'the'
-    print(f'\nIterative Searching for "{search_text}" in time {timedelta(timer() - start)}', t.get_all_prefix(search_text))
+    print(
+        f'\nIterative Searching for "{search_text}" in time {timedelta(timer() - start)}', t.get_all_prefix(search_text))
     start = timer()
-    print(f'\nRecursive Searching for "{search_text}" in time {timedelta(timer() - start)}', t.get_all_prefix_recursive(search_text))
+    print(f'\nRecursive Searching for "{search_text}" in time {timedelta(timer() - start)}',
+          t.get_all_prefix_recursive(search_text))
