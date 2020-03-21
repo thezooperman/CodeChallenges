@@ -1,5 +1,14 @@
 # kadane's algo
 
+
+def basic_one(arr, n):
+    cur_max = tot_max = arr[0]
+    for i in arr[1:]:
+        cur_max = max(i, cur_max + i)
+        tot_max = max(tot_max, cur_max)
+    return tot_max
+
+
 def maximum_sum(arr):
     cur_win = max_win = 0
     s_index = e_index = 0
@@ -43,11 +52,16 @@ def max_sub_array_of_size_k(k, arr):
 
 
 if __name__ == '__main__':
-    arr = [-2, -3, 4, -1, -2, 1, 5, -3]
+    arr = [-1, -2, -3, -4]
+    print(basic_one(arr, len(arr)))
+    arr = [-2, 5, -1]
+    print(basic_one(arr, len(arr)))
     maximum_sum(arr)
     arr = [2, 1, 5, 1, 3, 2]
     val, s, e = max_sub_array_of_size_k(3, arr)
-    print(f'Maximum sum of a subarray of size K: {str(val)} for values: {arr[s:e + 1]}')
+    print(
+        f'Maximum sum of a subarray of size K: {str(val)} for values: {arr[s:e + 1]}')
     arr = [2, 3, 4, 1, 5]
     val, s, e = max_sub_array_of_size_k(2, arr)
-    print(f'Maximum sum of a subarray of size K: {str(val)} for values: {arr[s:e + 1]}')
+    print(
+        f'Maximum sum of a subarray of size K: {str(val)} for values: {arr[s:e + 1]}')
