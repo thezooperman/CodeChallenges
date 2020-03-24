@@ -94,7 +94,7 @@ def getCallback(request_id, response, exception):
                 try:
                     messages.extend(response['messages'])
                 except KeyError:
-                    print(f'Response does not contain messages: {response}')
+                    print(f"{request_id}: {response}")
             to_delete_ids.extend(messages)
             if len(messages) > 0:
                 print(f'{request_id} --> fetched messages: {len(messages)}')

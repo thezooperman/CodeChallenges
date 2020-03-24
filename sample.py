@@ -79,14 +79,14 @@ def string_permutation_2(string, k=0):
 
 
 if __name__ == '__main__':
-    complement()
-    x = complement
-    subset = uniquesubset_recursive()
-    assert len(subset) == 18
-    print(subset)
-    subset = uniquesubset_iterative()
-    assert len(subset) == 18
-    print('\n')
-    print(subset)
-    permutations('stop')
-    # string_permutation_2(['s', 't', 'o', 'p'])
+    # complement()
+    # x = complement
+    # subset = uniquesubset_recursive()
+    # assert len(subset) == 18
+    # print(subset)
+    # subset = uniquesubset_iterative()
+    # assert len(subset) == 18
+    # print('\n')
+    # print(subset)
+    permutations('abc')
+    # string_permutation_2(['a', 'b', 'c'])
