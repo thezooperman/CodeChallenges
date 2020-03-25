@@ -2,6 +2,8 @@
 
 
 class HashTable(object):
+    __slots__ = ('__array',)
+
     def __init__(self, length=10):
         self.__array = [None] * length
 
