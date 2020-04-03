@@ -1,15 +1,15 @@
-'''
+"""
 LRU Cache implementation
 Put/Get operation O(n) = 1
 implemented using a doubly linked list
 and a hash table
-'''
+"""
 
 import threading
 
 
 class Node():
-    '''Double Linked List Node Class'''
+    """Double Linked List Node Class"""
 
     def __init__(self, k, v):
         self.key = k
@@ -19,9 +19,9 @@ class Node():
 
 
 class LRUCache():
-    '''LRU Cache implemented
+    """LRU Cache implemented
         with Doubly linked list and HashMap
-    '''
+    """
 
     def __init__(self, capacity):
         self.capacity = capacity
@@ -30,14 +30,14 @@ class LRUCache():
         self.lock = threading.Lock()
 
     def get(self, key) -> int:
-        '''
+        """
             Get the LRU cache key
             if not present in cache,
             Args:
                 key : int, key to fetch
             returns:
                 int
-        '''
+        """
         with self.lock:
             if key in self.cache:
                 node = self.cache.get(key)
@@ -47,13 +47,13 @@ class LRUCache():
         return -1
 
     def put(self, key, value) -> None:
-        '''
+        """
             Puts a key, value in LRU
             if key already in cache, splays to top
             Args:
                 key: int, key to add
                 value: int, value to store in cache
-        '''
+        """
         with self.lock:
             if key in self.cache:
                 node = self.cache.get(key)
@@ -71,13 +71,13 @@ class LRUCache():
                 self.cache.setdefault(key, node)
 
     def add_at_top(self, node) -> None:
-        '''
+        """
             Splays the recently accessed node to
             top of Double Queue
             Args:
                 node: Node, the node object, stored as value
                 in cache
-        '''
+        """
         node.right = self.start
         node.left = None
         if self.start:
@@ -87,15 +87,15 @@ class LRUCache():
             self.end = self.start
 
     def remove_node(self, node) -> None:
-        '''
+        """
             Removes a node from cache, if cache size runs out
             of space
             Args:
                 node: Node, the node object, stored as value
                 in cache
-        '''
+        """
         if node.left is not None:
-                node.left.right = node.right
+            node.left.right = node.right
         else:
             self.start = node.right
         if node.right is not None:
