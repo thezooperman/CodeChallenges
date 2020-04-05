@@ -277,7 +277,7 @@ from:customercare@freshtohome.com
 from:support@sqrrl.in
 from:notify@referhire.com
 from:promotions@flipkartmail.com
-from:noreply@grofers.com
+from:*@grofers.com
 from:*@naukrirms.com
 from:*@educative.io
 from:orders@smytten.com
@@ -306,3 +306,11 @@ from:gauravdeosah@gmail.com
 from:psconsultant06@gmail.com
 from:noreply-ncs@gov.in
 from:sparshproducts@gmail.com
+from:actteam@mailer5.actcorp.in
+from:support@zoom.us
+from:ceo.desk@mailer.airtel.com
+from:PlatformNotifications-noreply@google.com
+from:nike@official.nike.com
+from:hdfcergo.service@hdfcergo.com
+from:websitehelp@valueresearchonline.com
+from:CloudPlatform-noreply@google.com
