@@ -3,3 +3,4 @@
 credentials.json
 deploy-dir/
 .deployment
+__pycache__/
