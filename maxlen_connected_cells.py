@@ -41,7 +41,7 @@
 
 
 def _get_cell_value(array, x, y) -> int:
-    if (x >= 0 and x <= len(array) - 1) and (y >= 0 and y <= len(array[0]) - 1):
+    if (0 <= x <= len(array) - 1) and (0 <= y <= len(array[0]) - 1):
         return array[x][y]
     return 0
 
@@ -55,10 +55,10 @@ def _maxlen_util(array, row, col, visited, count) -> int:
                   (-1, -1), (1, 1), (-1, 1), (1, -1)]
     # increase the counter
     count[0] += 1
-    for i in range(8):
-        newr, newc = (row + directions[i][0]), (col + directions[i][1])
+    for (i, j) in directions:
+        newr, newc = (row + i), (col + j)
         val = _get_cell_value(array, newr, newc)
-        if val == 1 and visited[newr][newc] == False:
+        if val == 1 and visited[newr][newc] is False:
             _maxlen_util(array, newr, newc, visited, count)
 
 
@@ -79,7 +79,7 @@ def max_region_len(array) -> int:
 
 
 if __name__ == '__main__':
-    grid =\
+    grid = \
         [
             [1, 1, 0, 0, 0],
             [0, 1, 1, 0, 0],
@@ -89,7 +89,7 @@ if __name__ == '__main__':
         ]
     print(max_region_len(grid))  # expected result = 5
 
-    grid =\
+    grid = \
         [
             [0, 0, 1, 1, 0],
             [1, 0, 1, 1, 0],
@@ -98,7 +98,7 @@ if __name__ == '__main__':
         ]
     print(max_region_len(grid))  # expected result = 6
 
-    grid =\
+    grid = \
         [
             [0, 0, 1, 1],
             [0, 0, 1, 0],
