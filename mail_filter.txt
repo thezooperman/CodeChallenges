@@ -314,3 +314,8 @@ from:nike@official.nike.com
 from:hdfcergo.service@hdfcergo.com
 from:websitehelp@valueresearchonline.com
 from:CloudPlatform-noreply@google.com
+from:start@engage.canva.com
+from:dailywealth@personalfn.com
+from:no-reply@leetcode.com
+from:enterprise@connect.hpe.com
+from:no-reply@ovenstory.in
