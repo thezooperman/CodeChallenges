@@ -24,11 +24,6 @@ class Output:
         self.total_ways = _tot
         self.reward = _reward
 
-    # def __copy__(self):
-    #     new_instance = type(self)()
-    #     new_instance.__dict__.update(self.__dict__)
-    #     return new_instance
-
 
 def _get_cell_value(matrix, row, col):
     if (0 <= row <= len(matrix) - 1) and (0 <= col <= len(matrix[0]) - 1):
@@ -62,25 +57,16 @@ def _max_rewards_helper(matrix, row, col, start_pos: tuple, end_pos: tuple, outp
         path_2_reward = _max_rewards_helper(matrix, new_row, new_col, start_pos, end_pos, current_output)  # down
 
         # between the two paths in option 3 - pick the one with max reward
-        if path_1_reward.reward > path_2_reward.reward:
-            output = path_1_reward
-        else:
-            output = path_2_reward
+        output.reward = max(path_1_reward.reward, path_2_reward.reward)
+        output.total_ways += max(path_1_reward.total_ways, path_2_reward.total_ways)
         return output
     return Output()  # edge cases - breached borders or did not reach target
 
 
-def max_rewards(matrix, start_pos: tuple, end_pos: tuple) -> tuple:
-    rows, cols = len(matrix), len(matrix[0])  # rows: 3, cols: 3
+def max_rewards(matrix, start_pos: tuple, end_pos: tuple) -> Output:
+    rows, cols = len(matrix), len(matrix[0])
     result = Output()
-    for row in range(rows):
-        for col in range(cols):
-            temp = Output()
-            temp = _max_rewards_helper(matrix, row, col, start_pos, end_pos, temp)  # start traversal
-            if result.reward < temp.reward:
-                result.reward = temp.reward
-            result.total_ways = max(result.total_ways, temp.total_ways)
-        # print(result)
+    result = _max_rewards_helper(matrix, 0, 0, start_pos, end_pos, result)
     return result
 
 
@@ -92,21 +78,33 @@ if __name__ == '__main__':
     ]
     start = (0, 0)
     end = (2, 2)
-    out = Output()
     out = max_rewards(grid, start, end)  # expected outcome : total ways: 2, max_rewards = 10
-    # assert out.total_ways == 2
+    assert out.total_ways == 2
     assert out.reward == 10
     print(f'Total ways: {out.total_ways}, Max Reward: {out.reward}')
 
     grid = [
-        [1, 1, 1, 2],
+        [1, 1, 3, 2],
         [2, 1, 3, 2],
         [3, 2, 1, 3],
         [1, 1, 2, 3]
     ]
     start = (0, 0)
-    end = (3, 3)
+    end = (len(grid) - 1, len(grid[0]) - 1)
     out = max_rewards(grid, start, end)
-    print(f'Total ways: {out.total_ways}, Max Reward: {out.reward}') # total ways: 2, max_rewards = 13
-    # assert out.total_ways == 2
-    assert  out.reward == 13
+    print(f'Total ways: {out.total_ways}, Max Reward: {out.reward}')  # total ways: 3, max_rewards = 16
+    assert out.total_ways == 3
+    assert out.reward == 16
+
+    grid = [
+        [1, 1, 2, 2],
+        [2, 1, 2, 2],
+        [3, 2, 1, 1],
+        [1, 1, 2, 3]
+    ]
+    start = (0, 0)
+    end = (len(grid) - 1, len(grid[0]) - 1)
+    out = max_rewards(grid, start, end)
+    print(f'Total ways: {out.total_ways}, Max Reward: {out.reward}')  # total ways: 0, max_rewards = 0
+    assert out.total_ways == 0
+    assert out.reward == 0

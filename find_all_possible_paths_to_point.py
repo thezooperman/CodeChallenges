@@ -2,7 +2,7 @@
 
 
 def calculatePath(row, col, i, j, path):
-    '''
+    """
         Accumulate all possible paths from
         point A to point B, in a matrix
         :type row: int
@@ -10,7 +10,7 @@ def calculatePath(row, col, i, j, path):
         :type i: int
         :type j: int
         :type path : string
-    '''
+    """
     if i == row - 1 and j == col - 1:
         # print(path)
         global paths
@@ -31,20 +31,20 @@ def calculatePath(row, col, i, j, path):
     calculatePath(row, col, i, j + 1, path + 'V')
 
 
-def countPath(x, y, i, j):
-    '''Count the path occurence for all possible combinations
+def count_path(x, y, i, j):
+    """Count the path occurrence for all possible combinations
         from 0,0 to x,y
       :type x: int
       :type y: int
       :type i: int
       :type j: int
       :rtype: int
-    '''
+    """
     if i < x and j < y:
         if i == x - 1 and j == y - 1:
             return 1
-        return countPath(x, y, i + 1, j) +\
-            countPath(x, y, i, j + 1)
+        return count_path(x, y, i + 1, j) + \
+               count_path(x, y, i, j + 1)
 
     return 0
 
