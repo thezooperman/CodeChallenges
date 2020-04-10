@@ -16,7 +16,7 @@ def calculatePath(row, col, i, j, path):
         global paths
         paths.append(path)
         return
-    # Vertical Downard movement
+    # Vertical Downward movement
     # Trace back if solution is not reached
     if i == row - 1:
         calculatePath(row, col, i, j + 1, path + 'V')
