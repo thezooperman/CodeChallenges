@@ -41,8 +41,6 @@ def _get_cell_value(matrix, row, col):
 
 
 def _max_rewards_helper(matrix, row, col, start_pos: tuple, end_pos: tuple, output) -> Output:
-    directions = [(0, 1), (1, 0)]
-
     current_cell = _get_cell_value(matrix, row, col)  # get current cell value
     output.reward += current_cell  # update reward
 
@@ -52,17 +50,17 @@ def _max_rewards_helper(matrix, row, col, start_pos: tuple, end_pos: tuple, outp
 
     # make traversal decisions
     if current_cell == 1:  # traverse right
-        new_row, new_col = row + directions[0][0], col + directions[0][1]  # compute next cell value
+        new_row, new_col = row + 0, col + 1  # compute next cell value
         return _max_rewards_helper(matrix, new_row, new_col, start_pos, end_pos, output)
     elif current_cell == 2:  # traverse down
-        new_row, new_col = row + directions[1][0], col + directions[1][1]  # compute next cell value
+        new_row, new_col = row + 1, col + 0  # compute next cell value
         return _max_rewards_helper(matrix, new_row, new_col, start_pos, end_pos, output)
     elif current_cell == 3:  # traverse down and right
         current_output = copy.copy(output)
-        new_row, new_col = row + directions[0][0], col + directions[0][1]  # compute next cell value
+        new_row, new_col = row + 0, col + 1  # compute next cell value
         path_1_reward = _max_rewards_helper(matrix, new_row, new_col, start_pos, end_pos, output)  # right
 
-        new_row, new_col = row + directions[1][0], col + directions[1][1]  # compute next cell value
+        new_row, new_col = row + 1, col + 0  # compute next cell value
         path_2_reward = _max_rewards_helper(matrix, new_row, new_col, start_pos, end_pos, current_output)  # down
 
         # between the two paths in option 3 - pick the one with max reward
