@@ -25,6 +25,15 @@ class Output:
         self.reward = _reward
 
 
+def _print_matrix(matrix):
+    print(flush=True)
+    rows, cols = len(matrix), len(matrix[0]) + 2
+    print('-' * cols)
+    for row in range(rows):
+        print(*matrix[row])
+    print('-' * cols)
+
+
 def _get_cell_value(matrix, row, col):
     if (0 <= row <= len(matrix) - 1) and (0 <= col <= len(matrix[0]) - 1):
         return matrix[row][col]
@@ -81,6 +90,8 @@ if __name__ == '__main__':
     out = max_rewards(grid, start, end)  # expected outcome : total ways: 2, max_rewards = 10
     assert out.total_ways == 2
     assert out.reward == 10
+    _print_matrix(grid)
+    print(f'Start Co-ord:{start}, End Co-ord:{end}')
     print(f'Total ways: {out.total_ways}, Max Reward: {out.reward}')
 
     grid = [
@@ -91,7 +102,9 @@ if __name__ == '__main__':
     ]
     start = (0, 0)
     end = (len(grid) - 1, len(grid[0]) - 1)
+    _print_matrix(grid)
     out = max_rewards(grid, start, end)
+    print(f'Start Co-ord:{start}, End Co-ord:{end}')
     print(f'Total ways: {out.total_ways}, Max Reward: {out.reward}')  # total ways: 3, max_rewards = 16
     assert out.total_ways == 3
     assert out.reward == 16
@@ -104,7 +117,9 @@ if __name__ == '__main__':
     ]
     start = (0, 0)
     end = (len(grid) - 1, len(grid[0]) - 1)
+    _print_matrix(grid)
     out = max_rewards(grid, start, end)
+    print(f'Start Co-ord:{start}, End Co-ord:{end}')
     print(f'Total ways: {out.total_ways}, Max Reward: {out.reward}')  # total ways: 0, max_rewards = 0
     assert out.total_ways == 0
     assert out.reward == 0
