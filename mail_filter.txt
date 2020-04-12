@@ -319,3 +319,7 @@ from:dailywealth@personalfn.com
 from:no-reply@leetcode.com
 from:enterprise@connect.hpe.com
 from:no-reply@ovenstory.in
+from:subscriber@aqualens.in
+from:kfinkart.support@kfintech.online
+from:donotreply@umang.gov.in
+from:services@personalfn.com
