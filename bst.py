@@ -3,8 +3,8 @@ This module lists all the basic Binary Tree/Binary
 Search Tree interview questions
 '''
 
-from collections import deque, defaultdict, OrderedDict
 import sys
+from collections import deque, defaultdict, OrderedDict
 
 MAX_INT = sys.maxsize
 MIN_INT = -sys.maxsize
@@ -39,8 +39,7 @@ class BST:
                 data - value, preferably int value to store in
                 BST node
                 If data is less than root, traverse left until right
-                node is found to insert, else follow same logic on right
-                tree
+                node is found to insert, else follow same logic on right tree
         '''
         if self.root is not None:
             if data < self.root.data:
@@ -93,8 +92,8 @@ class BST:
             return True
         if node.data < int_min or node.data > int_max:
             return False
-        return self.isBSTHelper(node.left, int_min, node.data)\
-            and self.isBSTHelper(node.right, node.data, int_max)
+        return self.isBSTHelper(node.left, int_min, node.data) \
+               and self.isBSTHelper(node.right, node.data, int_max)
 
     def rootToLeafSum(self, node, target_sum):
         '''Function to check if root to leaf nodes
@@ -185,24 +184,36 @@ class BST:
         self.verticalTreeSumHelper(root.left, distance - 1, hashMap)
         self.verticalTreeSumHelper(root.right, distance + 1, hashMap)
 
-    def widthOfBinaryTree(self, root):
-        '''Given a Binary Tree, find the maximum width
-            of the tree'''
-        if root is None:
-            return
-        q = deque()
-        q.append(root)
-        max_width = MIN_INT
-        while q:
-            node = q.popleft()
-            if node.left:
-                q.append(node.left)
-            if node.right:
-                q.append(node.right)
-            cur_width = len(q)
-            max_width = max(cur_width, max_width)
-        print('Max Width of Binary Tree:', max_width)
-        return
+    # def widthOfBinaryTree(self, root):
+    #     '''Given a Binary Tree, find the maximum width
+    #         of the tree'''
+    #     if root is None:
+    #         return
+    #     q = deque()
+    #     q.append(root)
+    #     max_width = MIN_INT
+    #     while q:
+    #         node = q.popleft()
+    #         if node.left:
+    #             q.append(node.left)
+    #         if node.right:
+    #             q.append(node.right)
+    #         cur_width = len(q)
+    #         max_width = max(cur_width, max_width)
+    #     print('Max Width of Binary Tree:', max_width)
+    #     return
+
+    def _width_helper(self, root):
+        if not root:
+            return 0
+        l, r = self._width_helper(root.left), self._width_helper(root.right)
+        self.diameter = max(self.diameter, l + r)
+        return max(l, r) + 1
+
+    def width_of_bst_2(self, root: Node) -> int:
+        self.diameter = 0
+        self._width_helper(root)
+        return self.diameter
 
     def lowestCommonAncestor(self, root, node1, node2):
         '''Given two nodes in a Binary Tree, find their lowest
@@ -260,7 +271,7 @@ class BST:
             return -1
         lca_node1_node2 = self.lowestCommonAncestor(root, node1, node2)
         distance_lca_root = self.distanceOfNodeFromRoot(root, lca_node1_node2)
-        return (get_node1_distance + get_node2_distance) -\
+        return (get_node1_distance + get_node2_distance) - \
                (2 * distance_lca_root)
 
     def topView(self, root):
@@ -295,13 +306,13 @@ def main():
 
     # bst.printKDistanceRecursive(root, 2)
     print()
-    print('-'*20)
+    print('-' * 20)
     root = Node(10)
     root.left = Node(7)
     root.left.right = Node(11)
     root.right = Node(39)
     print('Is Binary Search Tree:', bst.isBST(root))
-    print('-'*20)
+    print('-' * 20)
 
     root = Node(10)
     root.left = Node(8)
@@ -317,7 +328,7 @@ def main():
         print()
     else:
         print(result)
-    print('-'*20)
+    print('-' * 20)
 
     root = Node(44)
     root.left = Node(9)
@@ -328,9 +339,9 @@ def main():
     root.right.right = Node(7)
     print('Is Sum Tree == ', bst.sumTree(root))
     print('Is Optimized Sum Tree == ', True if
-          bst.sumTreeOptimized(root) != MIN_INT else MIN_INT)
+    bst.sumTreeOptimized(root) != MIN_INT else MIN_INT)
 
-    print('-'*20)
+    print('-' * 20)
     root = Node(1)
     root.left = Node(2)
     root.right = Node(3)
@@ -352,16 +363,32 @@ def main():
     print('Vertical Tree Sum:')
     bst.verticalTreeSum(root)
 
+    # print('-' * 20)
+    # root = Node(1)
+    # root.left = Node(2)
+    # root.left.left = Node(4)
+    # root.left.right = Node(5)
+    # root.right = Node(3)
+    # root.right.right = Node(8)
+    # root.right.right.left = Node(6)
+    # root.right.right.right = Node(7)
+    # root = Node(1)
+    # root.left = Node(2)
+    # root.left.left = Node(4)
+    # root.left.right = Node(5)
+    # root.left.right.left = Node(6)
+    # # root.right = Node(3)
+    # bst.widthOfBinaryTree(root)
+
     print('-' * 20)
     root = Node(1)
     root.left = Node(2)
     root.left.left = Node(4)
     root.left.right = Node(5)
-    root.right = Node(3)
-    root.right.right = Node(8)
-    root.right.right.left = Node(6)
-    root.right.right.right = Node(7)
-    bst.widthOfBinaryTree(root)
+    root.left.right.left = Node(6)
+    root.left.right.left.right = Node(7)
+    # root.right = Node(3)
+    print('Width of Binary Tree:', bst.width_of_bst_2(root))
 
     print('-' * 20)
     root = Node(1)
