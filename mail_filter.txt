@@ -323,3 +323,11 @@ from:subscriber@aqualens.in
 from:kfinkart.support@kfintech.online
 from:donotreply@umang.gov.in
 from:services@personalfn.com
+from:care@arthayantra.com
+from:wealthsetsyoufree@nipponindiamf.com
+from:cs@netmeds.com
+from:OnlineTrxn.miraeasset.kfpl@kfintech.com
+from:online.services@sbimf.com
+from:meeta@shumee.in
+from:info@naukripakki.in
+from:service@intl.paypal.com

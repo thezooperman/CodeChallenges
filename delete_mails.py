@@ -5,9 +5,10 @@
 from __future__ import print_function
 
 import math
+
 from apiclient import errors
-from googleapiclient.http import BatchHttpRequest
 from googleapiclient.discovery import build
+from googleapiclient.http import BatchHttpRequest
 from httplib2 import Http
 from oauth2client import client, file, tools
 
@@ -113,9 +114,9 @@ def deleteCallback(request_id, response, exception):
 service = getService()
 
 if __name__ == '__main__':
-    mail_filter = []
+    mail_filter = set()
     with open('mail_filter.txt', encoding='utf-8') as fp:
-        mail_filter = [line.strip() for line in fp if not line.startswith('#')]
+        mail_filter = {line.strip() for line in fp if not line.startswith('#')}
 
     getMailsByFilter(service, USER_ID, mail_filter)
     print('-' * 85)
