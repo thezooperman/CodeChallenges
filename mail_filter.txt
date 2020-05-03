@@ -254,7 +254,6 @@ from:no-reply@zeta.in
 from:*@netmedsedm.com
 from:*@bigshyft.co.in
 from:*@referhire.com
-from:*@nurserylive.com
 from:newsletter@news.digitalocean.com
 from:newsletter@digitalocean.com
 from:*@connect.hpe.com
