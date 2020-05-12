@@ -38,40 +38,34 @@ class Solution:
             return board[row][col]
         return ""
 
-    def _search_helper(self, board: List[List[str]], visited: List[List[bool]], row: int, col: int, word: str,
-                       index: int, result=[]):
+    def _search_helper(self, board: List[List[str]], visited: set, row: int, col: int, word: str):
+
         # return if characters do not match
-        cell_val = self._get_cell(row, col, board)
-        if cell_val != word[index] or visited[row][col]:
+        if not self._is_valid_cell(row, col, board) or \
+                self._get_cell(row, col, board) != word[0]:
             return False
 
-        # if not visited[row][col]:
-        visited[row][col] = True
-        # result.append(cell_val)
+        if not word or len(word) == 1:
+            return True
 
-        # check if word matches
-        # if index == len(word) - 1:
-        #     temp_str = "".join(result)
-        #     return temp_str == word
-
+        visited.add((row, col))
+        ans = False
         for (x, y) in self.directions:
             newr, newc = row + x, col + y
-            if self._is_valid_cell(newr, newc, board) and not visited[newr][newc]:
-                if self._search_helper(board, visited, newr, newc, word, index + 1, result):
-                    return True
+            if self._is_valid_cell(newr, newc, board) and (newr, newc) not in visited and not ans:
+                ans |= self._search_helper(board, visited, newr, newc, word[1:])
 
-        result.pop()
-        visited[row][col] = False
-        return False
+        visited.remove((row, col))
+        return ans
 
     def exist(self, board: List[List[str]], word: str) -> bool:
-        visited = [[False] * len(board[0]) for _ in range(len(board))]
+        visited = set()
 
         # all occurrences
         for row in range(len(board)):
             for col in range(len(board[0])):
                 if board[row][col] == word[0]:
-                    if self._search_helper(board, visited, row, col, word, 0):
+                    if self._search_helper(board, visited, row, col, word):
                         return True
         return False
 
@@ -84,10 +78,10 @@ if __name__ == "__main__":
     ]
     obj = Solution()
     search_word = "ABCB"
-    print(obj.exist(board=grid, word=search_word))
+    print(obj.exist(board=grid, word=search_word))  # False
 
     search_word = "ABCCED"
-    print(obj.exist(board=grid, word=search_word))
+    print(obj.exist(board=grid, word=search_word))  # True
 
     search_word = "SEE"
-    print(obj.exist(board=grid, word=search_word))
+    print(obj.exist(board=grid, word=search_word))  # True
