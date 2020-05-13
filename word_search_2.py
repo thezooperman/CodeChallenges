@@ -24,47 +24,53 @@
 from typing import List
 
 
-class Node:
-    __slots__ = ["nodes", "is_leaf"]
+class Trie:
+    __slots__ = ["nodes", "word"]
 
     def __init__(self):
         self.nodes = {}
-        self.is_leaf = False
+        self.word = ""
 
-
-class Trie:
-    def __init__(self):
-        self.root = Node()
-
-    def insert(self, word):
-        current = self.root
+    def insert(self, word) -> None:
+        current = self
 
         for idx, letter in enumerate(word):
             if letter not in current.nodes:
-                current.nodes[letter] = Node()
-                if idx == len(word) - 1:
-                    current.nodes[letter].is_leaf = True
-            current = current.nodes[letter]
+                current.nodes[letter] = Trie()
+            if idx == len(word) - 1:
+                current.nodes[letter].word = word
+            else:
+                current = current.nodes[letter]
+
+    def search(self, word) -> bool:
+        current = self
+
+        for idx, char in enumerate(word):
+            if char in current.nodes:
+                if idx != len(word) - 1:
+                    current = current.nodes[char]
+            else:
+                return False
+        return current.nodes[char].word == word
 
 
 class Solution:
     directions = {(0, 1), (-1, 0), (1, 0), (0, -1)}
+    result = []
+    root = Trie()
 
     def is_cell_valid(self, row: int, col: int, max_row: int, max_col: int) -> bool:
         return 0 <= row < max_row and 0 <= col < max_col
 
-    def find_helper(self, board: List[List[str]], word: str, row: int, col: int, index: int, trie: Node) -> str:
+    def find_helper(self, board: List[List[str]], word: str, row: int, col: int, trie: Trie) -> str:
         current_char = board[row][col]
-        # if current_char != word[index]:
-        #     return False
-        # elif len(word) - 1 == index:
-        #     return True
 
         if current_char not in trie.nodes:
             return False
 
-        if trie.nodes[current_char].is_leaf:
-            return True
+        word += current_char
+        if self.root.search(word):
+            self.result.append(word)
 
         # replace current position
         board[row][col] = "!"
@@ -75,7 +81,7 @@ class Solution:
             newr, newc = row + x, col + y
             if self.is_cell_valid(newr, newc, len(board), len(board[0])) and \
                     board[newr][newc] != "!":
-                ans |= self.find_helper(board, word, newr, newc, index + 1, trie.nodes[current_char])
+                ans |= self.find_helper(board, word, newr, newc, trie.nodes[current_char])
 
         # replace dummy var with actual, backtrack
         board[row][col] = current_char
@@ -83,22 +89,20 @@ class Solution:
 
     def findWords(self, board: List[List[str]], words: List[str]) -> List[str]:
         flag = False
-        trie = Trie()
+        self.result.clear()
         for word in words:
-            trie.insert(word)
-        result = []
-        for word in words:
-            for row in range(len(board)):
-                for col in range(len(board[0])):
-                    if word[0] == board[row][col]:
-                        if self.find_helper(board, word, row, col, 0, trie.root):
-                            flag = True
-                            break
-                if flag:
-                    result.append(word)
-                    flag = False
+            self.root.insert(word)
+        head = self.root
+        for row in range(len(board)):
+            for col in range(len(board[0])):
+                # if word[0] == board[row][col]:
+                if self.find_helper(board, "", row, col, head):
+                    flag = True
                     break
-        return result
+            if flag:
+                flag = False
+                break
+        return self.result
 
 
 obj = Solution()
@@ -121,4 +125,11 @@ matrix = [
 word_list = ["ab", "cb", "ad", "bd", "ac", "ca", "da", "bc", "db", "adcb", "dabc", "abb",
              "acb"]  # Output: ["ab","ac","bd","ca","db"]
 output = obj.findWords(matrix, word_list)
-print(output)
+assert output.sort() == ["ab", "ac", "bd", "ca", "db"].sort(), "Wrong values returned"
+
+matrix = [
+    ["a"]
+]
+word_list = ["ab"]  # Output: []
+output = obj.findWords(matrix, word_list)
+assert output.sort() == [].sort(), "Wrong values returned"
