@@ -95,7 +95,6 @@ class Solution:
         head = self.root
         for row in range(len(board)):
             for col in range(len(board[0])):
-                # if word[0] == board[row][col]:
                 if self.find_helper(board, "", row, col, head):
                     flag = True
                     break

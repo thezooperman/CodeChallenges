@@ -11,7 +11,7 @@ def str_reverse(string: str) -> str:
     return str_reverse(string[1:]) + string[0]
 
 
-print(str_reverse('the weather'))
+# print(str_reverse('the weather'))
 
 
 def anagram_test(string_1: str, string_2: str) -> bool:
@@ -30,8 +30,8 @@ def anagram_test(string_1: str, string_2: str) -> bool:
     return result
 
 
-print(f"Anagram Test(fat, atf): {anagram_test('fat', 'atf')}")
-print(f"Anagram Test(fat, atg): {anagram_test('fat', 'atg')}")
+# print(f"Anagram Test(fat, atf): {anagram_test('fat', 'atf')}")
+# print(f"Anagram Test(fat, atg): {anagram_test('fat', 'atg')}")
 
 
 def anagram_test_in_array(str_arr: set) -> bool:
@@ -49,6 +49,16 @@ def anagram_test_in_array(str_arr: set) -> bool:
         print(all(val in ana_hist for val in list(v)))
 
 
-test_data = set(['fat', 'atf', 'tdf'])
-print(f'[{test_data}]:')
-anagram_test_in_array(test_data)
+def all_suffix(suffix, string):
+    if len(string) == 0:
+        print(suffix)
+        return
+    for i in range(len(string)):
+        all_suffix(suffix + string[0], string[i + 1:])
+
+
+# test_data = set(['fat', 'atf', 'tdf'])
+# print(f'[{test_data}]:')
+# anagram_test_in_array(test_data)
+word = "ababc"
+all_suffix(word[0], word[1:])
