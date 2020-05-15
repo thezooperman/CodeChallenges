@@ -26,6 +26,7 @@ Example 3:
 Input: s = "catsandog", wordDict = ["cats", "dog", "sand", "and", "cat"]
 Output: false
 """
+from typing import List
 
 
 class Trie:
@@ -61,7 +62,9 @@ class Trie:
 
 
 class Solution:
-    def word_dfs(self, trie: Trie, word: str, wordDict: List[str]) -> bool:
+    cache = dict()
+
+    def word_dfs(self, trie: Trie, word: str, wordDict: set) -> bool:
         if len(word) == 0:
             return True
 
@@ -70,19 +73,52 @@ class Solution:
                 return True
         return False
 
+    def dfs(self, string: str, word_dict: set):
+        if len(string) == 0:
+            return True
+        if string in self.cache:
+            return self.cache[string]
+        for i in range(1, len(string) + 1):
+            if (string[:i] in word_dict) and self.dfs(string[i:], word_dict):
+                self.cache[string] = True
+                return True
+        self.cache[string] = False
+        return False
+
     def wordBreak(self, s: str, wordDict: List[str]) -> bool:
-        root = Trie()
+        # root = Trie()
+        #
+        # for word in wordDict:
+        #     root.insert(word)
 
-        for word in wordDict:
-            root.insert(word)
+        # return self.word_dfs(root, s, wordDict)
 
-        return self.word_dfs(root, s, wordDict)
+        dictionary = {_ for _ in wordDict}
+        return self.dfs(s, dictionary)
 
 
 if __name__ == "__main__":
     obj = Solution()
-    s = "leetcode"
-    word_dict = ["leet", "code"]
+    s = "a"
+    word_dict = ["a"]
+    expected_output = True
+
+    assert expected_output == obj.wordBreak(s, word_dict)
+
+    s = "applepenapple"
+    word_dict = ["apple", "pen"]
+    expected_output = True
+
+    assert expected_output == obj.wordBreak(s, word_dict)
+
+    s = "catsandog"
+    word_dict = ["cats", "sand", "dog", "and"]
+    expected_output = False
+
+    assert expected_output == obj.wordBreak(s, word_dict)
+
+    s = "aaaaaaa"
+    word_dict = ["aaaa", "aaa"]
     expected_output = True
 
     assert expected_output == obj.wordBreak(s, word_dict)
