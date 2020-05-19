@@ -39,19 +39,37 @@ class Solution:
         wordDict = set(wordDict)
         return self.helper(string, len(string), wordDict)
 
+    # def wordBreak(self, s: str, wordDict: List[str]) -> List[str]:
+    # dp solution
+    #     dp = defaultdict(list)
+    #     dp[0] = [""]
+    #     words = set(wordDict)
+    #
+    #     for i in range(1, len(s) + 1):
+    #         for j in range(i):
+    #             if not dp[j]:
+    #                 continue
+    #             sub_str = s[j:i]
+    #             if sub_str in words:
+    #                 dp[i].extend([c + " " + sub_str if c
+    #                               else sub_str for c in
+    #                               dp[j]])
+    #
+    #     return dp[len(s)]
+
 
 if __name__ == "__main__":
     obj = Solution()
-    s = "catsanddog"
-    word_dict = ["cat", "cats", "and", "sand", "dog"]
-    expected_output = True
+    # s = "catsanddog"
+    # word_dict = ["cat", "cats", "and", "sand", "dog"]
+    # expected_output = True
 
-    print(obj.wordbreak(s, word_dict))
+    # print(obj.wordBreak(s, word_dict))
 
-    s = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-    word_dict = ["a", "aa", "aaa", "aaaa", "aaaaa", "aaaaaa", "aaaaaaa", "aaaaaaaa", "aaaaaaaaa", "aaaaaaaaaa"]
-
-    print(obj.wordbreak(s, word_dict))
+    # s = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    # word_dict = ["a", "aa", "aaa", "aaaa", "aaaaa", "aaaaaa", "aaaaaaa", "aaaaaaaa", "aaaaaaaaa", "aaaaaaaaaa"]
+    #
+    # print(obj.wordBreak(s, word_dict))
 
     s = "pineapplepenapple"
     word_dict = ["apple", "pen", "applepen", "pine", "pineapple"]
