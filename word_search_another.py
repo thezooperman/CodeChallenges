@@ -43,3 +43,6 @@ grid = [
 obj = Solution()
 search_word = "ABCB"
 print(obj.exist(board=grid, word=search_word))  # False
+
+search_word = "ABCCED"
+print(obj.exist(board=grid, word=search_word))  # True
