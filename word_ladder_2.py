@@ -37,6 +37,52 @@ from typing import List
 from collections import deque
 import string
 
+
+class Vertex:
+    def __init__(self, key: str):
+        self.neighbours = list()
+        self.distance = 0
+        self.key = key
+
+    def add_neighbour(self, vertex: str, distance: int):
+        if vertex not in self.neighbours:
+            self.neighbours.append(vertex)
+            self.distance = distance
+            self.neighbours.sort()
+
+    def get_neighbours(self):
+        return self.neighbours
+
+
+class Graph:
+    def __init__(self):
+        self.vertices = {}
+        self.number_of_vertices = 0
+
+    def add_vertex(self, key: str) -> None:
+        if key not in self.vertices:
+            node = Vertex(key)
+            self.vertices[key] = node
+            self.number_of_vertices += 1
+
+    def add_edge(self, from_v: str, to_v: str, weight: int = 0) -> None:
+        if from_v in self.vertices and to_v in self.vertices:
+            self.vertices[from_v].add_neighbour(to_v, weight)
+
+    def get_vertex(self, key: str):
+        if key in self.vertices:
+            return self.vertices[key]
+        return None
+
+    def get_vertices(self):
+        return self.vertices.keys()
+
+    def print_graph(self):
+        for key in sorted(self.vertices.keys()):
+            print(key + str(self.vertices[key].neighbours))
+
+
+
 class Solution:
     def findLadders(self, beginWord: str, endWord: str, wordList: List[str]) -> List[List[str]]:
         return_list = []
@@ -59,13 +105,27 @@ class Solution:
 
 
 if __name__ == "__main__":
-    obj = Solution()
-    begin, end = "hit", "cog"
-    expected = [
-        ["hit", "hot", "dot", "dog", "cog"],
-        ["hit", "hot", "lot", "log", "cog"]
-    ]
+    # obj = Solution()
+    # begin, end = "hit", "cog"
+    # expected = [
+    #     ["hit", "hot", "dot", "dog", "cog"],
+    #     ["hit", "hot", "lot", "log", "cog"]
+    # ]
+    #
+    # actual = obj.findLadders()
+    #
+    # assert expected == actual, "Actual returned values - {0}".format(actual)
 
-    actual = obj.findLadders()
+    g = Graph()
+    g.add_vertex("A")
+    g.add_vertex("B")
 
-    assert expected == actual, "Actual returned values - {0}".format(actual)
+    for i in range(ord('A'), ord('K')):
+        g.add_vertex(chr(i))
+
+    edges = ['AB', 'AE', 'BF', 'CG', 'DE', 'DH', 'EH', 'FG', 'FI', 'FJ', 'GJ', 'HI']
+    for edge in edges:
+        g.add_edge(edge[:1], edge[1:])
+
+    g.print_graph()
+

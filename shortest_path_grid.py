@@ -49,6 +49,8 @@ grid[0][0] == grid[m-1][n-1] == 0
 """
 
 from typing import List
+from collections import deque
+import math
 
 
 class Solution:
@@ -57,6 +59,41 @@ class Solution:
 
     def is_valid_cell(self, row, col, max_row, max_col) -> bool:
         return 0 <= row < max_row and 0 <= col < max_col
+    
+    def bfs(self, k, grid) -> int:
+        queue = deque()
+        row, col = 0,0
+        path = 0
+        queue.appendleft((row, col, k, path))
+
+        visited = set()
+
+        max_row, max_col = len(grid), len(grid[0])
+
+        while queue:
+            current_row, current_col, k, path = queue.pop()
+
+            # iterate on all 4 directions from current
+
+            for (x, y) in self.directions:
+                # path obstructed, check if k > 0
+                if grid[current_row][current_col] == 1:
+                    if k > 0:
+                        grid[current_row][current_col] = 0
+                        k -= 1
+                    else:
+                        # find some other way
+                        continue
+                new_row, new_col = current_row + x, current_col + y
+                if new_row == max_row -1 and new_col == max_col - 1:
+                    return min(math.inf, path + 1)
+                if self.is_valid_cell(new_row, new_col, max_row, max_col) and \
+                    (new_row, new_col, ) not in visited:
+                    visited.add((new_row, new_col,))
+                    queue.appendleft((new_row, new_col, k, path + 1))
+
+        return -1
+
 
     def dfs(self, row, col, k, grid):
         # print(row, col)
@@ -125,6 +162,8 @@ if __name__ == "__main__":
     expected_output = 6
     actual_output = obj.shortestPath(matrix, k)
     assert expected_output == actual_output, "Wrong output"
+
+    print(obj.bfs(k, matrix))
 
     matrix = [
         [0, 1, 1],
