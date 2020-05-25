@@ -78,6 +78,9 @@ class Solution:
                     nbr.key, nbr.distance, nbr.neighbours))
 
     def findLadders(self, beginWord: str, endWord: str, wordList: List[str]) -> List[List[str]]:
+        if endWord not in wordList:
+            return []
+
         return_list = []
         word_store = set(wordList)
         if beginWord not in word_store:
