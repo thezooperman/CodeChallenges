@@ -163,7 +163,7 @@ if __name__ == "__main__":
     actual_output = obj.shortestPath(matrix, k)
     assert expected_output == actual_output, "Wrong output"
 
-    print(obj.bfs(k, matrix))
+    assert obj.bfs(k, matrix) == expected_output
 
     matrix = [
         [0, 1, 1],
@@ -174,3 +174,5 @@ if __name__ == "__main__":
     expected_output = -1
     actual_output = obj.shortestPath(matrix, k)
     assert expected_output == actual_output, "Wrong output"
+
+    assert obj.bfs(k, matrix) == expected_output

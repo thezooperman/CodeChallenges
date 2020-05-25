@@ -34,14 +34,15 @@ Output: []
 Explanation: The endWord "cog" is not in wordList, therefore no possible transformation.
 """
 from typing import List
-from collections import deque
+from collections import deque, defaultdict
 import string
+import math
 
 
 class Vertex:
     def __init__(self, key: str):
         self.neighbours = list()
-        self.distance = 0
+        self.distance = -1
         self.key = key
 
     def add_neighbour(self, vertex: str, distance: int):
@@ -49,83 +50,121 @@ class Vertex:
             self.neighbours.append(vertex)
             self.distance = distance
             self.neighbours.sort()
-
-    def get_neighbours(self):
-        return self.neighbours
-
-
-class Graph:
-    def __init__(self):
-        self.vertices = {}
-        self.number_of_vertices = 0
-
-    def add_vertex(self, key: str) -> None:
-        if key not in self.vertices:
-            node = Vertex(key)
-            self.vertices[key] = node
-            self.number_of_vertices += 1
-
-    def add_edge(self, from_v: str, to_v: str, weight: int = 0) -> None:
-        if from_v in self.vertices and to_v in self.vertices:
-            self.vertices[from_v].add_neighbour(to_v, weight)
-
-    def get_vertex(self, key: str):
-        if key in self.vertices:
-            return self.vertices[key]
-        return None
-
-    def get_vertices(self):
-        return self.vertices.keys()
-
-    def print_graph(self):
-        for key in sorted(self.vertices.keys()):
-            print(key + str(self.vertices[key].neighbours))
-
+ 
+    def __str__(self):
+        return "Node:{}\n,Distance:{}\n,Neighbours:{}".format(self.key, self.distance, self.neighbours)
 
 
 class Solution:
+    def get_neighbours(self, word_list: set, word: str) -> List[str]:
+        neighbours = []
+
+        # get one letter different neighbours from the word list
+        for i in range(len(word)):
+            for char in string.ascii_lowercase:
+                new_word = word[:i] + char + word[i + 1:]
+                if (new_word in word_list) and word != new_word:
+                    neighbours.append(new_word)
+
+        return neighbours
+
+    def show(self, graph):
+        for node in graph:
+            node = graph[node]
+            print("Node:{}, Distance:{}".format(node.key, node.distance))
+            print("Neighbours:\n")
+            for nbr in node.neighbours:
+                print("Node:{}, Distance:{}, Neighbours:{}".format(
+                    nbr.key, nbr.distance, nbr.neighbours))
+
     def findLadders(self, beginWord: str, endWord: str, wordList: List[str]) -> List[List[str]]:
         return_list = []
-        wordList = set(wordList)
-        queue = deque(beginWord)
+        word_store = set(wordList)
+        if beginWord not in word_store:
+            word_store.add(beginWord)
 
-        visited = set()
-        temp_list = []
+        # build graph
+        graph = defaultdict(set)
+
+        for word in word_store:
+            if word not in graph:
+                graph[word] = Vertex(word)
+
+            for ng in self.get_neighbours(word_store, word):
+                node = graph[ng]
+
+                if not node:
+                    node = Vertex(ng)
+                    graph[ng] = node
+
+                graph[word].neighbours.append(node)
+
+        # bfs to calculate shortest path distance
+        distance = -1
+        queue = deque()
+        queue.append(graph[beginWord])
 
         while queue:
-            word = queue.popleft()
+            queue_size = len(queue)
 
-            if word == endWord:
-                return_list.append(temp_list)
-                temp_list.clear()
+            while queue_size:
+                cur_node = queue.pop()
+                if cur_node.distance != -1:
+                    queue_size -= 1
+                    continue
 
-            for i in range(len(word)):
-                for char in string.ascii_lowercase:
-                    new_word = word[:i] + char + word[i + 1:]
+                cur_node.distance = distance + 1
+                for nbr in cur_node.neighbours:
+                    if nbr.distance == -1:
+                        queue.appendleft(nbr)
+
+                queue_size -= 1
+            # increment the distance per level
+            distance += 1
+
+        # self.show(graph)
+
+        # get shortest path via dfs
+        min_dist = math.inf
+        stack = deque()
+        stack.append((graph[beginWord], [],))
+
+        while stack or len(stack) > 0:
+            node, chain = stack.pop()
+            if node.key == endWord:
+                min_dist = min(min_dist, len(chain) + 1)
+                return_list.append((*chain, node.key))
+            else:
+                for nbr in node.neighbours:
+                    if nbr.distance > node.distance:
+                        stack.append((nbr, [*chain, node.key]))
+
+        return [list(item) for item in return_list if len(item) == min_dist]
 
 
 if __name__ == "__main__":
-    # obj = Solution()
-    # begin, end = "hit", "cog"
-    # expected = [
-    #     ["hit", "hot", "dot", "dog", "cog"],
-    #     ["hit", "hot", "lot", "log", "cog"]
-    # ]
-    #
-    # actual = obj.findLadders()
-    #
-    # assert expected == actual, "Actual returned values - {0}".format(actual)
+    obj = Solution()
 
-    g = Graph()
-    g.add_vertex("A")
-    g.add_vertex("B")
+    begin, end = "hit", "cog"
+    wordList = ["hot", "dot", "dog", "lot", "log", "cog"]
 
-    for i in range(ord('A'), ord('K')):
-        g.add_vertex(chr(i))
+    expected = [
+        ["hit", "hot", "dot", "dog", "cog"],
+        ["hit", "hot", "lot", "log", "cog"]
+    ]
 
-    edges = ['AB', 'AE', 'BF', 'CG', 'DE', 'DH', 'EH', 'FG', 'FI', 'FJ', 'GJ', 'HI']
-    for edge in edges:
-        g.add_edge(edge[:1], edge[1:])
+    actual = obj.findLadders(begin, end, wordList)
+    # print(*actual)
 
-    g.print_graph()
+    assert expected.sort() == actual.sort(), "Actual returned values - {0}".format(actual)
 
+    begin = "hit"
+    end = "cog"
+    wordList = ["hot","dot","dog","lot","log"]
+
+    expected = []
+
+    actual = obj.findLadders(begin, end, wordList)
+    # print(*actual)
+
+    assert expected.sort() == actual.sort(), "Actual returned values - {0}".format(actual)
