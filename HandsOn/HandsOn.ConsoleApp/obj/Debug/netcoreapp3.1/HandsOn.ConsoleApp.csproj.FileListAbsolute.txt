@@ -1,0 +1,13 @@
+C:\Users\aritraghosh4\SourceCode\personal\HandsOn\HandsOn.ConsoleApp\bin\Debug\netcoreapp3.1\HandsOn.ConsoleApp.exe
+C:\Users\aritraghosh4\SourceCode\personal\HandsOn\HandsOn.ConsoleApp\bin\Debug\netcoreapp3.1\HandsOn.ConsoleApp.deps.json
+C:\Users\aritraghosh4\SourceCode\personal\HandsOn\HandsOn.ConsoleApp\bin\Debug\netcoreapp3.1\HandsOn.ConsoleApp.runtimeconfig.json
+C:\Users\aritraghosh4\SourceCode\personal\HandsOn\HandsOn.ConsoleApp\bin\Debug\netcoreapp3.1\HandsOn.ConsoleApp.runtimeconfig.dev.json
+C:\Users\aritraghosh4\SourceCode\personal\HandsOn\HandsOn.ConsoleApp\bin\Debug\netcoreapp3.1\HandsOn.ConsoleApp.dll
+C:\Users\aritraghosh4\SourceCode\personal\HandsOn\HandsOn.ConsoleApp\bin\Debug\netcoreapp3.1\HandsOn.ConsoleApp.pdb
+C:\Users\aritraghosh4\SourceCode\personal\HandsOn\HandsOn.ConsoleApp\obj\Debug\netcoreapp3.1\HandsOn.ConsoleApp.csprojAssemblyReference.cache
+C:\Users\aritraghosh4\SourceCode\personal\HandsOn\HandsOn.ConsoleApp\obj\Debug\netcoreapp3.1\HandsOn.ConsoleApp.csproj.CoreCompileInputs.cache
+C:\Users\aritraghosh4\SourceCode\personal\HandsOn\HandsOn.ConsoleApp\obj\Debug\netcoreapp3.1\HandsOn.ConsoleApp.AssemblyInfoInputs.cache
+C:\Users\aritraghosh4\SourceCode\personal\HandsOn\HandsOn.ConsoleApp\obj\Debug\netcoreapp3.1\HandsOn.ConsoleApp.AssemblyInfo.cs
+C:\Users\aritraghosh4\SourceCode\personal\HandsOn\HandsOn.ConsoleApp\obj\Debug\netcoreapp3.1\HandsOn.ConsoleApp.dll
+C:\Users\aritraghosh4\SourceCode\personal\HandsOn\HandsOn.ConsoleApp\obj\Debug\netcoreapp3.1\HandsOn.ConsoleApp.pdb
+C:\Users\aritraghosh4\SourceCode\personal\HandsOn\HandsOn.ConsoleApp\obj\Debug\netcoreapp3.1\HandsOn.ConsoleApp.genruntimeconfig.cache
