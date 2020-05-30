@@ -138,4 +138,4 @@ if __name__ == '__main__':
     print('-' * 85)
     print(f'Total mails to cleanup: {len(to_delete_ids)}')
     print('-' * 85)
-    batchDeleteMails(service)
+    #batchDeleteMails(service)

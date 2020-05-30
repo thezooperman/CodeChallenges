@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "4pMkHLZSxdA8aLCWRe5SYVmGjnp5Fcj1VKqf5zZ3ZnEps426Q+sNiNT9wXybU2OcEVnm+4qXNObiCUm0Watk/A==",
+  "dgSpecHash": "dAj5Ahu0VJPwQxa9MZh/XDHwVyg5cLB2TFH655ZO0kPyJEXEbPpzxhPRFFhJ7fNqeUqcYHRuxmEvEi+QZ6IWNQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\aritraghosh4\\SourceCode\\personal\\HandsOn\\HandsOn.ConsoleApp\\HandsOn.ConsoleApp.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "/home/aritraghosh/PycharmProjects/CodeChallenges/HandsOn/HandsOn.ConsoleApp/HandsOn.ConsoleApp.csproj",
+  "expectedPackageFiles": [
+    "/home/aritraghosh/.nuget/packages/microsoft.aspnetcore.app.ref/3.1.2/microsoft.aspnetcore.app.ref.3.1.2.nupkg.sha512"
+  ],
   "logs": []
 }
