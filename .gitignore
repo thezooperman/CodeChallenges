@@ -5,5 +5,5 @@ deploy-dir/
 token.pickle
 .deployment
 __pycache__/
-HandsOn/HandsOn.ConsoleApp/bin/
-HandsOn/HandsOn.ConsoleApp/obj/
+HandsOn/HandsOn.ConsoleApp/bin/*
+HandsOn/HandsOn.ConsoleApp/obj/*

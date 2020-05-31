@@ -1,8 +1,0 @@
-{
-  "runtimeOptions": {
-    "additionalProbingPaths": [
-      "/home/aritraghosh/.dotnet/store/|arch|/|tfm|",
-      "/home/aritraghosh/.nuget/packages"
-    ]
-  }
-}
