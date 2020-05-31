@@ -8,7 +8,7 @@ namespace HandsOn.ConsoleApp
     {
         static void Main(string[] args)
         {
-           var inputString = "hit";
+            var inputString = "hit";
             var targetString = "cog";
 
             IList<String> list = new List<String> { "hot", "dot", "dog", "lot", "log", "cog" };
@@ -39,7 +39,7 @@ namespace HandsOn.ConsoleApp
             int size = 5;
 
             var uf = new UnionFind(size);
-  
+
             System.Console.WriteLine("Total sets :" + uf.getTotalSet());
 
             uf.union(0, 1);
@@ -52,8 +52,29 @@ namespace HandsOn.ConsoleApp
             uf.union(1, 2);
             Trace.Assert(uf.getSetSize(0) == 3);
             Trace.Assert(uf.getSetSize(3) == 1);
-            Trace.Assert(uf.getTotalSet() == 3);             
+            Trace.Assert(uf.getTotalSet() == 3);
 
+            uf = new UnionFind(12);
+
+            IEnumerable<Edge> edges = new List<Edge>{
+                new Edge(1, 2),
+                new Edge(1, 7),
+                new Edge(1, 8),
+                new Edge(2, 3),
+                new Edge(2, 6),
+                new Edge(3, 4),
+                new Edge(3, 5),
+                new Edge(8, 9),
+                new Edge(8, 12),
+                new Edge(9, 10),
+                new Edge(9, 11),
+                new Edge(11, 12)
+            };
+
+            Graph g = new Graph(edges);
+            uf = new UnionFind(g.Vertices.Count);
+
+            Trace.Assert(uf.FindCycle(g) == true);
 
             var obj = new Solution();
 

@@ -1,8 +1,52 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace HandsOn.ConsoleApp
 {
+    public class Edge
+    {
+        private int _source, _destination;
+        public int Source{
+        get => this._source;
+        set => this._source = value; 
+        }
+
+        public int Destination { 
+            get => this._destination; 
+            set => this._destination = value; 
+            }
+        
+        public Edge(int source, int destination)
+        {
+            this._source = source;
+            this._destination = destination;   
+        }
+    }
+
+    public class Graph{
+        private List<List<int>> _vertices = null;
+
+        public List<List<int>> Vertices { 
+            get => this._vertices;
+        }
+
+        public Graph(IEnumerable<Edge> edges)
+        {
+            int numberOfEdges = edges.Count();
+            if (this._vertices == null)
+                this._vertices = new List<List<int>>();
+
+            for(int i=0; i <= numberOfEdges; i++)
+                this._vertices.Add(new List<int>());
+
+            foreach (Edge edge in edges)
+                this._vertices[edge.Source].Add(edge.Destination);
+        }
+    }
+
     public class UnionFind
     {
         private int _size;
@@ -87,6 +131,27 @@ namespace HandsOn.ConsoleApp
             }
 
             this._totalSet--;
+        }
+
+        public bool FindCycle(Graph graph)
+        {
+            var numberOfEdges = graph.Vertices.Count();
+            for (int u = 1; u <= numberOfEdges; u++)
+            {
+                foreach (int v in graph.Vertices[u])
+                {
+                    int x = this.find(u);
+                    int y = this.find(v);
+
+                    if (x == y)
+                        return true;
+                    
+                    this.union(x, y);
+                }
+
+            }
+
+            return false;
         }
     }
 }
