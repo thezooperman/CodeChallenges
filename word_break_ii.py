@@ -4,22 +4,20 @@ from typing import List
 class Solution:
     cache = dict()
 
-    # visited = set()
-
     def helper(self, input: str, end: int, word_dict: set):
         result = set()
-        visited = set()
+        # visited = set()
         if end <= 0:
             return ("",)
 
-        if input in self.cache:
-            return self.cache[input]
+        if end in self.cache:
+            return self.cache[end]
 
         start = 0
         while start < end:
             new_str = input[start: end]
-            if new_str in word_dict and new_str not in visited:
-                visited.add(new_str)
+            if new_str in word_dict: # and new_str not in visited:
+                # visited.add(new_str)
                 tmp_list = self.helper(input, start, word_dict)
                 for char in tmp_list:
                     if len(char) == 0:
@@ -27,16 +25,13 @@ class Solution:
                     else:
                         result.add(char + " " + new_str)
             start += 1
-            # if new_str in visited:
-            #     visited.remove(new_str)
+
         self.cache[end] = result
-        # print(visited)
         return list(result)
 
-    def wordbreak(self, string: str, wordDict: List[str]) -> List[str]:
-        self.cache.clear()
-        # self.visited.clear()
+    def wordBreak(self, string: str, wordDict: List[str]) -> List[str]:
         wordDict = set(wordDict)
+        self.cache.clear()
         return self.helper(string, len(string), wordDict)
 
     # def wordBreak(self, s: str, wordDict: List[str]) -> List[str]:
@@ -60,18 +55,36 @@ class Solution:
 
 if __name__ == "__main__":
     obj = Solution()
-    # s = "catsanddog"
-    # word_dict = ["cat", "cats", "and", "sand", "dog"]
-    # expected_output = True
+    s = "catsanddog"
+    word_dict = ["cat", "cats", "and", "sand", "dog"]
+    expected_output = ["cat sand dog", "cats and dog"]
 
-    # print(obj.wordBreak(s, word_dict))
+    print("String:{}".format(s))
+    actual = obj.wordBreak(s, word_dict)
+    assert actual.sort() == expected_output.sort(), print(actual)
 
-    # s = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-    # word_dict = ["a", "aa", "aaa", "aaaa", "aaaaa", "aaaaaa", "aaaaaaa", "aaaaaaaa", "aaaaaaaaa", "aaaaaaaaaa"]
-    #
-    # print(obj.wordBreak(s, word_dict))
+    
+    s = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    word_dict = ["a", "aa", "aaa", "aaaa", "aaaaa", "aaaaaa", "aaaaaaa", "aaaaaaaa", "aaaaaaaaa", "aaaaaaaaaa"]
+    expected_output = []
+
+    print("String:{}".format(s))
+    actual = obj.wordBreak(s, word_dict)
+    assert actual == expected_output, print(actual)
 
     s = "pineapplepenapple"
     word_dict = ["apple", "pen", "applepen", "pine", "pineapple"]
+    expected_output = ["pine apple pen apple", "pine applepen apple", "pineapple pen apple"]
 
-    print(obj.wordbreak(s, word_dict))
+    print("String:{}".format(s))
+    actual = obj.wordBreak(s, word_dict)
+    assert actual.sort() == expected_output.sort(), print(actual)
+
+    s = "catsandog"
+    word_dict = ["cat", "cats", "and", "sand", "dog"]
+    expected_output = []
+
+    print("String:{}".format(s))
+    actual = obj.wordBreak(s, word_dict)
+    assert actual == expected_output, print(actual)
+
