@@ -3,10 +3,9 @@ from typing import List
 
 class Solution:
     cache = dict()
-
     def helper(self, input: str, end: int, word_dict: set):
         result = set()
-        # visited = set()
+
         if end <= 0:
             return ("",)
 
@@ -16,8 +15,7 @@ class Solution:
         start = 0
         while start < end:
             new_str = input[start: end]
-            if new_str in word_dict: # and new_str not in visited:
-                # visited.add(new_str)
+            if new_str in word_dict:
                 tmp_list = self.helper(input, start, word_dict)
                 for char in tmp_list:
                     if len(char) == 0:
