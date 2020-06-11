@@ -339,3 +339,4 @@ from:sales@netmeds.com
 from:no-reply@email.thelinuxfoundation.org
 from:care@emaila.1mg.com
 from:noreply@amazonpay.in
+from:yourcarpal@autocarma.in
