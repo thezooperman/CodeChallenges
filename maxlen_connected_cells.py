@@ -40,6 +40,9 @@
 '''
 
 
+
+
+from collections import deque
 def _get_cell_value(array, x, y) -> int:
     if (0 <= x <= len(array) - 1) and (0 <= y <= len(array[0]) - 1):
         return array[x][y]
@@ -78,6 +81,44 @@ def max_region_len(array) -> int:
     return result
 
 
+visited = set()
+
+
+def other_fn_helper(array, row, col) -> int:
+    directions = [(0, -1), (0, 1), (1, 0), (-1, 0),
+                  (-1, -1), (1, 1), (-1, 1), (1, -1)]
+    count = 0
+
+    if array[row][col] == 1 and (row, col) not in visited:
+        count += 1
+        visited.add((row, col))
+    queue = deque([(row, col)])
+
+    while queue:
+        row, col = queue.popleft()
+
+        for (x, y) in directions:
+            new_row, new_col = row + x, y + col
+            if _get_cell_value(array, new_row, new_col) == 1 and (new_row, new_col) not in visited:
+                count += 1
+                # print(new_row, new_col)
+                visited.add((new_row, new_col))
+                queue.append((new_row, new_col))
+
+    # print("count:", count)
+    # print("-" * 5, flush=True)
+    return count
+
+
+def other_max_region(array):
+    visited.clear()
+    count = 0
+    for row in range(len(array)):
+        for col in range(len(array[0])):
+            count = max(other_fn_helper(array, row, col), count)
+    return count
+
+
 if __name__ == '__main__':
     grid = \
         [
@@ -87,7 +128,9 @@ if __name__ == '__main__':
             [1, 0, 0, 0, 1],
             [0, 1, 0, 1, 1]
         ]
-    print(max_region_len(grid))  # expected result = 5
+    # print(max_region_len(grid))  # expected result = 5
+
+    print(other_max_region(grid))
 
     grid = \
         [
@@ -96,7 +139,8 @@ if __name__ == '__main__':
             [0, 1, 0, 0, 0],
             [0, 0, 0, 0, 1]
         ]
-    print(max_region_len(grid))  # expected result = 6
+    # print(max_region_len(grid))  # expected result = 6
+    print(other_max_region(grid))
 
     grid = \
         [
@@ -106,4 +150,5 @@ if __name__ == '__main__':
             [0, 1, 0, 0],
             [1, 1, 0, 0]
         ]
-    print(max_region_len(grid))  # expected result = 8
+    # print(max_region_len(grid))  # expected result = 8
+    print(other_max_region(grid))

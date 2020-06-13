@@ -185,7 +185,7 @@ from:contact@mylescarsemails.com
 from:invitations@linkedin.com
 from:protect@cred.club
 from:nsr@nsdl.co.in
-from:brian.thiel@aisciences.net
+from:*@aisciences.net
 from:noreply@swiggy.in
 from:googlepay-noreply@google.com
 from:otp@smytten.com
@@ -330,3 +330,13 @@ from:online.services@sbimf.com
 from:meeta@shumee.in
 from:info@naukripakki.in
 from:service@intl.paypal.com
+from:newsletter@mailer.emailsinbox.com
+from:info@growactive.biz
+from:notifications@blog.wix.com
+from:support@github.com
+from:notification@titan.co.in
+from:sales@netmeds.com
+from:no-reply@email.thelinuxfoundation.org
+from:care@emaila.1mg.com
+from:noreply@amazonpay.in
+from:yourcarpal@autocarma.in
