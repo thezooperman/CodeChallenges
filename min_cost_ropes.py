@@ -44,14 +44,14 @@ def minimum_costs(arr: List[int]) -> int:
     for _ in arr: queue.put(_)
 
     cost = 0
-    timeout = 0.5
+    timeout = 0.05
 
     while queue.qsize() > 1:
         temp = queue.get(timeout=timeout)
         if not queue.empty():
             temp += queue.get(timeout=timeout)
         if queue.qsize() > 0:
-            queue.put(temp)
+            queue.put(temp, timeout=timeout)
         cost += temp
     
     return cost
