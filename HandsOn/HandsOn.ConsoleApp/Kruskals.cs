@@ -1,13 +1,11 @@
-using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 namespace HandsOn.ConsoleApp
 {
     public class Kruskals
     {
-        class Edge : IComparable<Edge>
+        struct Edge
         {
             private int _source, _destination, _weight;
             public int Source
@@ -25,14 +23,9 @@ namespace HandsOn.ConsoleApp
                 get => this._weight;
                 set => this._weight = value;
             }
-
-            public int CompareTo([AllowNull] Edge other)
-            {
-                return this._weight - other.Weight;
-            }
         }
 
-        class Graph
+        struct Graph
         {
             private int _verticesCount;
             public int VerticesCount
@@ -71,7 +64,10 @@ namespace HandsOn.ConsoleApp
                 // Initialize Set and Id
                 Enumerable.Range(0, size).ToList().ForEach(i =>
                 {
+                    // initial set size is 1
                     this._setSize[i] = 1;
+
+                    // make each element its own parent
                     this._id[i] = i;
                 });
             }
@@ -80,11 +76,14 @@ namespace HandsOn.ConsoleApp
             {
                 int root = vertex;
 
+
+                // traverse to element's root
                 while (root != this._id[root])
                 {
                     root = this._id[root];
                 }
 
+                // root found, now compact the tree
                 while (vertex != root)
                 {
                     int next = this._id[vertex];
@@ -97,12 +96,14 @@ namespace HandsOn.ConsoleApp
 
             public void Union(int p, int q)
             {
+                // both elements are in same set
                 if (this.Find(p) == this.Find(q))
                     return;
 
                 int p_root = this.Find(p);
                 int q_root = this.Find(q);
 
+                // merge smaller set to larger one
                 if (this._setSize[p_root] < this._setSize[q_root])
                 {
                     this._setSize[q_root] += this._setSize[p_root];
@@ -146,7 +147,7 @@ namespace HandsOn.ConsoleApp
             IList<Edge> result = new List<Edge>(vertices);
 
             // sort the graph by weight
-            graph.Edges.ToList().Sort();
+            graph.Edges = graph.Edges.OrderBy(x => x.Weight).ToList();
 
             var uf = new UnionFind(graph.Edges.Count);
             int i , e;
@@ -158,17 +159,23 @@ namespace HandsOn.ConsoleApp
                 int y = uf.Find(next.Destination);
 
                 if (x != y){
-                    result[e++] = next;
+                    // result[e++] = next;
+                    result.Add(next);
                     uf.Union(x, y);
                 }
+                e++;
             }
 
             this.Show(result);
         }
 
         void Show(IList<Edge> result){
-            foreach (Edge edge in result)
+            int totalDistance = 0;
+            foreach (Edge edge in result){
                 System.Console.WriteLine("{0} -- {1} == {2}", edge.Source, edge.Destination, edge.Weight);
+                totalDistance += edge.Weight;
+            }
+            System.Console.WriteLine("Total distance:{0}", totalDistance);
         }
 
         public void FindMST(int v, int e){
