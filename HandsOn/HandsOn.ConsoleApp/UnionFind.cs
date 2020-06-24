@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace HandsOn.ConsoleApp
 {
-    public class Edge
+    public partial class Edge
     {
         private int _source, _destination;
         public int Source{

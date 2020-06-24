@@ -8,6 +8,13 @@ namespace HandsOn.ConsoleApp
     {
         static void Main(string[] args)
         {
+            // Kruskal's MST
+            Kruskals kmst = new Kruskals();
+            kmst.FindMST(4, 5);
+
+            System.Environment.Exit(0);
+            
+
             var inputString = "hit";
             var targetString = "cog";
 
