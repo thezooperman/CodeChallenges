@@ -12,8 +12,18 @@ namespace HandsOn.ConsoleApp
             Kruskals kmst = new Kruskals();
             kmst.FindMST(4, 5);
 
-            System.Environment.Exit(0);
+            CriticalConnections cc = new CriticalConnections();
+            int n = 4;
             
+            IList<IList<int>> connections = new List<IList<int>>();
+            connections.Add(new List<int>{0, 1});
+            connections.Add(new List<int>{1, 2});
+            connections.Add(new List<int>{2, 0});
+            connections.Add(new List<int>{1, 3});
+
+            cc.GetCriticalConnections(n, connections);
+
+            System.Console.WriteLine();
 
             var inputString = "hit";
             var targetString = "cog";
