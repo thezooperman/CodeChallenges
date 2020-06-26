@@ -13,13 +13,29 @@ namespace HandsOn.ConsoleApp
             kmst.FindMST(4, 5);
 
             CriticalConnections cc = new CriticalConnections();
-            int n = 4;
+            int n = 5;
+            // int n = 9;
             
             IList<IList<int>> connections = new List<IList<int>>();
-            connections.Add(new List<int>{0, 1});
             connections.Add(new List<int>{1, 2});
-            connections.Add(new List<int>{2, 0});
+            connections.Add(new List<int>{3, 4});
             connections.Add(new List<int>{1, 3});
+            connections.Add(new List<int>{1, 4});
+            connections.Add(new List<int>{4, 5});
+        
+            // connections= new List<IList<int>>{
+            //     new List<int>{1, 2},
+            //     new List<int>{1, 3},
+            //     new List<int>{2, 3},
+            //     new List<int>{3, 4},
+            //     new List<int>{3, 6},
+            //     new List<int>{4, 5},
+            //     new List<int>{6, 7},
+            //     new List<int>{6, 9},
+            //     new List<int>{7, 8},
+            //     new List<int>{8, 9}
+            // };
+
 
             cc.GetCriticalConnections(n, connections);
 

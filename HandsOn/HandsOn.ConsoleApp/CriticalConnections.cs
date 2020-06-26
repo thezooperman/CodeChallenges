@@ -40,7 +40,7 @@ namespace HandsOn.ConsoleApp
         {
             this.graph = new Dictionary<int, IList<int>>();
 
-            for (int i = 0; i < n; i++)
+            for (int i = 1; i <= n; i++)
                 this.graph[i] = new List<int>();
 
             foreach (var edge in edges)
