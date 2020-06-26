@@ -1,7 +1,5 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace HandsOn.ConsoleApp
@@ -42,8 +40,10 @@ namespace HandsOn.ConsoleApp
             for(int i=0; i <= numberOfEdges; i++)
                 this._vertices.Add(new List<int>());
 
-            foreach (Edge edge in edges)
+            foreach (Edge edge in edges){
                 this._vertices[edge.Source].Add(edge.Destination);
+                this._vertices[edge.Destination].Add(edge.Source);
+            }
         }
     }
 
