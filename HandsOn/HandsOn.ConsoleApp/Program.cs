@@ -15,14 +15,14 @@ namespace HandsOn.ConsoleApp
             CriticalConnections cc = new CriticalConnections();
             int n = 5;
             // int n = 9;
-            
+
             IList<IList<int>> connections = new List<IList<int>>();
-            connections.Add(new List<int>{1, 2});
-            connections.Add(new List<int>{3, 4});
-            connections.Add(new List<int>{1, 3});
-            connections.Add(new List<int>{1, 4});
-            connections.Add(new List<int>{4, 5});
-        
+            connections.Add(new List<int> { 1, 2 });
+            connections.Add(new List<int> { 3, 4 });
+            connections.Add(new List<int> { 1, 3 });
+            connections.Add(new List<int> { 1, 4 });
+            connections.Add(new List<int> { 4, 5 });
+
             // connections= new List<IList<int>>{
             //     new List<int>{1, 2},
             //     new List<int>{1, 3},

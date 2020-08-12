@@ -135,7 +135,7 @@ namespace HandsOn.ConsoleApp
             graph.Edges = new List<Edge>(edges);
 
             for (int i = 0; i < edgeList.Count; i++)
-               graph.Edges.Add(edgeList[i]);
+                graph.Edges.Add(edgeList[i]);
 
             return graph;
         }
@@ -150,7 +150,7 @@ namespace HandsOn.ConsoleApp
             graph.Edges = graph.Edges.OrderBy(x => x.Weight).ToList();
 
             var uf = new UnionFind(graph.Edges.Count);
-            int i , e;
+            int i, e;
             i = e = 0;
             while (e < vertices)
             {
@@ -158,7 +158,8 @@ namespace HandsOn.ConsoleApp
                 int x = uf.Find(next.Source);
                 int y = uf.Find(next.Destination);
 
-                if (x != y){
+                if (x != y)
+                {
                     // result[e++] = next;
                     result.Add(next);
                     uf.Union(x, y);
@@ -169,16 +170,19 @@ namespace HandsOn.ConsoleApp
             this.Show(result);
         }
 
-        void Show(IList<Edge> result){
+        void Show(IList<Edge> result)
+        {
             int totalDistance = 0;
-            foreach (Edge edge in result){
+            foreach (Edge edge in result)
+            {
                 System.Console.WriteLine("{0} -- {1} == {2}", edge.Source, edge.Destination, edge.Weight);
                 totalDistance += edge.Weight;
             }
             System.Console.WriteLine("Total distance:{0}", totalDistance);
         }
 
-        public void FindMST(int v, int e){
+        public void FindMST(int v, int e)
+        {
             var graph = this.CreateGraph(v, e);
             this.MST(graph);
         }

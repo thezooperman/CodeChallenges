@@ -44,8 +44,9 @@ using System;
 
 namespace HandsOn.ConsoleApp
 {
-    public class Solution {
-        public int MaxUncrossedLines(int[] A, int[] B) 
+    public class Solution
+    {
+        public int MaxUncrossedLines(int[] A, int[] B)
         {
             int size_a = A.Length;
             int size_b = B.Length;
@@ -57,7 +58,7 @@ namespace HandsOn.ConsoleApp
                 for (int j = 1; j < size_b + 1; j++)
                 {
                     // the items at ith and jth index are same
-                    if (A[i-1] == B[j - 1])
+                    if (A[i - 1] == B[j - 1])
                     {
                         dp[i, j] = dp[i - 1, j - 1] + 1;
                     }

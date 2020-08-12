@@ -71,7 +71,7 @@ namespace HandsOn.ConsoleApp
             return dp[text1.Length, text2.Length];
         }
 
-        private ICollection<String> LookupHelper(int [,]dp, String x, int m, String y, int n)
+        private ICollection<String> LookupHelper(int[,] dp, String x, int m, String y, int n)
         {
             if (m == 0 || n == 0)
                 return new List<String>();

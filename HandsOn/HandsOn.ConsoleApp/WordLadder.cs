@@ -52,7 +52,7 @@ namespace HandsOn.ConsoleApp
             }
             return 0;
         }
-    
+
 
         public int FindMinLadder(String start, String end, IList<String> list)
         {
@@ -60,7 +60,7 @@ namespace HandsOn.ConsoleApp
 
             if (!wordList.Contains(end))
                 return 0;
-            
+
             var queue = new Queue<Tuple<String, Int32>>();
             var visited = new HashSet<String>();
 
@@ -72,7 +72,7 @@ namespace HandsOn.ConsoleApp
 
                 if (word.Equals(end, StringComparison.InvariantCultureIgnoreCase))
                     return step;
-                
+
 
                 for (int i = 0; i < word.Length; i++)
                 {
@@ -80,12 +80,13 @@ namespace HandsOn.ConsoleApp
                     {
                         var new_word = word.Substring(0, i) + c + word.Substring(i + 1, word.Length - i - 1);
 
-                        if (wordList.Contains(new_word) && !visited.Contains(new_word)){
+                        if (wordList.Contains(new_word) && !visited.Contains(new_word))
+                        {
                             queue.Enqueue(Tuple.Create(new_word, step + 1));
                             visited.Add(new_word);
                             wordList.Remove(new_word);
                         }
-                    }    
+                    }
                 }
             }
 

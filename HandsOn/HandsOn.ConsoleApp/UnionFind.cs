@@ -7,27 +7,31 @@ namespace HandsOn.ConsoleApp
     public partial class Edge
     {
         private int _source, _destination;
-        public int Source{
-        get => this._source;
-        set => this._source = value; 
+        public int Source
+        {
+            get => this._source;
+            set => this._source = value;
         }
 
-        public int Destination { 
-            get => this._destination; 
-            set => this._destination = value; 
-            }
-        
+        public int Destination
+        {
+            get => this._destination;
+            set => this._destination = value;
+        }
+
         public Edge(int source, int destination)
         {
             this._source = source;
-            this._destination = destination;   
+            this._destination = destination;
         }
     }
 
-    public class Graph{
+    public class Graph
+    {
         private List<List<int>> _vertices = null;
 
-        public List<List<int>> Vertices { 
+        public List<List<int>> Vertices
+        {
             get => this._vertices;
         }
 
@@ -37,10 +41,11 @@ namespace HandsOn.ConsoleApp
             if (this._vertices == null)
                 this._vertices = new List<List<int>>();
 
-            for(int i=0; i <= numberOfEdges; i++)
+            for (int i = 0; i <= numberOfEdges; i++)
                 this._vertices.Add(new List<int>());
 
-            foreach (Edge edge in edges){
+            foreach (Edge edge in edges)
+            {
                 this._vertices[edge.Source].Add(edge.Destination);
                 this._vertices[edge.Destination].Add(edge.Source);
             }
@@ -145,7 +150,7 @@ namespace HandsOn.ConsoleApp
 
                     if (x == y)
                         return true;
-                    
+
                     this.union(x, y);
                 }
 

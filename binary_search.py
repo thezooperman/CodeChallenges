@@ -124,11 +124,35 @@ def square_root_search(n: int, precision: int) -> float:
         increment /= 10
     return round(ans, precision)
 
+def find_nth_root(x:int, n: int) -> float:
+    x = float(x)
+    n = int(n)
+
+    if x >= 0 and x <= 1:
+        low = x
+        high = 1
+    else:
+        low = 1
+        high = x
+    
+    epsilon = 0.00000001
+
+    guess = (low + high) / 2
+
+    while abs(guess ** n - x) >= epsilon:
+        if guess ** n  > x:
+            high = guess
+        else:
+            low = guess
+        guess = (low + high) / 2
+    
+    return guess
 
 def driver():
     # occurrence_count()
     # one_sided_search()
     print(square_root_search(5, 4))
 
+    print(find_nth_root(8, 3))
 
 driver()

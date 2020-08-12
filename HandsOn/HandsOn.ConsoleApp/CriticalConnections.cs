@@ -7,14 +7,15 @@ namespace HandsOn.ConsoleApp
     {
 
         #region Tarjan's Algorithm
-        internal struct Vertex{
+        internal struct Vertex
+        {
             private int _id;
             public int Id
             {
                 get { return _id; }
                 set { _id = value; }
             }
-            
+
             private int _index;
             public int Index
             {
@@ -22,14 +23,14 @@ namespace HandsOn.ConsoleApp
                 set { _index = value; }
             }
 
-           private int _lowLink;
-           public int LowLink
-           {
-               get { return _lowLink; }
-               set { _lowLink = value; }
-           }
+            private int _lowLink;
+            public int LowLink
+            {
+                get { return _lowLink; }
+                set { _lowLink = value; }
+            }
 
-           public HashSet<Vertex> Dependencies {get;set;}
+            public HashSet<Vertex> Dependencies { get; set; }
         }
         #endregion
 
@@ -72,7 +73,8 @@ namespace HandsOn.ConsoleApp
                 from = connection[0];
                 to = connection[1];
 
-                if (graph.ContainsKey(from)){
+                if (graph.ContainsKey(from))
+                {
                     graph[from].Remove(to);
                     graph[to].Remove(from);
 
@@ -82,7 +84,7 @@ namespace HandsOn.ConsoleApp
 
                     if (visited.Count != n)
                         final.Add(new List<int>(connection));
-                    
+
                     // add the edge back
                     graph[from].Add(to);
                     graph[to].Add(from);
