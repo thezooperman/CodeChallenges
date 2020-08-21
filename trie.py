@@ -6,7 +6,7 @@ Worst Case Operation: O(m)
 where m is length of the longest string
 '''
 
-# from collections import deque
+from typing import List
 
 
 class TrieNode:
@@ -16,14 +16,12 @@ class TrieNode:
         self.edges = {}
         self.is_end = False
 
-
 class Trie:
     def __init__(self):
         self.root = TrieNode()
 
-    def insert(self, k, v):
+    def insert(self, k: str, v: str):
         root = self.root
-        # last_char_index = None
 
         for char in k:
             if char in root.edges:
@@ -35,28 +33,10 @@ class Trie:
                 root = node
             if root.value < v:
                 root.value = v
-
-        # for index_char, char in enumerate(k):
-        #     # the key already exists in the Trie,
-        #     # move to next children
-        #     if char in root.edges:
-        #         root = root.edges[char]
-        #     else:
-        #         last_char_index = index_char
-        #         break
-        # if last_char_index is not None:
-        #     # key does not exist
-        #     # create a new node and assign
-        #     for char in k[last_char_index:]:
-        #         root.edges[char] = TrieNode()
-        #         root.edges[char].key = char
-        #         root = root.edges[char]
-
-        # assign the value to the terminating node
-        # root.value = v
+        
         root.is_end = True
 
-    def search(self, word):
+    def search(self, word: str):
         root = self.root
         for char in word:
             if char in root.edges:
@@ -64,29 +44,46 @@ class Trie:
             else:
                 return -1
         return root.value
+    
+    def _searchUtil(self, root: TrieNode, return_val: list):
+        if root.is_end:
+            yield return_val
+        
+        for k,v in root.edges.items():
+            return_val.append(k)
+            yield from self._searchUtil(v, return_val)
+            return_val.pop()
 
-        # if word:
-        #     root = self.root
-        #     for char in word:
-        #         if char in root.edges:
-        #             root = root.edges[char]
-        #         else:
-        #             return -1
-        #     if root.is_end:
-        #         return root.value
-        #     # search and compare terminating node in child
-        #     max_value = -1
-        #     store_childs = deque()
-        #     for ch_k, ch_v in root.edges.items():
-        #         store_childs.append(ch_v)
-        #     while store_childs:
-        #         node = store_childs.popleft()
-        #         if node.is_end and node.value > max_value:  # leaf node
-        #             max_value = node.value
-        #         for e_k, e_v in node.edges.items():
-        #             store_childs.append(e_v)
-        #     return max_value
-        # return -1
+    def search_all_values(self, word: str) -> List[str]:
+        if not word or len(word) == 0:
+            return ValueError("Search param cannot be empty")
+        
+        crawl = self.root
+        result = []
+
+        for letter in word:
+            if letter in crawl.edges:
+                result.append(letter)
+                crawl = crawl.edges[letter]
+            else:
+                return []
+        
+        return_val = [''.join(r) for r in self._searchUtil(crawl, result)]
+
+        return return_val
+    
+    def delete(self, word: str):
+        if not word or len(word) == 0:
+            return ValueError("Search param cannot be empty")
+        
+        crawl = self.root
+
+        for letter in word:
+            if letter in crawl.edges:
+                crawl = crawl.edges[letter]
+            else:
+                raise ValueError('Word not found')
+
 
 
 if __name__ == '__main__':
@@ -107,3 +104,5 @@ if __name__ == '__main__':
         trie.insert(k, v)
     search_word = 'hacker'
     print(trie.search(search_word))
+    print(trie.search_all_values('hack'))
+
