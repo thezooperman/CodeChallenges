@@ -43,7 +43,7 @@ class Trie:
                 root = root.edges[char]
             else:
                 return -1
-        return root.value
+        return root.value if root.value else root.key
     
     def _searchUtil(self, root: TrieNode, return_val: list):
         if root.is_end:
@@ -71,19 +71,37 @@ class Trie:
         return_val = [''.join(r) for r in self._searchUtil(crawl, result)]
 
         return return_val
-    
-    def delete(self, word: str):
+
+    def _deleteUtil(self, root: TrieNode, key: str, depth: int) -> bool:
+        if not root:
+            return False
+        
+        if depth == len(key):
+            if root.is_end:
+                root.is_end = False
+            # check if the cuurent node has childrens/references 
+            return bool(root.edges)
+        
+        letter = key[depth]
+        if letter not in root.edges:
+            raise ValueError('Param to delete not found')
+            #return True
+
+        flag = self._deleteUtil(root.edges[letter], key, depth + 1)
+        # if current node has children, do not delete
+        if flag:
+            return True
+        # current letter chain can be safely removed
+        root.edges.pop(letter)
+        return bool(root.edges) or root.is_end
+        
+
+    def delete(self, word: str) -> bool:
         if not word or len(word) == 0:
             return ValueError("Search param cannot be empty")
         
         crawl = self.root
-
-        for letter in word:
-            if letter in crawl.edges:
-                crawl = crawl.edges[letter]
-            else:
-                raise ValueError('Word not found')
-
+        return self._deleteUtil(crawl, word, 0)
 
 
 if __name__ == '__main__':
@@ -105,4 +123,8 @@ if __name__ == '__main__':
     search_word = 'hacker'
     print(trie.search(search_word))
     print(trie.search_all_values('hack'))
+    trie.delete('blob')
+    print(trie.search('blob'))
+    trie.delete('hackerrank')
 
+    print(trie.search_all_values('hacker'))

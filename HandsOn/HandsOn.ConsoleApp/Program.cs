@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 
@@ -8,6 +9,30 @@ namespace HandsOn.ConsoleApp
     {
         static void Main(string[] args)
         {
+            // //Magic Value of an Array
+            // var intArr = new List<int>{0, 2, 1, 4}; //, 1, 0, 3, 2, 1, 0, 4};
+
+            // Dictionary<int, int> originalMap = new Dictionary<int, int>();
+            // for(int i = 0; i < intArr.Count; i++)
+            //     originalMap.Add(i, intArr[i]);
+            
+            // // Array.Sort(intArr);
+            // intArr.Sort();
+
+            // int goodInt = 0, badInt = 0;
+
+            // for (int i = 0; i < intArr.Count; i++)
+            // {
+            //     int valueAtPosition = originalMap.GetValueOrDefault(i);
+            //     // compare sorted array position
+            //     if (valueAtPosition != intArr[i])
+            //         badInt += 1;
+            //     else
+            //         goodInt += 1;
+            // }
+
+            // System.Console.WriteLine(goodInt - badInt);
+
             // Kruskal's MST
             Kruskals kmst = new Kruskals();
             kmst.FindMST(4, 5);

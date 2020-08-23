@@ -57,3 +57,4 @@ if __name__ == "__main__":
     print(*next_largest([6,9,3,8,6,5,2])) # 6952368
     print(*next_largest([4,7])) # 74
     print(*next_largest([1,3,2])) # 213
+    print(*next_largest([2,3,5,4])) # 2435
