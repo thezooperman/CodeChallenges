@@ -30,6 +30,8 @@ def max_subarray(array: List[int], k: int) -> Iterable[int]:
 
     dq = deque()
 
+    # store the largest element in window
+    # at front
     for i in range(k):
         while len(dq) > 0 and array[i] >= array[dq[0]]:
             dq.popleft()
