@@ -31,36 +31,32 @@ You should return the pair with the largest number.
 
 from typing import List
 
+
 def pair_prob(arr: List[int], target: int):
     # actual value
     target -= 30
 
     complement_map = {}
     final_list = []
-    
+
     for i in range(len(arr)):
         complement = target - arr[i]
         if complement in complement_map:
-            if len(final_list) > 1:
-                # pick the index with largest number
-                a, b = complement, arr[i]
-                a_, b_ = arr[final_list[0]], arr[final_list[1]]
-
-                if a > a_ or a > b_ or b > a_ or b > b_:
-                    final_list = [i, complement_map.get(complement)]
-            else:
-                final_list = [i, complement_map.get(complement)]
+            if complement_map[complement] > any(final_list) or i > any(final_list):
+                final_list.clear()
+                final_list.extend([complement_map[complement], i])
         else:
             complement_map[arr[i]] = i
 
     return final_list
 
+
 if __name__ == "__main__":
     arr = [20, 50, 40, 25, 30, 10]
     target = 90
 
-    print(pair_prob(arr, target))
+    print(pair_prob(arr, target))  # Output 1, 5
 
     arr = [1, 10, 25, 35, 60]
     target = 90
-    print(pair_prob(arr, target))
+    print(pair_prob(arr, target))  # Output 2, 3

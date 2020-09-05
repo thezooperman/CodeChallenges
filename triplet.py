@@ -20,7 +20,7 @@ def triplet(arr, n):
 
 
 if __name__ == '__main__':
-    print(triplet([1, 5, 3, 2], 4))
+    print(triplet([1, 5, 3, 2], 4)) # Output: 2
     print(triplet([7, 2, 5, 4, 3, 6, 1, 9, 10, 12], 10))
     print(triplet([1, 3, 4, 15, 19], 5))
-    print(triplet([3, 2, 7], 3))
+    print(triplet([3, 2, 7], 3)) # Output: -1
