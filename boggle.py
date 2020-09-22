@@ -84,13 +84,6 @@ def driver():
 
         board_values = ['f', 'f', 'd', 'e', 'f', 'b', 'b', 'e']
 
-        visited = set()
-        trie = Trie()
-
-        # build trie
-        for word in dictionary:
-            trie.insert(word)
-
         # build matrix
         matrix = [[''] * m for _ in range(n)]
         row = start = 0
@@ -108,9 +101,6 @@ def driver():
         # build trie
         for word in dictionary:
             trie.insert(word)
-
-        # go through matrix for word
-        visited = set()
 
         tmp_str = ''
         for row in range(n):
