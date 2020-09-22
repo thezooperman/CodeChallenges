@@ -1,6 +1,14 @@
+"""
+    Implement Boggle Word Game
+"""
+
 from typing import List
 
 
+
+'''
+    Trie node to capture dictionary items
+'''
 class TrieNode:
     def __init__(self):
         self.key = None  # key - a,b,c
@@ -8,10 +16,19 @@ class TrieNode:
         self.is_end = False
 
 
+'''
+    Trie class to define
+    trie operations
+    search, insert, etc
+'''
 class Trie:
     def __init__(self):
         self.root = TrieNode()
 
+    '''
+        Insert into a trie
+        args: k: string
+    '''
     def insert(self, k: str):
         root = self.root
 
@@ -26,6 +43,10 @@ class Trie:
 
         root.is_end = True
 
+    '''
+        Search a trie
+        args: word: string
+    '''
     def search(self, word: str):
         root = self.root
         for char in word:
@@ -39,13 +60,19 @@ class Trie:
 directions = {(0, -1), (0, 1), (1, 0), (-1, 0),
               (-1, -1), (1, 1), (-1, 1), (1, -1)}
 
-
+'''
+    Utility method to check
+    boundary conditions of a cell
+'''
 def is_safe(matrix, row, col, visited):
     return bool(0 <= row < len(matrix) and
                 0 <= col < len(matrix[0]) and
                 (row, col) not in visited)
 
-
+'''
+    DFS to look into trie
+    and search for related words
+'''
 def searchWord(matrix: List[List[int]], trie: TrieNode, tmp_str: str, row: int, col: int, visited: set, dictionary: set):
     if trie.is_end and tmp_str in dictionary:
         # print(tmp_str, sep=' ', end=' ')
@@ -68,7 +95,12 @@ def searchWord(matrix: List[List[int]], trie: TrieNode, tmp_str: str, row: int, 
 
 result = set()
 
-
+'''
+    Driver function
+    Initiates trie
+    sets up matrix
+    calls the search function
+'''
 def driver():
     testCases = 1  # int(input().strip())
     for tc in range(testCases):
