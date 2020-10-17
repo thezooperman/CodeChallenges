@@ -1,21 +1,14 @@
 [[source]]
-url = "https://pypi.python.org/simple"
-verify_ssl = true
 name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
 
 [packages]
-requests = "*"
-bs4 = "*"
-flake8 = "*"
-numpy = "*"
-autopep8 = "*"
 google-api-python-client = "*"
 google-auth-httplib2 = "*"
 google-auth-oauthlib = "*"
-pytest = "*"
-pytest-mock = "*"
 
-[dev-packages]
-nose = "*"
-flake8 = "*"
-pylint = "*"
+[requires]
+python_version = "3.8"

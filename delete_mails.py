@@ -5,10 +5,11 @@
 from __future__ import print_function
 
 import math
+import random
+import time
 
 import pickle
 import os.path
-from googleapiclient.http import BatchHttpRequest
 from googleapiclient.discovery import build
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
@@ -45,57 +46,73 @@ def getService():
     return service
 
 
-def getMailsByFilter(service, user_id, cleanup_list):
+def getMailsByFilter(user_id, cleanup_list):
     try:
-        batch = BatchHttpRequest(callback=getCallback)
-        for lookup in cleanup_list:
-            batch.add(service.users().messages().list(userId=user_id,
-                                                      q=lookup),
-                      request_id=lookup)
-        batch.execute()
+        # batch = BatchHttpRequest(callback=getCallback)
+        batch = service.new_batch_http_request(callback=getCallback)
+
+        # use filter_count to limit search to 100 requests
+        # at a time
+        LIMIT = 100
+        skip, take = 0, LIMIT
+        cleanup_list = list(cleanup_list)
+
+        iterations = math.ceil(len(cleanup_list) / LIMIT)
+
+        for _ in range(iterations):
+            for lookup in cleanup_list[skip: take]:
+                batch.add(service.users().messages().list(
+                    userId=user_id,
+                    q=lookup),
+                    request_id=lookup)
+
+            batch.execute()
+            skip = take
+            take = len(cleanup_list) if (take + LIMIT) >= len(cleanup_list) \
+                else (take + LIMIT)
+            batch = service.new_batch_http_request(callback=getCallback)
+
         return 0
     except errors.HttpError as ex:
-        print(f'Exception:{ex}')
+        print(f'Error:{ex}')
         return 1
 
 
-def batchDeleteMails(service):
+def batchDeleteMails():
     if not to_delete_ids:
         return 1
     print('Deleting e-mails...')
     try:
-        # batch delete messages as 1000 msg limit for regular users
-        batch_limit = 1000
+        # batch delete messages as 100 msg limit for regular users
+        batch_limit = 50
         iterations = math.ceil(len(to_delete_ids) / batch_limit)
         skip, take = 0, batch_limit
         print(
             f'Total Messages: {len(to_delete_ids)},\
             Target Iterations: {iterations}')
 
-        batch = BatchHttpRequest(callback=deleteCallback)
+        # batch = BatchHttpRequest(callback=deleteCallback)
+        batch = service.new_batch_http_request(callback=deleteCallback)
 
         for _ in range(iterations):
-            payload = {'ids': []}
-            payload['ids'].extend([str(d['id'])
-                                   for d in to_delete_ids[skip: take]])
-            batch.add(service.users().messages().batchDelete(
-                userId=USER_ID,
-                body=payload
-            ))
+            for del_id in to_delete_ids[skip:take]:
+                batch.add(service.users().messages().trash(userId=USER_ID, id=del_id))
+
+            batch.execute()
+            # time.sleep(random.randint(1, 3))
             skip = take
             take = len(to_delete_ids) if (take + batch_limit >=
-                                          len(to_delete_ids))\
+                                          len(to_delete_ids)) \
                 else take + batch_limit
-
-        batch.execute()
+            batch = service.new_batch_http_request(callback=deleteCallback)
     except errors.HttpError as ex:
-        print(f'Exception:{ex}')
+        print(f'Error:{ex}')
         return 1
 
 
 def getCallback(request_id, response, exception):
     if exception:
-        print(f'Error:{exception}')
+        print(f'Error:{exception}, Request_id: {request_id}')
     else:
         try:
             messages = []
@@ -112,19 +129,21 @@ def getCallback(request_id, response, exception):
                     messages.extend(response['messages'])
                 except KeyError:
                     print(f"{request_id}: {response}")
-            to_delete_ids.extend(messages)
             if len(messages) > 0:
+                for msg in messages:
+                    to_delete_ids.append(str(msg['id']))
                 print(f'{request_id} --> fetched messages: {len(messages)}')
         except errors.HttpError as ex:
-            print(f'Exception:{ex}')
+            print(f'Error:{ex}, Request_id: {request_id}')
             return 1
 
 
 def deleteCallback(request_id, response, exception):
     if exception:
-        print(f'Error: {exception}')
+        print(flush=True)
+        print(f'Error: {exception}, Request_id: {request_id}')
     else:
-        print(f'Request Id: {request_id}')
+        print(f'Request Id: {request_id}', end=' ', sep=' ')
 
 
 service = getService()
@@ -134,8 +153,8 @@ if __name__ == '__main__':
     with open('mail_filter.txt', encoding='utf-8') as fp:
         mail_filter = {line.strip() for line in fp if not line.startswith('#')}
 
-    getMailsByFilter(service, USER_ID, mail_filter)
+    getMailsByFilter(USER_ID, mail_filter)
     print('-' * 85)
     print(f'Total mails to cleanup: {len(to_delete_ids)}')
     print('-' * 85)
-    batchDeleteMails(service)
+    batchDeleteMails()
