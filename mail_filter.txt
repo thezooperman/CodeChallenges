@@ -354,3 +354,4 @@ from:e-tdscertificate@hdfcbank.com
 from:noreply@codemag.com
 from:offers@mailer.behrouzbiryani.com
 from:*@the-ken.com
+from:standardcharteredbulletin@sc.com
