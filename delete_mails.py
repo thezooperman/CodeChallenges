@@ -84,7 +84,7 @@ def batchDeleteMails():
     print('Deleting e-mails...')
     try:
         # batch delete messages as 100 msg limit for regular users
-        batch_limit = 50
+        batch_limit = 85
         iterations = math.ceil(len(to_delete_ids) / batch_limit)
         skip, take = 0, batch_limit
         print(
@@ -157,4 +157,4 @@ if __name__ == '__main__':
     print('-' * 85)
     print(f'Total mails to cleanup: {len(to_delete_ids)}')
     print('-' * 85)
-    batchDeleteMails()
+    #batchDeleteMails()
