@@ -81,13 +81,14 @@ from:aritra.ghosh@outlook.com
 to:aritra.ghosh@outlook.com
 to:Aritra_Ghosh02@infosys.com
 to:Aritra.Ghosh@nasdaq.com
+to:aritraghosh4@kpmg.com
 #to:*@in.ibm.com
 from:*@paytm.com
 from:*@hpeprint.com
 #*@savex.in
 #*@reglobe.in
 *@mahaelectronics.com
-#from:*@vodafone.com
+from:*@vodafone.com
 from:alert@icicibank.com
 from:rmfupdates@campaign1.reliancemutual.com
 from:*@quora.com
