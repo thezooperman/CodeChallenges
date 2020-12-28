@@ -358,3 +358,16 @@ from:no-reply@hackerrankmail.com
 from:monday.reply@brighttalk.com
 from:notify@marketing.freshtohome.com
 from:support@mlab.com
+from:*@kite.dev
+from:recruiter@alert.shine.com
+from:noreply@steampowered.com
+from:*@netskope.com
+from:care@1mg.com
+from:noreply@info.pgimindiamf.in
+from:admin@easemytrip.com
+from:info@marketing.freshtohome.com
+from:CSAT.feedback@sbicard.com
+from:scbcardeasybillpay@billdesk.in
+from:donotreply@sbicard.com
+from:vodafone@billdesk.in
+from:StandardChartered.PremiumBanking@sc.com
