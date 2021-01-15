@@ -68,7 +68,6 @@ from:*@swiggy.in
 from:*@dzone.com
 from:aritra.ghosh@outlook.com
 to:aritra.ghosh@outlook.com
-to:Aritra_Ghosh02@infosys.com
 to:Aritra.Ghosh@nasdaq.com
 to:aritraghosh4@kpmg.com
 #to:*@in.ibm.com
