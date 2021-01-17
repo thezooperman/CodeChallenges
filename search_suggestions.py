@@ -55,8 +55,6 @@ All characters of products[i] are lower-case English letters.
 All characters of searchWord are lower-case English letters.
 """
 
-
-
 from collections import deque
 from typing import List
 
@@ -131,7 +129,6 @@ class Solution:
         for i in range(len(searchWord)):
             res.append(obj_trie.search(searchWord[:i + 1]))
 
-
         return res
 
 
@@ -155,7 +152,7 @@ if __name__ == "__main__":
 
     products = ["havana"]
     searchWord = "tatiana"
-    output = [[],[],[],[],[],[],[]]
+    output = [[], [], [], [], [], [], []]
 
     actual = obj.suggestedProducts(products, searchWord)
 
