@@ -370,3 +370,11 @@ from:scbcardeasybillpay@billdesk.in
 from:donotreply@sbicard.com
 from:vodafone@billdesk.in
 from:StandardChartered.PremiumBanking@sc.com
+from:info@easemytrip.com
+from:care@nurserylive.com
+from:newsletters@moboranges.com
+from:newsletter@newzexpres.com
+from:xclusive@caratlane.com
+from:info@marketing.aparnaconstructions.com
+from:noreply@e.fitbit.com
+from:alerts@updates.ugaoo.com
