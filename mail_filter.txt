@@ -378,3 +378,8 @@ from:xclusive@caratlane.com
 from:info@marketing.aparnaconstructions.com
 from:noreply@e.fitbit.com
 from:alerts@updates.ugaoo.com
+from:no-reply@amazonpay.in
+from:sales@centuryrealestate.in
+from:noreply@google.com
+from:rpe-reminders@amazon.com
+from:do-not-reply@zeta.in

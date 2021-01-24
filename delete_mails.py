@@ -83,8 +83,8 @@ def batchDeleteMails():
         return 1
     print('Deleting e-mails...')
     try:
-        # batch delete messages as 100 msg limit for regular users
-        batch_limit = 10
+        # batch delete messages as 10 msg limit for regular users
+        batch_limit = 30
         iterations = math.ceil(len(to_delete_ids) / batch_limit)
         skip, take = 0, batch_limit
         print(
@@ -96,7 +96,7 @@ def batchDeleteMails():
 
         for _ in range(iterations):
             for del_id in to_delete_ids[skip:take]:
-                batch.add(service.users().messages().trash(userId=USER_ID, id=del_id))
+                batch.add(service.users().messages().trash(userId=USER_ID, id=_ + 1))
 
             batch.execute()
             # time.sleep(random.randint(1, 3))
@@ -143,7 +143,7 @@ def deleteCallback(request_id, response, exception):
         print(flush=True)
         print(f'Error: {exception}, Request_id: {request_id}')
     else:
-        print(f'Request Id: {request_id}', end=' ', sep=' ')
+        print(f'Request Id: {request_id}', end=' ', sep='-')
 
 
 service = getService()
