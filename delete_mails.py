@@ -84,7 +84,7 @@ def batchDeleteMails():
     print('Deleting e-mails...')
     try:
         # batch delete messages as 10 msg limit for regular users
-        batch_limit = 30
+        batch_limit = 10
         iterations = math.ceil(len(to_delete_ids) / batch_limit)
         skip, take = 0, batch_limit
         print(
@@ -96,7 +96,7 @@ def batchDeleteMails():
 
         for _ in range(iterations):
             for del_id in to_delete_ids[skip:take]:
-                batch.add(service.users().messages().trash(userId=USER_ID, id=_ + 1))
+                batch.add(service.users().messages().trash(userId=USER_ID, id=del_id))
 
             batch.execute()
             # time.sleep(random.randint(1, 3))

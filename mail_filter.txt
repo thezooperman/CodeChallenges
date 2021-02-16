@@ -27,7 +27,7 @@ from:*@hp.com
 from:*@hpservice.support.hp.com
 from:*@solutions-intg.com
 #from:*@cleartrip.com
-from:credit_cards@icicibank.com
+#from:credit_cards@icicibank.com
 from:*@meetup.com
 from:customercare@icicibank.com
 from:net.statement@citicorp.com
