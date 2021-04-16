@@ -404,3 +404,4 @@ from:*@vedix.intercom-mail.com
 from:*@bewakoof.net
 from:auto-confirm@amazon.in
 from:store-news@amazon.in
+from:no-reply@amazon.in
