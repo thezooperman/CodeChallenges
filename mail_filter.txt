@@ -423,3 +423,5 @@ from:nimf.pur.txn@kfintech.com
 from:cra-alerts@nsdl.co.in
 from:online.service@sbimf.com
 from:info@wakefit.co.in
+from:no-reply@screener.in
+from:noreply@relay.firefox.com
