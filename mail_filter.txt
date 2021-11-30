@@ -425,3 +425,6 @@ from:online.service@sbimf.com
 from:info@wakefit.co.in
 from:no-reply@screener.in
 from:noreply@relay.firefox.com
+from:campaigns@mfuindia.com
+from:noreply@nurserylive.com
+from:donotreply@kwik24.com
