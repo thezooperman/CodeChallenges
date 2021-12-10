@@ -428,3 +428,4 @@ from:noreply@relay.firefox.com
 from:campaigns@mfuindia.com
 from:noreply@nurserylive.com
 from:donotreply@kwik24.com
+from:upi@sc.com
