@@ -44,7 +44,7 @@ from:*@portfolio.moneycontrol.com
 from:*@alerts.moneycontrol.com
 from:*@safalniveshak.com
 from:*@sulekhanotifications.com
-from:*@nobroker.in
+#from:*@nobroker.in
 from:*@giridharihomes.com
 from:rwamdt.estatemanager@gmail.com
 from:rwamdt.treasurer@gmail.com
@@ -69,7 +69,7 @@ from:*@dzone.com
 from:aritra.ghosh@outlook.com
 to:aritra.ghosh@outlook.com
 to:Aritra.Ghosh@nasdaq.com
-to:aritraghosh4@kpmg.com
+#to:aritraghosh4@kpmg.com
 #to:*@in.ibm.com
 from:*@paytm.com
 from:*@hpeprint.com
